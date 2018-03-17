@@ -1,4 +1,5 @@
 package model;
+import java.math.BigDecimal;
 import java.sql.*;
 import bean.BookBean;
 
@@ -38,6 +39,27 @@ public class BookDAO {
 		r.close();
 		
 		return book;
+	}
+	
+	public void insertBook(BookBean book) throws SQLException {
+		
+		try {
+			conn = DatabaseConnector.getDatabaseConnection();
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		String insertStatement = "INSERT INTO book (bid, title, price) VALUES(?,?,?)";
+		PreparedStatement p = conn.prepareStatement(insertStatement);
+		
+		p.setString(1, book.getBid());
+		p.setString(2, book.getTitle());
+		BigDecimal price = new BigDecimal(book.getPrice());
+		p.setBigDecimal(3, price);
+		
+		p.execute();
+		
 	}
 	
 }

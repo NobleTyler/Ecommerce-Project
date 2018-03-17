@@ -18,16 +18,25 @@ public class Tests {
 		String result = "";
 		
 		try {
-			bb = b.retrieveBook("b00001");
+			bb = b.retrieveBook("b00001");			//querying for book by bid
+			BookBean newBook = new BookBean("b00002", "Lord of the Rings", (float) 23.49);
+			b.insertBook(newBook);
+			
+			if (b.retrieveBook("b00002") == null) {
+				result += "ERROR! book b00002 was not added to the table";
+			}
+			else {
+				result += "Book b00002 successfully added to the database";
+			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		
 		if (bb == null) {
-			result += "Book query for bid=b00001 was null!";
+			result += "ERROR! Book query for bid=b00001 was null!";
 		}
 		else {
-			result = bb.getBid() + " " + bb.getTitle() + " " + bb.getPrice();
+			result += bb.getBid() + " " + bb.getTitle() + " " + bb.getPrice();
 		}
 		
 		return result;
