@@ -1,6 +1,9 @@
 package model;
 import java.math.BigDecimal;
 import java.sql.*;
+import java.util.HashMap;
+import java.util.Map;
+
 import bean.BookBean;
 
 public class BookDAO {
@@ -11,7 +14,7 @@ public class BookDAO {
 		
 	}
 	
-	public BookBean retrieveBook(String bid) throws SQLException {
+	public BookBean retrieveBookByBid(String bid) throws SQLException {
 		
 		try {
 			conn = DatabaseConnector.getDatabaseConnection();
@@ -39,6 +42,40 @@ public class BookDAO {
 		r.close();
 		
 		return book;
+	}
+	
+	public Map<String, BookBean> retrieveBooksByTitle(String t) throws SQLException {
+		Map<String, BookBean> m = new HashMap<String, BookBean>();
+		
+		try {
+			conn = DatabaseConnector.getDatabaseConnection();
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		String query = "select * from book where title like ?";
+		PreparedStatement p = conn.prepareStatement(query);
+		
+		p.setString(1, "%" + t +"%");
+		ResultSet r = p.executeQuery();
+		
+		BookBean book;
+		
+		while(r.next()) {
+			String bid = r.getString("BID");
+			String title = r.getString("TITLE");
+			float price = r.getBigDecimal("PRICE").floatValue();
+			
+			book = new BookBean(bid, title, price);
+			m.put(bid, book);
+		}
+		
+		conn.close();
+		r.close();
+		p.close();
+		
+		return m;
 	}
 	
 	public void insertBook(BookBean book) throws SQLException {
