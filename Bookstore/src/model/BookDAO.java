@@ -60,6 +60,8 @@ public class BookDAO {
 		
 		p.execute();
 		
+		conn.close();
+		p.close();
 	}
 	
 }
