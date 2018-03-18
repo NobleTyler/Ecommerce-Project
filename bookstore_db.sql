@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 18, 2018 at 06:20 PM
+-- Generation Time: Mar 18, 2018 at 07:43 PM
 -- Server version: 10.1.31-MariaDB
 -- PHP Version: 7.2.3
 
@@ -49,9 +49,9 @@ INSERT INTO `account` (`username`, `password`, `pass_salt`, `cartid`) VALUES
 --
 
 CREATE TABLE `book` (
-  `bid` varchar(25) NOT NULL,
+  `bid` int(11) NOT NULL,
   `title` varchar(50) NOT NULL,
-  `price` decimal(4,2) NOT NULL
+  `price` decimal(6,2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -59,28 +59,31 @@ CREATE TABLE `book` (
 --
 
 INSERT INTO `book` (`bid`, `title`, `price`) VALUES
-('b00001', 'The Hobbit', '49.99'),
-('b00002', 'Lord of the Rings', '23.49');
+(1, 'The Hobbit', '49.99'),
+(2, 'Lord of the Rings', '23.49'),
+(4, 'Introduction to Algorithms, Second Edition', '144.89');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `categories`
+-- Table structure for table `category`
 --
 
-CREATE TABLE `categories` (
-  `category` varchar(25) NOT NULL,
-  `bid` varchar(25) NOT NULL
+CREATE TABLE `category` (
+  `bid` int(11) NOT NULL,
+  `category` varchar(25) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `categories`
+-- Dumping data for table `category`
 --
 
-INSERT INTO `categories` (`category`, `bid`) VALUES
-('fiction', 'b00001'),
-('fiction', 'b00002'),
-('fantasy', 'b00001');
+INSERT INTO `category` (`bid`, `category`) VALUES
+(1, 'fantasy'),
+(2, 'fantasy'),
+(1, 'fiction'),
+(4, 'math'),
+(4, 'computer science');
 
 --
 -- Indexes for dumped tables
@@ -100,10 +103,10 @@ ALTER TABLE `book`
   ADD PRIMARY KEY (`bid`);
 
 --
--- Indexes for table `categories`
+-- Indexes for table `category`
 --
-ALTER TABLE `categories`
-  ADD KEY `fk_category` (`bid`);
+ALTER TABLE `category`
+  ADD KEY `bid` (`bid`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -116,14 +119,20 @@ ALTER TABLE `account`
   MODIFY `cartid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
+-- AUTO_INCREMENT for table `book`
+--
+ALTER TABLE `book`
+  MODIFY `bid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
 -- Constraints for dumped tables
 --
 
 --
--- Constraints for table `categories`
+-- Constraints for table `category`
 --
-ALTER TABLE `categories`
-  ADD CONSTRAINT `fk_category` FOREIGN KEY (`bid`) REFERENCES `book` (`bid`);
+ALTER TABLE `category`
+  ADD CONSTRAINT `category_ibfk_1` FOREIGN KEY (`bid`) REFERENCES `book` (`bid`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
