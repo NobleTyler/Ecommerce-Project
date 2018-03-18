@@ -24,7 +24,7 @@ public class CategoryDAO {
 			e.printStackTrace();
 		}
 		
-		String query = "select distinct(category) from categories";
+		String query = "select distinct(category) from category";
 		PreparedStatement p = conn.prepareStatement(query);
 		
 		ResultSet r = p.executeQuery();
@@ -45,7 +45,7 @@ public class CategoryDAO {
 	/*
 	 * @returns a list of categories for a given bid
 	 */
-	public List<String> retrieveCategoriesForBook(String bid) throws SQLException {
+	public List<String> retrieveCategoriesForBook(int bid) throws SQLException {
 		
 		try {
 			conn = DatabaseConnector.getDatabaseConnection();
@@ -54,9 +54,9 @@ public class CategoryDAO {
 			e.printStackTrace();
 		}
 		
-		String query = "select category from categories where bid=?";
+		String query = "select category from category where bid=?";
 		PreparedStatement p = conn.prepareStatement(query);
-		p.setString(1, bid);
+		p.setInt(1, bid);
 		
 		ResultSet r = p.executeQuery();
 		
@@ -76,7 +76,7 @@ public class CategoryDAO {
 	/*
 	 * @returns list of bids for a given category
 	 */
-	public List<String> retrieveBooksForCategory(String category) throws SQLException {
+	public List<Integer> retrieveBooksForCategory(String category) throws SQLException {
 		try {
 			conn = DatabaseConnector.getDatabaseConnection();
 		}
@@ -84,16 +84,16 @@ public class CategoryDAO {
 			e.printStackTrace();
 		}
 		
-		String query = "select bid from categories where category=?";
+		String query = "select bid from category where category=?";
 		PreparedStatement p = conn.prepareStatement(query);
 		p.setString(1, category);
 		
 		ResultSet r = p.executeQuery();
 		
-		List<String> books = new ArrayList<String>();
+		List<Integer> books = new ArrayList<Integer>();
 		
 		while (r.next()) {
-			books.add(r.getString("BID"));
+			books.add(r.getInt("BID"));
 		}
 		
 		conn.close();

@@ -14,7 +14,7 @@ public class BookDAO {
 		
 	}
 	
-	public BookBean retrieveBookByBid(String bid) throws SQLException {
+	public BookBean retrieveBookByBid(int bid) throws SQLException {
 		
 		try {
 			conn = DatabaseConnector.getDatabaseConnection();
@@ -26,7 +26,7 @@ public class BookDAO {
 		String query = "select * from book where bid=?";
 		PreparedStatement p = conn.prepareStatement(query);
 		
-		p.setString(1, bid);
+		p.setInt(1, bid);
 		ResultSet r = p.executeQuery();
 		
 		BookBean book = null;
@@ -44,8 +44,8 @@ public class BookDAO {
 		return book;
 	}
 	
-	public Map<String, BookBean> retrieveBooksByTitle(String t) throws SQLException {
-		Map<String, BookBean> m = new HashMap<String, BookBean>();
+	public Map<Integer, BookBean> retrieveBooksByTitle(String t) throws SQLException {
+		Map<Integer, BookBean> m = new HashMap<Integer, BookBean>();
 		
 		try {
 			conn = DatabaseConnector.getDatabaseConnection();
@@ -63,7 +63,7 @@ public class BookDAO {
 		BookBean book;
 		
 		while(r.next()) {
-			String bid = r.getString("BID");
+			int bid = r.getInt("BID");
 			String title = r.getString("TITLE");
 			float price = r.getBigDecimal("PRICE").floatValue();
 			
@@ -90,7 +90,7 @@ public class BookDAO {
 		String insertStatement = "INSERT INTO book (bid, title, price) VALUES(?,?,?)";
 		PreparedStatement p = conn.prepareStatement(insertStatement);
 		
-		p.setString(1, book.getBid());
+		p.setInt(1, book.getBid());
 		p.setString(2, book.getTitle());
 		BigDecimal price = new BigDecimal(book.getPrice());
 		p.setBigDecimal(3, price);

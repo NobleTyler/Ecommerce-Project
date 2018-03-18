@@ -2,21 +2,22 @@ package bean;
 
 public class BookBean {
 
-	private String bid, title;
+	private int bid;
+	private String title;
 	private float price;
 	
-	public BookBean(String bid, String title, float price) {
+	public BookBean(int bid, String title, float price) {
 		super();
 		this.bid = bid;
 		this.title = title;
 		this.price = price;
 	}
 
-	public String getBid() {
+	public int getBid() {
 		return bid;
 	}
 
-	public void setBid(String bid) {
+	public void setBid(int bid) {
 		this.bid = bid;
 	}
 

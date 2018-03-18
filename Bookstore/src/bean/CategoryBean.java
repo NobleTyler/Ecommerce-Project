@@ -2,9 +2,10 @@ package bean;
 
 public class CategoryBean {
 
-	private String category, bid;
+	private String category; 
+	private int bid;
 
-	public CategoryBean(String category, String bid) {
+	public CategoryBean(String category, int bid) {
 		super();
 		this.category = category;
 		this.bid = bid;
@@ -18,11 +19,11 @@ public class CategoryBean {
 		this.category = category;
 	}
 
-	public String getBid() {
+	public int getBid() {
 		return bid;
 	}
 
-	public void setBid(String bid) {
+	public void setBid(int bid) {
 		this.bid = bid;
 	}
 	
