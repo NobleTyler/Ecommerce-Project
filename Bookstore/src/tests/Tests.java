@@ -24,19 +24,19 @@ public class Tests {
 		try {
 			bb = b.retrieveBookByBid(1);			//b01 querying for book by bid
 			if (bb == null) {
-				result += "ERROR b01! Book query for bid=b00001 was null!\n";
+				result += "[ERROR] b01! Book query for bid=b00001 was null!\n";
 			}
 			else {
-				result += "b01: [Query by bid result]: " + bb.getBid() + " " + bb.getTitle() + " " + bb.getPrice() + "\n";
+				result += "[SUCCESS]b01: [Query by bid result]: " + bb.getBid() + " " + bb.getTitle() + " " + bb.getPrice() + "\n";
 			}
 			
 			Map<Integer, BookBean> m = b.retrieveBooksByTitle("Hobbit");		//b02 querying for book by title	
 			if (m.size() == 0) {
-				result += "ERROR b02! no book with title Hobbit found!\n";
+				result += "[ERROR] b02! no book with title Hobbit found!\n";
 			}
 			else {
 				for (Entry<Integer, BookBean> entry : m.entrySet()) {
-					result += "b02: [Query by title result]: " + entry.getKey() + " " + entry.getValue().getTitle() + " " + entry.getValue().getPrice() + "\n";
+					result += "[SUCCESS]b02: [Query by title result]: " + entry.getKey() + " " + entry.getValue().getTitle() + " " + entry.getValue().getPrice() + "\n";
 				}
 			}
 			
@@ -45,11 +45,11 @@ public class Tests {
 				b.insertBook(newBook);
 				
 				if (b.retrieveBookByBid(2) == null) {
-					result += "ERROR b03! book b00002 was not added to the dbs\n";
+					result += "[ERROR] b03! book b00002 was not added to the dbs\n";
 				}
 			}
 			else {
-				result += "b03: Insertion was successful\n";
+				result += "[SUCCESS]b03: Insertion was successful\n";
 			}
 		} 
 		catch (SQLException e) {
@@ -69,10 +69,10 @@ public class Tests {
 			List<String> cats = c.retrieveAllCategories();
 			
 			if (cats.isEmpty()) {
-				result += "ERROR c01! no categories returned for retrieveAllCategories\n";
+				result += "[ERROR] c01! no categories returned for retrieveAllCategories\n";
 			}
 			
-			result += "c01: ";
+			result += "[SUCCESS]c01: ";
 			for (String e : cats) {
 				result += e + " ";
 			}
@@ -82,10 +82,10 @@ public class Tests {
 			int bid = 2;
 			cats = c.retrieveCategoriesForBook(bid);
 			if (cats.isEmpty()) {
-				result += "ERROR c02! no categories returned for " + bid + "\n";
+				result += "[ERROR] c02! no categories returned for " + bid + "\n";
 			}
 			
-			result += "c02: ";
+			result += "[SUCCESS]c02: ";
 			for (String e : cats) {
 				result += e + " ";
 			}
@@ -95,10 +95,10 @@ public class Tests {
 			String categoryName = "fiction";
 			List<Integer> books = c.retrieveBooksForCategory(categoryName);
 			if (books.isEmpty()) {
-				result += "ERROR c03! no books returned for " + categoryName + "\n";
+				result += "[ERROR] c03! no books returned for " + categoryName + "\n";
 			}
 			
-			result += "c03: ";
+			result += "[SUCCESS]c03: ";
 			for (Integer e : books) {
 				result += e + " ";
 			}
@@ -118,27 +118,54 @@ public class Tests {
 		
 		try {
 			// a01 attempt to register user
-			if (a.registerUser("mcmaceac", "shitpass")) {
-				result += "a01: Account successfully registered!\n";
+			if (!a.registerUser("mcmaceac", "shitpass")) {
+				result += "[SUCCESS]a01: Account not registered! (already registered)\n";
 			}
 			else {
-				result += "ERROR a01! Account not registered!\n";
+				result += "[ERROR] a01! Account registered when account is already registered!\n";
 			}
 			
 			// a02 attempt to log in (correct password)
 			if (a.attemptLogin("mcmaceac", "shitpass")) {
-				result += "a02: Login successful!\n";
+				result += "[SUCCESS]a02: Login successful!\n";
 			}
 			else {
-				result += "ERROR a02! Account could not log in!\n";
+				result += "[ERROR] a02! Account could not log in!\n";
 			}
 			
 			// a03 attempt to log in (incorrect password)
 			if (!a.attemptLogin("mcmaceac", "badpass")) {
-				result += "a03: Login unsuccessful with wrong pw!\n";
+				result += "[SUCCESS]a03: Login unsuccessful with wrong pw!\n";
 			}
 			else {
-				result += "ERROR a03! Account logged in with wrong pw!\n";
+				result += "[ERROR] a03! Account logged in with wrong pw!\n";
+			}
+			
+			// a04 attempt to login with an AccountBean
+			AccountBean ab = new AccountBean("testaccountbean", "blah");
+			if (!a.attemptLogin(ab)) {
+				result += "[SUCCESS]a04: Login unsuccessful with non existant account (AccountBean)!\n";
+			}
+			else {
+				result += "[ERROR] a04! Account logged in with non existant account (AccountBean)!\n";
+			}
+			
+			//a05 attempt to register account with accountbean
+			ab = new AccountBean("xXBook_Slayer420Xx", "ieatbooksforbreakfast");
+			if (a.attemptLogin(ab)) {
+				result += "[SUCCESS]a05: Account successfully logged in! (AccountBean)\n";
+			}
+			else {
+				result += "[ERROR] a05! Account not logged in!(AccountBean)\n";
+			}
+			
+			//a06 attempt to register account with accountbean
+			ab.setPassword("wrongpass");
+			if (!a.attemptLogin(ab)) {
+				result += "[SUCCESS]a06: Account not logged in with wrong pass! (AccountBean)\n";
+			}
+			else {
+				result += "[ERROR] a06! Account successfully logged in with wrong pass!(AccountBean)\n";
 			}
 		} 
 		catch (Exception e) {

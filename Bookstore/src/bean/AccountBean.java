@@ -4,11 +4,10 @@ public class AccountBean {
 	
 	private String username, password, cardID;
 
-	public AccountBean(String username, String password, String cardID) {
+	public AccountBean(String username, String password) {
 		super();
 		this.username = username;
 		this.password = password;
-		this.cardID = cardID;
 	}
 
 	public String getUsername() {
@@ -25,14 +24,6 @@ public class AccountBean {
 
 	public void setPassword(String password) {
 		this.password = password;
-	}
-
-	public String getCardID() {
-		return cardID;
-	}
-
-	public void setCardID(String cardID) {
-		this.cardID = cardID;
 	}
 	
 }
