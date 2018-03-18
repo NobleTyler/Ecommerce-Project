@@ -188,15 +188,35 @@ public class Tests {
 		BookReviewBean b = new BookReviewBean(bid, review, username, rating, reviewDate);
 		
 		try {
-			// br01
-			brd.addReview(b);
+			// br01 addReview(b) removed for now since the review is already in the database
+			//brd.addReview(b);
 			
 			if (brd.retrieveBookReviews(bid).isEmpty()) {
-				result += "[ERROR] br01: Review not added!";
+				result += "[ERROR] br01: Review not added!\n";
 			}
 			else {
-				result += "[SUCCESS]br01: Review successfully added!";
+				result += "[SUCCESS]br01: Review successfully added!\n";
 			}
+			
+			//br02 retrieveBookReview(rid)
+			if (brd.retrieveBookReview(1) != null) {
+				result += "[SUCCESS]br02: book review retrieved by rid\n";
+			}
+			else {
+				result += "[ERROR] br02: book review not found with rid 1\n";
+			}
+			
+			/*br03 SUCCESSFULLY TESTED BUT REMOVED SINCE RID WILL BE DIFFERENT AFTER EVERY
+			INSERT DUE TO AUTO_INCREMENT
+			brd.addReview(b);
+			brd.removeReview(2);
+			if (brd.retrieveBookReviews(bid).size() > 1) {
+				result += "[ERROR] br03: failure removing review from the database\n";
+			}
+			else {
+				result += "[SUCCESS]br03: successfully removed review from database\n";
+			}
+			*/
 		} 
 		catch (SQLException e) {
 			e.printStackTrace();
