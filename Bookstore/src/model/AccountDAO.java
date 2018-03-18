@@ -4,6 +4,8 @@ import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
 import java.sql.*;
 
+import bean.AccountBean;
+
 public class AccountDAO {
 	
 	private Connection conn;
@@ -47,6 +49,13 @@ public class AccountDAO {
 		return result;
 		
 	}
+	
+	/*
+	 * register user using an AccountBean object
+	 */
+	public boolean registerUser(AccountBean a) throws SQLException, NoSuchAlgorithmException {
+		return registerUser(a.getUsername(), a.getPassword());
+	}
 
 	/*
 	 * attempts to login using the given username and password
@@ -87,6 +96,13 @@ public class AccountDAO {
 	}
 	
 	/*
+	 * attempt login using an account bean object
+	 */
+	public boolean attemptLogin(AccountBean a) throws SQLException {
+		return attemptLogin(a.getUsername(), a.getPassword());
+	}
+	
+	/*
 	 * @returns an encrypted version of the password using the given salt
 	 * string
 	 */
@@ -101,7 +117,7 @@ public class AccountDAO {
 	private static int generateSalt() throws NoSuchAlgorithmException {
 		SecureRandom sr = SecureRandom.getInstance("SHA1PRNG");
 		int salt = sr.nextInt();
-		System.out.println(salt);
+		//System.out.println(salt);
 		return salt;
 	}
 	
