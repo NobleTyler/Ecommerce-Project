@@ -5,10 +5,11 @@ import java.sql.Date;
 public class BookReviewBean {
 
 	private String reviewText, username;
-	private int bid, rating;
+	private int bid;
+	private float rating;
 	private Date reviewDate;
 	
-	public BookReviewBean(int bid, String reviewText, String username, int rating, Date reviewDate) {
+	public BookReviewBean(int bid, String reviewText, String username, float rating, Date reviewDate) {
 		super();
 		this.bid = bid;
 		this.reviewText = reviewText;
@@ -41,11 +42,11 @@ public class BookReviewBean {
 		this.reviewText = reviewText;
 	}
 
-	public int getRating() {
+	public float getRating() {
 		return rating;
 	}
 
-	public void setRating(int rating) {
+	public void setRating(float rating) {
 		this.rating = rating;
 	}
 

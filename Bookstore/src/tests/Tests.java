@@ -2,6 +2,7 @@ package tests;
 import model.*;
 
 import java.security.NoSuchAlgorithmException;
+import java.sql.Date;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.Map;
@@ -174,6 +175,36 @@ public class Tests {
 		
 		return result;
 	}
+	
+	public String testBookReviewDAO() {
+		BookReviewDAO brd = new BookReviewDAO();
+		String result = "";
+		
+		String review = "Eyo dragon snugglin up with some gold, pretty dope namsayn";
+		float rating = 5;
+		int bid = 1;
+		String username = "mcmaceac";
+		Date reviewDate = new Date(System.currentTimeMillis());
+		BookReviewBean b = new BookReviewBean(bid, review, username, rating, reviewDate);
+		
+		try {
+			// br01
+			brd.addReview(b);
+			
+			if (brd.retrieveBookReviews(bid).isEmpty()) {
+				result += "[ERROR] br01: Review not added!";
+			}
+			else {
+				result += "[SUCCESS]br01: Review successfully added!";
+			}
+		} 
+		catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		
+		return result;
+	}
 
 	public static void main(String[] args) {
 		
@@ -181,6 +212,7 @@ public class Tests {
 		String result = t.testBookDAO();
 		result += t.testCategoryDAO();
 		result += t.testAccountDAO();
+		result += t.testBookReviewDAO();
 		
 		System.out.println(result);
 		
