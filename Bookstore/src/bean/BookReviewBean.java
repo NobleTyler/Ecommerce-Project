@@ -4,11 +4,11 @@ import java.util.Date;
 
 public class BookReviewBean {
 
-	private String bid, reviewText;
-	private int rating;
+	private String reviewText;
+	private int bid, rating;
 	private Date reviewDate;
 	
-	public BookReviewBean(String bid, String reviewText, int rating, Date reviewDate) {
+	public BookReviewBean(int bid, String reviewText, int rating, Date reviewDate) {
 		super();
 		this.bid = bid;
 		this.reviewText = reviewText;
@@ -16,11 +16,11 @@ public class BookReviewBean {
 		this.reviewDate = reviewDate;
 	}
 
-	public String getBid() {
+	public int getBid() {
 		return bid;
 	}
 
-	public void setBid(String bid) {
+	public void setBid(int bid) {
 		this.bid = bid;
 	}
 
