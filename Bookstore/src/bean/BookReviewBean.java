@@ -4,16 +4,25 @@ import java.util.Date;
 
 public class BookReviewBean {
 
-	private String reviewText;
+	private String reviewText, username;
 	private int bid, rating;
 	private Date reviewDate;
 	
-	public BookReviewBean(int bid, String reviewText, int rating, Date reviewDate) {
+	public BookReviewBean(int bid, String reviewText, String username, int rating, Date reviewDate) {
 		super();
 		this.bid = bid;
 		this.reviewText = reviewText;
+		this.username = username;
 		this.rating = rating;
 		this.reviewDate = reviewDate;
+	}
+
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
 	}
 
 	public int getBid() {

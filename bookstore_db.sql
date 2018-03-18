@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 18, 2018 at 07:43 PM
+-- Generation Time: Mar 18, 2018 at 08:37 PM
 -- Server version: 10.1.31-MariaDB
 -- PHP Version: 7.2.3
 
@@ -40,7 +40,9 @@ CREATE TABLE `account` (
 --
 
 INSERT INTO `account` (`username`, `password`, `pass_salt`, `cartid`) VALUES
-('mcmaceac', 'e3f6cf92cc947ca70fb826869c76e35c82f3bb34e87458f577baf156f252410c', -533133853, 1);
+('mcmaceac', 'e3f6cf92cc947ca70fb826869c76e35c82f3bb34e87458f577baf156f252410c', -533133853, 1),
+('newaccountbean', '3a152314eaf8a78ee7f9b447287e15f1f0c6dfef938872329b68d11e2c26910d', 1415534056, 2),
+('xXBook_Slayer420Xx', '5f3827dfdb9e2603aec1800678a24098d01bb7f119612e5b03d395e27c2c2f1a', -2114628124, 3);
 
 -- --------------------------------------------------------
 
@@ -62,6 +64,20 @@ INSERT INTO `book` (`bid`, `title`, `price`) VALUES
 (1, 'The Hobbit', '49.99'),
 (2, 'Lord of the Rings', '23.49'),
 (4, 'Introduction to Algorithms, Second Edition', '144.89');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `book_review`
+--
+
+CREATE TABLE `book_review` (
+  `bid` int(11) NOT NULL,
+  `username` varchar(25) NOT NULL,
+  `reviewtext` mediumtext NOT NULL,
+  `rating` tinyint(4) NOT NULL,
+  `reviewdate` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -103,6 +119,13 @@ ALTER TABLE `book`
   ADD PRIMARY KEY (`bid`);
 
 --
+-- Indexes for table `book_review`
+--
+ALTER TABLE `book_review`
+  ADD KEY `bid` (`bid`),
+  ADD KEY `username` (`username`);
+
+--
 -- Indexes for table `category`
 --
 ALTER TABLE `category`
@@ -116,7 +139,7 @@ ALTER TABLE `category`
 -- AUTO_INCREMENT for table `account`
 --
 ALTER TABLE `account`
-  MODIFY `cartid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `cartid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `book`
@@ -127,6 +150,13 @@ ALTER TABLE `book`
 --
 -- Constraints for dumped tables
 --
+
+--
+-- Constraints for table `book_review`
+--
+ALTER TABLE `book_review`
+  ADD CONSTRAINT `book_review_ibfk_1` FOREIGN KEY (`bid`) REFERENCES `book` (`bid`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `book_review_ibfk_2` FOREIGN KEY (`username`) REFERENCES `account` (`username`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `category`
