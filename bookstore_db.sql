@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 18, 2018 at 01:25 AM
+-- Generation Time: Mar 18, 2018 at 06:20 PM
 -- Server version: 10.1.31-MariaDB
 -- PHP Version: 7.2.3
 
@@ -30,9 +30,17 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `account` (
   `username` varchar(25) NOT NULL,
-  `password` varchar(25) NOT NULL,
+  `password` varchar(64) NOT NULL,
+  `pass_salt` int(11) NOT NULL,
   `cartid` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `account`
+--
+
+INSERT INTO `account` (`username`, `password`, `pass_salt`, `cartid`) VALUES
+('mcmaceac', 'e3f6cf92cc947ca70fb826869c76e35c82f3bb34e87458f577baf156f252410c', -533133853, 1);
 
 -- --------------------------------------------------------
 
@@ -105,7 +113,7 @@ ALTER TABLE `categories`
 -- AUTO_INCREMENT for table `account`
 --
 ALTER TABLE `account`
-  MODIFY `cartid` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `cartid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- Constraints for dumped tables
