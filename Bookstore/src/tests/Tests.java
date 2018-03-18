@@ -82,6 +82,17 @@ public class Tests {
 				result += e + " ";
 			}
 			result += "\n";
+			
+			// c03 test to retrieve books for a single category
+			String categoryName = "fiction";
+			List<String> books = c.retrieveBooksForCategory(categoryName);
+			if (books.isEmpty()) {
+				result += "ERROR c03! no books returned for " + categoryName + "\n";
+			}
+			for (String e : books) {
+				result += e + " ";
+			}
+			result += "\n";
 		}
 		catch (Exception e) {
 			e.printStackTrace();
