@@ -51,8 +51,8 @@ public class BookReviewDAO {
 	/*
 	 * returns a book review based on its rid (pk for table book_review)
 	 */
-	public BookReviewBean retrieveBookReview(int rid) throws SQLException {
-		String query = "select * from book_review where rid=?";
+	public BookReviewBean retrieveBookReview(int bid, String username) throws SQLException {
+		String query = "select * from book_review where bid=? and username=?";
 		BookReviewBean b = null;
 		
 		try {
@@ -63,13 +63,12 @@ public class BookReviewDAO {
 		}
 		
 		PreparedStatement p = conn.prepareStatement(query);
-		p.setInt(1, rid);
+		p.setInt(1, bid);
+		p.setString(2, username);
 		ResultSet r = p.executeQuery();
 		
 		if (r.next()) {
-			int bid = r.getInt("BID");
 			String reviewText = r.getString("REVIEWTEXT"); 
-			String username = r.getString("USERNAME");
 			int rating = r.getInt("RATING");
 			Date reviewDate = r.getDate("REVIEWDATE");
 			b = new BookReviewBean(bid, reviewText, username, rating, reviewDate);
@@ -89,6 +88,11 @@ public class BookReviewDAO {
 	public void addReview(BookReviewBean b) throws SQLException {
 		List<BookReviewBean> reviews = new ArrayList<BookReviewBean>();
 		String statement = "insert into book_review(bid, username, reviewtext, rating, reviewdate) values (?,?,?,?,?)";
+		
+		//if the user has already submitted a review for this book, delete the old review and add the new (b)
+		if (retrieveBookReview(b.getBid(), b.getUsername()) != null) {
+			removeReview(b.getBid(), b.getUsername());
+		}
 		
 		try {
 			conn = DatabaseConnector.getDatabaseConnection();
@@ -112,8 +116,8 @@ public class BookReviewDAO {
 	/*
 	 * removes a review based on the book_review primary key rid
 	 */
-	public void removeReview(int rid) throws SQLException {
-		String statement = "delete from book_review where rid=?";
+	public void removeReview(int bid, String username) throws SQLException {
+		String statement = "delete from book_review where bid=? and username=?";
 		
 		try {
 			conn = DatabaseConnector.getDatabaseConnection();
@@ -123,7 +127,8 @@ public class BookReviewDAO {
 		}
 		
 		PreparedStatement p = conn.prepareStatement(statement);
-		p.setInt(1, rid);
+		p.setInt(1, bid);
+		p.setString(2, username);
 		p.execute();
 		
 		conn.close();
