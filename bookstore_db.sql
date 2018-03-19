@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 18, 2018 at 08:37 PM
+-- Generation Time: Mar 19, 2018 at 01:01 AM
 -- Server version: 10.1.31-MariaDB
 -- PHP Version: 7.2.3
 
@@ -75,7 +75,7 @@ CREATE TABLE `book_review` (
   `bid` int(11) NOT NULL,
   `username` varchar(25) NOT NULL,
   `reviewtext` mediumtext NOT NULL,
-  `rating` tinyint(4) NOT NULL,
+  `rating` decimal(3,2) NOT NULL,
   `reviewdate` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -122,6 +122,7 @@ ALTER TABLE `book`
 -- Indexes for table `book_review`
 --
 ALTER TABLE `book_review`
+  ADD PRIMARY KEY (`bid`,`username`),
   ADD KEY `bid` (`bid`),
   ADD KEY `username` (`username`);
 
