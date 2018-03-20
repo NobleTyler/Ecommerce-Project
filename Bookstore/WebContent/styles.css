@@ -1,0 +1,35 @@
+#bannermaintext {
+	text-align: center;
+	font-size: 48px;
+	line-height: 52px;
+	padding: 100px 5px 10px 5px;
+	color: #FFFFFF;
+}
+
+.bannerpic {
+	background-color: #000000;
+	background-image:
+		url(http://www.kaleidoscopekidsbooks.ca/wp-content/uploads/2018/02/Stack-of-books-great-education.jpg);
+	background-size: cover;
+	padding-top: 40px;
+	padding-bottom: 100px;
+	"
+}
+
+#bannersubtext {
+	text-align: center;
+	font-size: 18px;
+	line-height: 22px;
+	padding: 0 5px 40px 5px;
+}
+.bannertabletext{
+	
+	color:#FFFFFF;
+	font-size: 28px;
+}
+#bannertable{
+	text-align: center;
+}
+.sales{
+	
+}
