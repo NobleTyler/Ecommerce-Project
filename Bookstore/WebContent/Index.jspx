@@ -27,6 +27,9 @@
 					<tr>
 						<td><a href=""><span class="bannertabletext">Browse</span></a></td>
 						<td><a href=""><span class="bannertabletext">Cart</span></a></td>
+						<td><button
+								onclick="document.getElementById('id01').style.display='block'"
+								style="width: auto;">Login</button></td>
 					</tr>
 				</tbody>
 			</table>
@@ -37,21 +40,53 @@
 		<table border="1">
 			<tbody>
 				<tr>
-					<td><img src="https://zeerk.com/mod/uploads/2017/03/book.jpg" alt="book from database" width="600" height ="250"></img></td>
-					<td><img src="https://zeerk.com/mod/uploads/2017/03/book.jpg" alt="book from database" width="600" height ="250"></img></td>
-					<td><img src="https://zeerk.com/mod/uploads/2017/03/book.jpg" alt="book from database" width="600" height ="250"></img></td>
+					<td><img src="https://zeerk.com/mod/uploads/2017/03/book.jpg"
+						alt="book from database" width="600" height="250"></img></td>
+					<td><img src="https://zeerk.com/mod/uploads/2017/03/book.jpg"
+						alt="book from database" width="600" height="250"></img></td>
+					<td><img src="https://zeerk.com/mod/uploads/2017/03/book.jpg"
+						alt="book from database" width="600" height="250"></img></td>
 				</tr>
 				<tr>
-					<td><img src="https://zeerk.com/mod/uploads/2017/03/book.jpg" alt="book from database" width="600" height ="250"></img></td>
-					<td><img src="https://zeerk.com/mod/uploads/2017/03/book.jpg" alt="book from database" width="600" height ="250"></img></td>
-					<td><img src="https://zeerk.com/mod/uploads/2017/03/book.jpg" alt="book from database" width="600" height ="250"></img></td>
+					<td><img src="https://zeerk.com/mod/uploads/2017/03/book.jpg"
+						alt="book from database" width="600" height="250"></img></td>
+					<td><img src="https://zeerk.com/mod/uploads/2017/03/book.jpg"
+						alt="book from database" width="600" height="250"></img></td>
+					<td><img src="https://zeerk.com/mod/uploads/2017/03/book.jpg"
+						alt="book from database" width="600" height="250"></img></td>
 				</tr>
-				
+
 			</tbody>
 		</table>
 
 	</div>
+	<div id="id01" class="modal">
 
+		<form class="modal-content animate" action="/action_page.php">
+			<div class="imgcontainer">
+				<span onclick="document.getElementById('id01').style.display='none'"
+					class="close" title="Close Modal"></span> <img
+					src="img_avatar2.png" alt="Avatar" class="avatar"></img>
+			</div>
+			<div class="container">
+				<label for="uname"><b>Username</b></label> <input type="text"
+					placeholder="Enter Username" name="uname" required="true"></input><label
+					for="psw"><b>Password</b></label> <input type="password"
+					placeholder="Enter Password" name="psw" required="true"></input>
+					
+				<button type="submit">Login</button>
+				<label> <input type="checkbox" checked="checked"
+					name="remember"> Remember me </input></label>
+			</div>
+
+			<div class="container" style="background-color: #f1f1f1">
+				<button type="button"
+					onclick="document.getElementById('id01').style.display='none'"
+					class="cancelbtn">Cancel</button>
+				<span class="psw">Forgot <a href="#">password?</a></span>
+			</div>
+		</form>
+	</div>
 
 </body>
 	</html>
