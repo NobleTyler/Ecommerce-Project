@@ -1,0 +1,67 @@
+body {
+	margin: 0;
+	font-family: Arial, Helvetica, sans-serif;
+}
+
+.login-bar {
+	float: right;
+	display: block;
+}
+
+a.register {
+	background-color: #4CAF50;
+}
+
+.topnav {
+	overflow: hidden;
+	background-color: #333;
+}
+
+.topnav a {
+	float: left;
+	color: #f2f2f2;
+	text-align: center;
+	padding: 14px 16px;
+	text-decoration: none;
+	font-size: 17px;
+}
+
+button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 14px 16px;
+    border: none;
+    cursor: pointer;
+    display: inline;
+    font-size: 17 px;
+    border-style: solid;
+    border-width: 1px;
+    border-color: #333;
+}
+
+/* Change the color of links on hover */
+.topnav a:hover {
+    background-color: #ddd;
+    color: black;
+}
+
+/* Add a color to the active/current link */
+.topnav a.active {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.header-bar {
+	overflow: hidden;
+	background-color: #333;
+}
+
+.header-bar form {
+	margin: 0 auto;
+	width: 250px;
+}
+
+.header-bar input {
+	padding: 5px 10px;
+}
+
