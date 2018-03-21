@@ -28,7 +28,7 @@
 						<td><a href=""><span class="bannertabletext">Browse</span></a></td>
 						<td><a href=""><span class="bannertabletext">Cart</span></a></td>
 						<td><button
-								onclick="document.getElementById('id01').style.display='block'"
+								onclick="document.getElementById('login').style.display='block'"
 								style="width: auto;">Login</button></td>
 					</tr>
 				</tbody>
@@ -60,11 +60,11 @@
 		</table>
 
 	</div>
-	<div id="id01" class="modal">
+	<div id="login" class="modal">
 
-		<form class="modal-content animate" action="/action_page.php">
+		<form class="modal-content animate" action="">
 			<div class="imgcontainer">
-				<span onclick="document.getElementById('id01').style.display='none'"
+				<span onclick="document.getElementById('login').style.display='none'"
 					class="close" title="Close Modal"></span> 
 			</div>
 			<div class="container">
@@ -80,7 +80,7 @@
 
 			<div class="container" style="background-color: #f1f1f1">
 				<button type="button"
-					onclick="document.getElementById('id01').style.display='none'"
+					onclick="document.getElementById('login').style.display='none'"
 					class="cancelbtn">Cancel</button>
 				<span class="psw">Forgot <a href="#">password?</a></span>
 			</div>
