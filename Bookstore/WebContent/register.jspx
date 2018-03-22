@@ -1,0 +1,39 @@
+<div id="register" class="modal">
+		<form class="modal-content animate" action="">
+			<div class="imgcontainer">
+				<span
+					onclick="document.getElementById('register').style.display='none'"
+					class="close" title="Close Modal"></span>
+			</div>
+			<div class="container">
+				<label for="uname"><b>Username</b></label> <input type="text"
+					placeholder="Enter Username" name="uname" required="true"></input><label
+					for="psw"><b>Password</b></label> <input type="password"
+					placeholder="Enter Password" name="psw" required="true"></input>
+					<label for="fname"><b>First Name</b></label> <input type="text"
+					placeholder="Enter First Name" name="uname" required="true"></input>
+					<label for="lname"><b>Last Name</b></label> <input type="text"
+					placeholder="Enter Last Name" name="uname" required="true"></input>
+					<label for="country"><b>Country</b></label> <input type="country"
+					placeholder="Enter Country" name="uname" required="true"></input>
+					<label for="fname"><b>Postal Code/Zip</b></label> <input type="text" pattern="[0-9]{5,6}" 
+					placeholder="Enter Username" name="uname" required="true"></input>
+					
+					
+				<button type="submit">Login</button>
+
+				<label> <input type="checkbox" checked="checked"
+					name="remember"> Remember me </input></label>
+			</div>
+
+			<div class="container" style="background-color: #f1f1f1">
+
+				<button type="button"
+					onclick="document.getElementById('register').style.display='none'"
+					class="cancelbtn">Cancel</button>
+				<button class="registerbtn" type="submit"
+					onclick="document.getElementById('register').style.display='block'">Register</button>
+				<span class="psw">Forgot <a href="#">password?</a></span>
+			</div>
+		</form>
+	</div>

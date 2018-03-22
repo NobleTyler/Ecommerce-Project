@@ -15,8 +15,9 @@
 <body>
 
 	<div class="bannerpic">
-	<td><button onclick="document.getElementById('login').style.display='block'"
-								style="width: auto;">Login</button></td>
+		<td><button
+				onclick="document.getElementById('login').style.display='block'"
+				style="width: auto;">Login</button></td>
 		<div id="bannertable">
 			<table border="0" cellpadding="0" cellspacing="0"
 				style="width: 100%;">
@@ -32,13 +33,11 @@
 						</div>
 					</tr>
 					<tr>
-						<td><a href=""><button
-									onclick=""
-									class="bannertabletext" style="width: auto;">Browse</button></a></td>
-						<td><a href=""><button
-									onclick=""
-									class="bannertabletext" style="width: auto;">Cart</button></a></td>
-						
+						<td><a href=""><button onclick="" class="bannertabletext"
+									style="width: auto;">Browse</button></a></td>
+						<td><a href=""><button onclick="" class="bannertabletext"
+									style="width: auto;">Cart</button></a></td>
+
 					</tr>
 				</tbody>
 			</table>
@@ -69,37 +68,9 @@
 		</table>
 
 	</div>
-	<div id="login" class="modal">
-		<form class="modal-content animate" action="">
-			<div class="imgcontainer">
-				<span
-					onclick="document.getElementById('login').style.display='none'"
-					class="close" title="Close Modal"></span>
-			</div>
-			<div class="container">
-				<label for="uname"><b>Username</b></label> <input type="text"
-					placeholder="Enter Username" name="uname" required="true"></input><label
-					for="psw"><b>Password</b></label> <input type="password"
-					placeholder="Enter Password" name="psw" required="true"></input>
+	<jsp:include page="/login.jspx"></jsp:include>
+		<jsp:include page="/register.jspx"></jsp:include>
 
-				<button type="submit">Login</button>
-				
-				<label> <input type="checkbox" checked="checked"
-					name="remember"> Remember me </input></label>
-			</div>
-
-			<div class="container" style="background-color: #f1f1f1">
-			
-				<button type="button"
-					onclick="document.getElementById('login').style.display='none'"
-					class="cancelbtn">Cancel</button>
-					<button class="registerbtn" type="submit" onclick="document.getElementById('register').style.display='block'">Register</button>
-				<span class="psw">Forgot <a href="#">password?</a></span>
-			</div>
-		</form>
-	</div>
-	<div id="register" class="modal">
-	</div>
 
 </body>
 	</html>
