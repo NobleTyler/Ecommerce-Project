@@ -8,7 +8,7 @@
 
 .bannerpic {
 	background-color: #000000;
-	background-image:url(http://www.kaleidoscopekidsbooks.ca/wp-content/uploads/2018/02/Stack-of-books-great-education.jpg);
+	background-image:url(bannerbooks.jpg);
 	background-size: cover;
 	padding-top: 40px;
 	padding-bottom: 100px;
@@ -48,7 +48,7 @@ input[type=text], input[type=password] {
     box-sizing: border-box;
 }
 
-/* Set a style for all buttons */
+/* Set a style for all buttons 
 button {
     background-color: #4CAF50;
     color: white;
@@ -57,7 +57,7 @@ button {
     border: none;
     cursor: pointer;
     width: 100%;
-}
+}*/
 
 button:hover {
     opacity: 0.8;
@@ -164,4 +164,73 @@ span.psw {
     .cancelbtn {
        width: 100%;
     }
+}
+body {
+	margin: 0;
+	font-family: Arial, Helvetica, sans-serif;
+}
+
+.login-bar {
+	float: right;
+	display: inline;
+	
+}
+
+a.register {
+	background-color: #4CAF50;
+}
+
+.topnav {
+	overflow: hidden;
+	background-color: #333;
+}
+
+.topnav a {
+	float: left;
+	color: #f2f2f2;
+	text-align: center;
+	padding: 14px 16px;
+	text-decoration: none;
+	font-size: 17px;
+}
+
+button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 14px 16px;
+    border: none;
+    cursor: pointer;
+    display: inline;
+    font-size: 17 px;
+    border-style: solid;
+    border-width: 1px;
+    border-color: #333;
+}
+
+/* Change the color of links on hover */
+.topnav a:hover {
+    background-color: #ddd;
+    color: black;
+}
+
+/* Add a color to the active/current link */
+.topnav a.active {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.header-bar {
+	overflow: hidden;
+	background-color: #333;
+}
+
+.header-bar form {
+	margin: 0 auto;
+	width: 250px;
+		
+}
+
+.header-bar input {
+	padding: 5px 10px;
+	display: inline-block;
 }
