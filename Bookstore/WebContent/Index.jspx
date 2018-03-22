@@ -10,7 +10,7 @@
 <head>
 <link rel="StyleSheet" href="styles.css" type="text/css" title="cse4413"
 	media="screen, print" />
-<title>Books</title>
+<title>Fresh Books</title>
 </head>
 <body>
 		<jsp:include page="/navigation.jspx"></jsp:include>
