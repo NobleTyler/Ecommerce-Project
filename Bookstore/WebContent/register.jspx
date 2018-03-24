@@ -20,7 +20,7 @@
 					placeholder="Enter Username" name="uname" required="true"></input>
 					
 					
-				<button type="submit">Login</button>
+				<button type="submit">Register</button>
 
 				<label> <input type="checkbox" checked="checked"
 					name="remember"> Remember me </input></label>
