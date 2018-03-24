@@ -49,13 +49,18 @@ public class Login extends HttpServlet {
 		String username = request.getParameter("uname");
 		String password = request.getParameter("psw");
 		
+		
+		
 		try {
 			boolean result = a.attemptLogin(username, password);
 			System.out.println("Login: " + result);
-			request.getSession().setAttribute("loggedIn", result);
+			
 			
 			if (result) {
-				request.getSession().setAttribute("username", username);
+				//request.getSession().setAttribute("username", username);
+				//request.getSession().setAttribute("loggedIn", "yes");
+				request.setAttribute("username", username);
+				request.setAttribute("loggedIn", result);
 			}
 			else {
 				request.getSession().removeAttribute("username");

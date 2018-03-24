@@ -15,15 +15,13 @@
 			<a href="#contact">Contact</a> <a href="#about">About</a>
 	
 			<div class="login-bar">
-				<c:choose>
-					<c:when test="${not sessionScope['loggedIn']}">
-						<button onclick="document.getElementById('login').style.display='block'" style="width:auto;">Login</button>
-						<button onclick="document.getElementById('register').style.display='block'" style="width:auto;">Register</button>
-					</c:when>
-					<c:when test="${sessionScope['loggedIn']}">
-						Welcome ${sessionScope['username']}
-					</c:when>
-				</c:choose>
+				<c:if test="${not loggedIn}">
+					<button onclick="document.getElementById('login').style.display='block'" style="width:auto;">Login</button>
+					<button onclick="document.getElementById('register').style.display='block'" style="width:auto;">Register</button>
+				</c:if>
+				<c:if test="${loggedIn}">
+					Welcome ${username}
+				</c:if>
 				
 				<button>Cart</button>
 			</div>
