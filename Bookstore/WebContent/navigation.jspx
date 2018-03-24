@@ -21,6 +21,9 @@
 				</c:if>
 				<c:if test="${loggedIn}">
 					Welcome ${username}
+					<form action="Start" method="post">
+						<button onclick="document.getElementById('logout').style.display='block'" style="width:auto;" name="submit" value="logout">Logout</button>
+					</form>
 				</c:if>
 				
 				<button>Cart</button>

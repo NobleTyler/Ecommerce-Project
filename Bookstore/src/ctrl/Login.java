@@ -53,7 +53,8 @@ public class Login extends HttpServlet {
 		
 		try {
 			boolean result = a.attemptLogin(username, password);
-			System.out.println("Login: " + result);
+			String submitButton = request.getParameter("submit");
+			System.out.println("Login: " + submitButton);
 			
 			
 			if (result) {
@@ -62,8 +63,11 @@ public class Login extends HttpServlet {
 				request.setAttribute("username", username);
 				request.setAttribute("loggedIn", result);
 			}
-			else {
-				request.getSession().removeAttribute("username");
+			else if (submitButton.equals("logout")){
+				//request.getSession().removeAttribute("username");
+				//request.getSession().removeAttribute("loggedin");
+				request.removeAttribute("username");
+				request.removeAttribute("loggedIn");
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
