@@ -26,7 +26,26 @@ public class MainPage extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		request.getRequestDispatcher("Index.jspx").forward(request, response);
+		String URI = request.getRequestURI();
+		System.out.println("URI: " + URI);
+		String submitParam = request.getParameter("submit");
+		System.out.println("submitParam:" + submitParam);
+		
+		if (submitParam != null) {
+			if (submitParam.equals("login")) {			//user has requested to login
+				
+			}
+			else if (submitParam.equals("register")) {	//user has requested to register
+				
+			}
+			else if (submitParam.equals("booksearchsubmit")) {		//user has requested to search for a book
+				
+			}
+		}
+		else {
+			request.getRequestDispatcher("Index.jspx").forward(request, response);
+		}
+		
 	}
 
 	/**
