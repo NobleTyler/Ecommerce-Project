@@ -8,7 +8,7 @@
 
 .bannerpic {
 	background-color: #000000;
-	background-image:url(bannerbooks.jpg);
+	background-image:url(../images/bannerbooks.jpg);
 	background-size: cover;
 	padding-top: 40px;
 	padding-bottom: 100px;

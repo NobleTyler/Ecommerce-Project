@@ -49,7 +49,7 @@ public class BookReviewDAO {
 	}
 	
 	/*
-	 * returns a book review based on its rid (pk for table book_review)
+	 * returns a book review based on bid,username (pk for table book_review)
 	 */
 	public BookReviewBean retrieveBookReview(int bid, String username) throws SQLException {
 		String query = "select * from book_review where bid=? and username=?";
