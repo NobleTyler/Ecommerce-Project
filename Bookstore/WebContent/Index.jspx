@@ -8,9 +8,9 @@
 		omit-xml-declaration="true" />
 	<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<link rel="StyleSheet" href="styles.css" type="text/css" title="cse4413"
+<link rel="StyleSheet" href="${pageContext.request.contextPath}/res/css/styles.css" type="text/css" title="cse4413"
 	media="screen, print" />
-	<script type="text/javascript" src="${pageContext.request.contextPath}/function.js">;</script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/res/js/function.js">;</script>
 <title>Fresh Books</title>
 </head>
 <body>
@@ -54,11 +54,10 @@
 					alt="book from database" width="35%" height="50%"></img></td>
 			</tr>
 		</table>
-
 	</div>
 <jsp:include page="/login.jspx"></jsp:include>
 <jsp:include page="/register.jspx"></jsp:include>
 
 </body>
-	</html>
+</html>
 </jsp:root>

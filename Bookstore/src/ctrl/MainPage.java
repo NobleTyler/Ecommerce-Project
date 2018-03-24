@@ -26,7 +26,7 @@ public class MainPage extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		request.getRequestDispatcher("NavBar.jspx").forward(request, response);
+		request.getRequestDispatcher("Index.jspx").forward(request, response);
 	}
 
 	/**
