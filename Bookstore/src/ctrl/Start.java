@@ -39,7 +39,6 @@ public class Start extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		request.removeAttribute("loggedIn");
 		request.removeAttribute("username");
 		request.getRequestDispatcher("Index.jspx").forward(request, response);
 	}
