@@ -59,15 +59,11 @@ public class Login extends HttpServlet {
 			
 			if (result) {
 				//request.getSession().setAttribute("username", username);
-				//request.getSession().setAttribute("loggedIn", "yes");
 				request.setAttribute("username", username);
-				request.setAttribute("loggedIn", result);
 			}
 			else if (submitButton.equals("logout")){
 				//request.getSession().removeAttribute("username");
-				//request.getSession().removeAttribute("loggedin");
 				request.removeAttribute("username");
-				request.removeAttribute("loggedIn");
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();

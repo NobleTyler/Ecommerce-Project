@@ -11,15 +11,15 @@
 		omit-xml-declaration="true" />
 	<div class="navbar">
 		<div class="topnav">
-			<a class="active" href="/Bookstore/MainPage">Home</a> <a href="#news">Categories</a>
+			<a class="active" href="/Bookstore/Start">Home</a> <a href="#news">Categories</a>
 			<a href="#contact">Contact</a> <a href="#about">About</a>
 	
 			<div class="login-bar">
-				<c:if test="${not loggedIn}">
+				<c:if test="${username eq null}">
 					<button onclick="document.getElementById('login').style.display='block'" style="width:auto;">Login</button>
 					<button onclick="document.getElementById('register').style.display='block'" style="width:auto;">Register</button>
 				</c:if>
-				<c:if test="${loggedIn}">
+				<c:if test="${username ne null}">
 					Welcome ${username}
 					<form action="Start" method="post">
 						<button onclick="document.getElementById('logout').style.display='block'" style="width:auto;" name="submit" value="logout">Logout</button>
