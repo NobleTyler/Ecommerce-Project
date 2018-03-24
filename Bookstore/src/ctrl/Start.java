@@ -14,8 +14,8 @@ import model.*;
 /**
  * Servlet implementation class MainPage
  */
-@WebServlet("/MainPage")
-public class MainPage extends HttpServlet {
+@WebServlet("/Start")
+public class Start extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	AccountDAO a;
@@ -24,7 +24,7 @@ public class MainPage extends HttpServlet {
     /**
      * Default constructor. 
      */
-    public MainPage() {
+    public Start() {
         // TODO Auto-generated constructor stub
     }
     
@@ -46,23 +46,7 @@ public class MainPage extends HttpServlet {
 		
 		if (submitParam != null) {
 			if (submitParam.equals("login")) {			//user has requested to login
-				String username = request.getParameter("uname");
-				String password = request.getParameter("psw");
 				
-				try {
-					boolean result = a.attemptLogin(username, password);
-					System.out.println("Login: " + result);
-					request.getSession().setAttribute("loggedIn", result);
-					
-					if (result) {
-						request.getSession().setAttribute("username", username);
-					}
-					else {
-						request.getSession().removeAttribute("username");
-					}
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
 			}
 			else if (submitParam.equals("register")) {	//user has requested to register
 				

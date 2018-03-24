@@ -1,5 +1,5 @@
 <div id="login" class="modal">
-		<form class="modal-content animate" action="">
+		<form class="modal-content animate" action="Login" method="post">
 			<div class="imgcontainer">
 				<span
 					onclick="document.getElementById('login').style.display='none'"
