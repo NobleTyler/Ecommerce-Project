@@ -10,11 +10,11 @@
 <head>
 <link rel="StyleSheet" href="styles.css" type="text/css" title="cse4413"
 	media="screen, print" />
+	<script type="text/javascript" src="${pageContext.request.contextPath}/function.js">;</script>
 <title>Fresh Books</title>
 </head>
 <body>
-		<jsp:include page="/navigation.jspx"></jsp:include>
-
+	<jsp:include page="/navigation.jspx"></jsp:include>
 	<div class="bannerpic">
 		<div id="bannertable">
 			<table border="0" cellpadding="0" cellspacing="0"
@@ -56,9 +56,9 @@
 		</table>
 
 	</div>
-	<jsp:include page="/login.jspx"></jsp:include>
-	<jsp:include page="/register.jspx"></jsp:include>
-	
+<jsp:include page="/login.jspx"></jsp:include>
+<jsp:include page="/register.jspx"></jsp:include>
+
 </body>
 	</html>
 </jsp:root>
