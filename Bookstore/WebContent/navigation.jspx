@@ -1,23 +1,39 @@
-<div class="navbar">
-	<div class="topnav">
-		<a class="active" href="/Bookstore/MainPage">Home</a> <a href="#news">Categories</a>
-		<a href="#contact">Contact</a> <a href="#about">About</a>
-
-		<div class="login-bar">
-			<button onclick="document.getElementById('login').style.display='block'" style="width:auto;">Login</button>
-			<button onclick="document.getElementById('register').style.display='block'" style="width:auto;">Register</button>
-
-			<button>Cart</button>
-		</div>
-		<div class="header-bar">
-			<form action="">
-			<nobr><input type="text" name="booksearch" placeholder="Search for a book" /></nobr> 
-			<nobr><button type="submit" name="submit" value="booksearchsubmit" >Go</button></nobr>
-			</form>
+<?xml version="1.0" encoding="UTF-8" ?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+	xmlns:f="http://java.sun.com/jsp/jstl/fmt" version="2.0">
+	<jsp:directive.page contentType="text/html; charset=UTF-8" 
+		pageEncoding="UTF-8" session="false"/>
+	<jsp:output doctype-root-element="html"
+		doctype-public="-//W3C//DTD XHTML 1.0 Transitional//EN"
+		doctype-system="http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"
+		omit-xml-declaration="true" />
+	<div class="navbar">
+		<div class="topnav">
+			<a class="active" href="/Bookstore/MainPage">Home</a> <a href="#news">Categories</a>
+			<a href="#contact">Contact</a> <a href="#about">About</a>
+	
+			<div class="login-bar">
+				<c:choose>
+					<c:when test="${not sessionScope['loggedIn']}">
+						<button onclick="document.getElementById('login').style.display='block'" style="width:auto;">Login</button>
+						<button onclick="document.getElementById('register').style.display='block'" style="width:auto;">Register</button>
+					</c:when>
+					<c:when test="${sessionScope['loggedIn']}">
+						Welcome ${sessionScope['username']}
+					</c:when>
+				</c:choose>
+				
+				<button>Cart</button>
+			</div>
+			<div class="header-bar">
+				<form action="">
+				<nobr><input type="text" name="booksearch" placeholder="Search for a book" /></nobr> 
+				<nobr><button type="submit" name="submit" value="booksearchsubmit" >Go</button></nobr>
+				</form>
+			</div>
 		</div>
 	</div>
-
-
-</div>
-
+</jsp:root>
 

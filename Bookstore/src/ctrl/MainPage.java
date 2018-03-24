@@ -52,6 +52,14 @@ public class MainPage extends HttpServlet {
 				try {
 					boolean result = a.attemptLogin(username, password);
 					System.out.println("Login: " + result);
+					request.getSession().setAttribute("loggedIn", result);
+					
+					if (result) {
+						request.getSession().setAttribute("username", username);
+					}
+					else {
+						request.getSession().removeAttribute("username");
+					}
 				} catch (SQLException e) {
 					e.printStackTrace();
 				}
@@ -60,12 +68,12 @@ public class MainPage extends HttpServlet {
 				
 			}
 			else if (submitParam.equals("booksearchsubmit")) {		//user has requested to search for a book
-				
+				request.getSession().setAttribute("loggedIn", request.getParameter("booksearch"));
+				System.out.println("searching for a book");
 			}
 		}
-		else {
-			request.getRequestDispatcher("Index.jspx").forward(request, response);
-		}
+		
+		request.getRequestDispatcher("Index.jspx").forward(request, response);
 		
 	}
 
