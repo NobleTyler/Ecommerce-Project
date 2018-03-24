@@ -1,0 +1,22 @@
+<div class="navbar">
+	<div class="topnav">
+		<a class="active" href="/Bookstore/MainPage">Home</a> <a href="#news">Categories</a>
+		<a href="#contact">Contact</a> <a href="#about">About</a>
+
+		<div class="login-bar">
+			<button onclick="document.getElementById('login').style.display='block'" style="width:auto;">Login</button>
+			<button onclick="document.getElementById('register').style.display='block'" style="width:auto;">Register</button>
+
+			<button>Cart</button>
+		</div>
+		<div class="header-bar">
+			<form action="">
+			<nobr>	<input type="text" placeholder="Search for a book" /></nobr> <nobr><button type="submit" value="Go" >Go</button></nobr>
+			</form>
+		</div>
+	</div>
+
+
+</div>
+
+
