@@ -22,8 +22,6 @@
 				<button type="button"
 					onclick="document.getElementById('login').style.display='none'"
 					class="cancelbtn">Cancel</button>
-				<button class="registerbtn" type="submit"
-					onclick="document.getElementById('register').style.display='block'">Register</button>
 				<span class="psw">Forgot <a href="#">password?</a></span>
 			</div>
 		</form>
