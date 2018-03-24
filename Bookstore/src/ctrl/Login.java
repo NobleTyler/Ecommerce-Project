@@ -49,8 +49,6 @@ public class Login extends HttpServlet {
 		String username = request.getParameter("uname");
 		String password = request.getParameter("psw");
 		
-		
-		
 		try {
 			boolean result = a.attemptLogin(username, password);
 			String submitButton = request.getParameter("submit");
@@ -58,17 +56,18 @@ public class Login extends HttpServlet {
 			
 			
 			if (result) {
-				//request.getSession().setAttribute("username", username);
-				request.setAttribute("username", username);
+				request.getSession().setAttribute("username", username);
+				//request.setAttribute("username", username);
 			}
 			else if (submitButton.equals("logout")){
-				//request.getSession().removeAttribute("username");
-				request.removeAttribute("username");
+				request.getSession().removeAttribute("username");
+				//request.removeAttribute("username");
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		
+		System.out.println("session username: " + request.getSession().getAttribute("username"));
 		request.getRequestDispatcher("Index.jspx").forward(request, response);
 	}
 
