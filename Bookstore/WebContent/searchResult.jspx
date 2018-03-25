@@ -53,7 +53,7 @@ table, th, td {
    			</div>
 			</td>
 			<td><a href="/Bookstore/Book?bid=${book.value.bid}">${book.value.title}</a></td>
-			<td>${book.value.price}</td>
+			<td>$${book.value.price}</td>
 		</tr>
 		</c:forEach>
 		</c:if>

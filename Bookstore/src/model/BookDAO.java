@@ -1,7 +1,9 @@
 package model;
 import java.math.BigDecimal;
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import bean.BookBean;
@@ -42,6 +44,31 @@ public class BookDAO {
 		r.close();
 		
 		return book;
+	}
+	
+	public List<Integer> retrieveAllBooks() throws SQLException {
+		List<Integer> bids = new ArrayList<Integer>();
+		
+		try {
+			conn = DatabaseConnector.getDatabaseConnection();
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		String query = "select bid from book";
+		PreparedStatement p = conn.prepareStatement(query);
+		ResultSet r = p.executeQuery();
+
+		while (r.next()) {
+			bids.add(r.getInt("BID"));
+		}
+		
+		conn.close();
+		p.close();
+		r.close();
+		
+		return bids;
 	}
 	
 	public Map<Integer, BookBean> retrieveBooksByTitle(String t) throws SQLException {
