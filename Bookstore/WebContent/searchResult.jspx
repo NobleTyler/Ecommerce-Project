@@ -17,15 +17,17 @@
 </head>
 <body>
 	<jsp:include page="/navigation.jspx"></jsp:include>
-	<table>
+	<table align="center">
 		<tr>
-			<td>Book Title</td>
-			<td>Price</td>
+			<td><b>Cover</b></td>
+			<td><b>Book Title</b></td>
+			<td><b>Price</b></td>
 		</tr>
 		
 		<c:forEach items="${books}" var="book">
 		<tr>
-			<td>${book.value.title}</td>
+			<td><img src="${pageContext.request.contextPath}/res/images/books/${book.value.bid}.jpg" alt="${book.value.title}" /></td>
+			<td><a href="/Bookstore/Book?bid=${book.value.bid}">${book.value.title}</a></td>
 			<td>${book.value.price}</td>
 		</tr>
 		</c:forEach>
