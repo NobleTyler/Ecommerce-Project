@@ -20,19 +20,13 @@
     height: 100%;
     width: auto;
 }
-table {
-	border-collapse: collapse;
-}
-table, th, td {
-    border: 1px solid black;
-}
 </style>
 <title>${book.title}</title>
 </head>
 <body>
 	<jsp:include page="/navigation.jspx"></jsp:include>
 	
-	<table align="center">
+	<table>
 		<tr>
 			<td>
 			<div class='crop col-xs-12 col-sm-6 col-md-6 '>
