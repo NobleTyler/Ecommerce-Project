@@ -2,7 +2,12 @@ package model;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
+import bean.BookBean;
 
 public class CategoryDAO {
 	
@@ -24,7 +29,7 @@ public class CategoryDAO {
 			e.printStackTrace();
 		}
 		
-		String query = "select distinct(category) from category";
+		String query = "select distinct(category) from category order by category";
 		PreparedStatement p = conn.prepareStatement(query);
 		
 		ResultSet r = p.executeQuery();
@@ -76,7 +81,7 @@ public class CategoryDAO {
 	/*
 	 * @returns list of bids for a given category
 	 */
-	public List<Integer> retrieveBooksForCategory(String category) throws SQLException {
+	public Map<Integer, BookBean> retrieveBooksForCategory(String category) throws SQLException {
 		try {
 			conn = DatabaseConnector.getDatabaseConnection();
 		}
@@ -84,16 +89,21 @@ public class CategoryDAO {
 			e.printStackTrace();
 		}
 		
-		String query = "select bid from category where category=?";
+		String query = "select * from book inner join category on book.bid = category.bid where category=?";
 		PreparedStatement p = conn.prepareStatement(query);
 		p.setString(1, category);
 		
 		ResultSet r = p.executeQuery();
 		
-		List<Integer> books = new ArrayList<Integer>();
+		Map<Integer, BookBean> books = new HashMap<Integer, BookBean>();
 		
 		while (r.next()) {
-			books.add(r.getInt("BID"));
+			int bid = r.getInt("BID");
+			String title = r.getString("TITLE");
+			float price = r.getBigDecimal("PRICE").floatValue();
+			BookBean b = new BookBean(bid, title, price);
+			
+			books.put(bid, b);
 		}
 		
 		conn.close();

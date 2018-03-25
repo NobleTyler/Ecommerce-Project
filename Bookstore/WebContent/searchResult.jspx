@@ -24,12 +24,20 @@
     height: 100%;
     width: auto;
 }
+table {
+	border-collapse: collapse;
+}
+table, th, td {
+    border: 1px solid black;
+}
 </style>
 <title>Search Results</title>
 </head>
 <body>
 	<jsp:include page="/navigation.jspx"></jsp:include>
-	<table align="center">
+	<table align="center" border="1">
+		
+		<c:if test="${fn:length(books) gt 0}">
 		<tr>
 			<td><b>Cover</b></td>
 			<td><b>Book Title</b></td>
@@ -48,7 +56,10 @@
 			<td>${book.value.price}</td>
 		</tr>
 		</c:forEach>
-		
+		</c:if>
+		<c:if test="${fn:length(books) eq 0}">
+			<p align="center">Your search "<b>${param.booksearch}</b>" did not match any products.</p>
+		</c:if>
 		
 	</table>
 </body>

@@ -94,13 +94,13 @@ public class Tests {
 			
 			// c03 test to retrieve books for a single category
 			String categoryName = "fiction";
-			List<Integer> books = c.retrieveBooksForCategory(categoryName);
+			Map<Integer, BookBean> books = c.retrieveBooksForCategory(categoryName);
 			if (books.isEmpty()) {
 				result += "[ERROR] c03! no books returned for " + categoryName + "\n";
 			}
 			
 			result += "[SUCCESS]c03: ";
-			for (Integer e : books) {
+			for (Map.Entry<Integer, BookBean> e : books.entrySet()) {
 				result += e + " ";
 			}
 			result += "\n";
