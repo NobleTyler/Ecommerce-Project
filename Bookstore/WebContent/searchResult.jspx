@@ -13,6 +13,18 @@
 <head>
 <link rel="StyleSheet" href="${pageContext.request.contextPath}/res/css/styles.css" type="text/css" title="cse4413"
 	media="screen, print" />
+	
+<style>
+.crop {
+    height: 300px;
+    /*width: 400px;*/
+    overflow: hidden;
+}
+.crop img {
+    height: 100%;
+    width: auto;
+}
+</style>
 <title>Search Results</title>
 </head>
 <body>
@@ -26,7 +38,12 @@
 		
 		<c:forEach items="${books}" var="book">
 		<tr>
-			<td><img src="${pageContext.request.contextPath}/res/images/books/${book.value.bid}.jpg" alt="${book.value.title}" /></td>
+			<td>
+			<div class='crop col-xs-12 col-sm-6 col-md-6 '>
+	         	<img class="col-xs-12 col-sm-6 col-md-6" 
+	          	src="${pageContext.request.contextPath}/res/images/books/${book.value.bid}.jpg" alt="${book.value.title}"/>
+   			</div>
+			</td>
 			<td><a href="/Bookstore/Book?bid=${book.value.bid}">${book.value.title}</a></td>
 			<td>${book.value.price}</td>
 		</tr>
