@@ -11,10 +11,11 @@
 		omit-xml-declaration="true" />
 	<div class="navbar">
 		<div class="topnav">
-			<a class="active" href="/Bookstore/Start">Home</a> 
-			<a href="/Bookstore/Categories">Categories</a>
-			<a href="#contact">Contact</a> 
-			<a href="#about">About</a>
+			
+			<a class="${activenav == 'home' ? 'active' : ''}" href="/Bookstore/Start">Home</a> 
+			<a class="${activenav == 'category' ? 'active' : ''}" href="/Bookstore/Categories">Categories</a>
+			<a class="${activenav == 'contact' ? 'active' : ''}" href="#contact">Contact</a> 
+			<a class="${activenav == 'about' ? 'active' : ''}" href="#about">About</a>
 	
 			<div class="login-bar">
 				<c:if test="${username eq null}">

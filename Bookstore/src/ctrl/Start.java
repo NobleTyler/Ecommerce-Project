@@ -72,6 +72,7 @@ public class Start extends HttpServlet {
 		// TODO Auto-generated method stub
 		request.getSession().removeAttribute("username");						//new session or user is logging out
 		
+		request.setAttribute("activenav", "home");								//sets the highlighted link in the navbar
 		setFrontPageBooks(request);
 		request.getRequestDispatcher("Index.jspx").forward(request, response);
 	}
