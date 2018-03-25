@@ -1,3 +1,7 @@
 /.metadata/
 .recommenders/
 *.class
+*.class
+Bookstore/.settings/org.eclipse.wst.common.project.facet.core.xml
+*.classpath
+Bookstore/.classpath
