@@ -20,18 +20,16 @@
 					<button onclick="document.getElementById('register').style.display='block'" style="width:auto;">Register</button>
 				</c:if>
 				<c:if test="${username ne null}">
-					Welcome ${username}
-					<form action="Start" method="post">
-						<button onclick="document.getElementById('logout').style.display='block'" style="width:auto;" name="submit" value="logout">Logout</button>
-					</form>
+					<a href="">Welcome: ${username}</a>
+					<a href="/Bookstore/Start">Logout</a>
 				</c:if>
 				
 				<button>Cart</button>
 			</div>
 			<div class="header-bar">
-				<form action="">
+				<form action="/Bookstore/Search" method="get">
 				<nobr><input type="text" name="booksearch" placeholder="Search for a book" /></nobr> 
-				<nobr><button type="submit" name="submit" value="booksearchsubmit" >Go</button></nobr>
+				<nobr><button type="submit" name="submit" value="booksubmit" >Go</button></nobr>
 				</form>
 			</div>
 		</div>

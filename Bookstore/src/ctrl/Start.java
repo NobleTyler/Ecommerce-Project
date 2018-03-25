@@ -39,7 +39,7 @@ public class Start extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		request.removeAttribute("username");
+		request.getSession().removeAttribute("username");						//new session or user is logging out
 		request.getRequestDispatcher("Index.jspx").forward(request, response);
 	}
 
