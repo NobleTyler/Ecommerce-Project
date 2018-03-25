@@ -27,9 +27,9 @@
 				<button>Cart</button>
 			</div>
 			<div class="header-bar">
-				<form action="">
+				<form action="/Bookstore/Search" method="get">
 				<nobr><input type="text" name="booksearch" placeholder="Search for a book" /></nobr> 
-				<nobr><button type="submit" name="submit" value="booksearchsubmit" >Go</button></nobr>
+				<nobr><button type="submit" name="submit" value="booksubmit" >Go</button></nobr>
 				</form>
 			</div>
 		</div>
