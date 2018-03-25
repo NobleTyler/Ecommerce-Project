@@ -29,12 +29,7 @@
 				
 				<button>Cart</button>
 			</div>
-			<div class="header-bar">
-				<form action="/Bookstore/Search" method="get">
-				<nobr><input type="text" name="booksearch" placeholder="Search for a book" required="true"/></nobr> 
-				<nobr><button type="submit" name="submit" value="booksubmit" >Go</button></nobr>
-				</form>
-			</div>
+		
 		</div>
 	</div>
 </jsp:root>

@@ -17,7 +17,8 @@
 </head>
 <body>
 	<jsp:include page="/navigation.jspx"></jsp:include>
-	
+	<jsp:include page="/login.jspx"></jsp:include>
+	<jsp:include page="/register.jspx"></jsp:include>
 	<table align="center">
 	<c:forEach items="${categories}" var="category">
 		<tr>
