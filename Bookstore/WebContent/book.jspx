@@ -38,6 +38,8 @@
 			<td>$${book.price}</td>
 		</tr>
 	</table>
+	
+	<jsp:include page="/review.jspx"></jsp:include>
 </body>
 </html>
 </jsp:root>
