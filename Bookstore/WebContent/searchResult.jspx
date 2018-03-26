@@ -42,6 +42,7 @@ table, th, td {
 			<td><b>Cover</b></td>
 			<td><b>Book Title</b></td>
 			<td><b>Price</b></td>
+			<td></td>
 		</tr>
 		
 		<c:forEach items="${books}" var="book">
@@ -54,6 +55,7 @@ table, th, td {
 			</td>
 			<td><a href="/Bookstore/Book?bid=${book.value.bid}">${book.value.title}</a></td>
 			<td>$${book.value.price}</td>
+			<td><input type="button" value="Add to cart"/></td>
 		</tr>
 		</c:forEach>
 		</c:if>

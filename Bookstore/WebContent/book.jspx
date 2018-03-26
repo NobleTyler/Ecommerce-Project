@@ -26,7 +26,7 @@
 <body>
 	<jsp:include page="/navigation.jspx"></jsp:include>
 	
-	<table>
+	<table align="center">
 		<tr>
 			<td>
 			<div class='crop col-xs-12 col-sm-6 col-md-6 '>
@@ -34,8 +34,11 @@
 	          	src="${pageContext.request.contextPath}/res/images/books/${book.bid}.jpg" alt="${book.title}"/>
    			</div>
 			</td>
-			<td><a href="/Bookstore/Book?bid=${book.bid}">${book.title}</a></td>
+			<td>${book.title}</td>
 			<td>$${book.price}</td>
+		</tr>
+		<tr>
+			<td><input type="button" value="Add to cart"/></td>
 		</tr>
 	</table>
 	
