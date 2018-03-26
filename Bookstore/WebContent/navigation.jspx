@@ -30,6 +30,11 @@
 				<button>Cart</button>
 			</div>
 		
+			<div class="header-bar">
+				<form action="">
+				<nobr>	<input type="text" placeholder="Search for a book"  required="true"/></nobr> <nobr><button type="submit" value="Go" >Go</button></nobr>
+				</form>
+			</div>
 		</div>
 	</div>
 </jsp:root>
