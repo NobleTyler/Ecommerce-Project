@@ -91,7 +91,7 @@ function loginHandler(request) {
 		if (request.responseText.charAt(0) == 'w') {			//login unsuccessful
 			document.getElementById("wrong-psw-error").innerHTML = "wrong password entered";
 		}
-		else {
+		else {	//successful login, redirect to home page
 			window.location.replace("/Bookstore/Start");
 		}
 		
