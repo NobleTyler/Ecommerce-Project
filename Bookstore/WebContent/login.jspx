@@ -1,15 +1,15 @@
 <div id="login" class="modal">
-		<form class="modal-content animate" action="Login" method="post">
+		<form class="modal-content animate" action="Login" method="post" style="width:500px;">
 			<div class="imgcontainer">
 				<span
 					onclick="document.getElementById('login').style.display='none'"
 					class="close" title="Close Modal"></span>
 			</div>
 			<div class="container">
-				<label for="uname"><b>Username</b></label> <input type="text"
-					placeholder="Enter Username" name="uname" required="true"></input><label
-					for="psw"><b>Password</b></label> <input type="password"
-					placeholder="Enter Password" name="psw" required="true"></input>
+				<label for="uname"><b>Username</b></label> 
+				<input type="text" placeholder="Enter Username" name="uname" id="uname" required="true"></input>
+				<label for="psw"><b>Password</b></label> 
+				<input type="password" placeholder="Enter Password" name="psw" id="psw" required="true"></input>
 
 				<button type="submit" name="submit" value="login">Login</button>
 

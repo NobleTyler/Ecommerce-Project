@@ -10,6 +10,8 @@
 <head>
 <link rel="StyleSheet" href="${pageContext.request.contextPath}/res/css/styles.css" type="text/css" title="cse4413"
 	media="screen, print" />
+<script type="text/javascript" src="${pageContext.request.contextPath}/res/js/functions.js">;</script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/res/js/cart.js">;</script>
 <style>
 .crop {
     height: 300px;
@@ -20,6 +22,12 @@
     height: 100%;
     width: auto;
 }
+table {
+	border-collapse: collapse;
+}
+table, th, td {
+    border: 1px solid black;
+}
 </style>
 <title>${book.title}</title>
 </head>
@@ -27,6 +35,12 @@
 	<jsp:include page="/navigation.jspx"></jsp:include>
 	
 	<table align="center">
+		<tr>
+			<td><b>Cover</b></td>
+			<td><b>Book Title</b></td>
+			<td><b>Price</b></td>
+			<td></td>
+		</tr>
 		<tr>
 			<td>
 			<div class='crop col-xs-12 col-sm-6 col-md-6 '>
@@ -36,13 +50,13 @@
 			</td>
 			<td>${book.title}</td>
 			<td>$${book.price}</td>
-		</tr>
-		<tr>
-			<td><input type="button" value="Add to cart"/></td>
+			<td><jsp:include page="/addToCartButton.jspx"></jsp:include></td>
 		</tr>
 	</table>
 	
 	<jsp:include page="/review.jspx"></jsp:include>
+	<jsp:include page="/login.jspx"></jsp:include>
+	<jsp:include page="/register.jspx"></jsp:include>
 </body>
 </html>
 </jsp:root>

@@ -70,7 +70,6 @@ public class Start extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		request.getSession().removeAttribute("username");						//new session or user is logging out
 		
 		request.setAttribute("activenav", "home");								//sets the highlighted link in the navbar
 		setFrontPageBooks(request);
