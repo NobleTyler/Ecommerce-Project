@@ -7,12 +7,14 @@
 					class="close" title="Close Modal"></span>
 			</div>
 			<div class="container">
+				<div id="uname-error" style="color:red;">&#160;</div>
 				<label for="uname"><b>Username</b></label> 
-				<input type="text" placeholder="Enter Username" name="uname" required="true"></input>
+				<input type="text" placeholder="Enter Username" name="uname" id="regUname" required="true"></input>
 				<label for="psw"><b>Password</b></label> 
-				<input type="password" placeholder="Enter Password" name="psw" required="true"></input>
+				<input type="password" placeholder="Enter Password" name="psw" id="regPsw" required="true"></input>
+				<div id="rpsw-error" style="color:red;">&#160;</div>
 				<label for="psw"><b>Re-Enter Password</b></label> 
-				<input type="password" placeholder="Re-Enter Password" name="rpsw" required="true"></input>
+				<input type="password" placeholder="Re-Enter Password" name="rpsw" id="rRegPsw" required="true"></input>
 					
 				<!-- 
 				<label for="fname"><b>First Name</b></label> <input type="text"
@@ -25,7 +27,7 @@
 				placeholder="Enter Username" name="uname" required="true"></input>
 				-->
 					
-				<button type="submit" name="submit" value="register" onclick="registerUser('');return false;">Register</button>
+				<button type="submit" name="submit" value="register" onclick="registerAjax('/Bookstore/Register');return false;">Register</button>
 
 				<label> <input type="checkbox" checked="checked"
 					name="remember"> Remember me </input></label>
