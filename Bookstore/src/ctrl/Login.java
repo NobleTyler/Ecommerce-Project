@@ -64,7 +64,7 @@ public class Login extends HttpServlet {
 		}
 		
 		System.out.println("session username: " + request.getSession().getAttribute("username"));
-		request.getRequestDispatcher("Index.jspx").forward(request, response);
+		response.sendRedirect("/Bookstore/Start");
 	}
 
 }

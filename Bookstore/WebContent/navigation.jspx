@@ -24,7 +24,7 @@
 				</c:if>
 				<c:if test="${username ne null}">
 					<a href="">Welcome: ${username}</a>
-					<a href="/Bookstore/Start">Logout</a>
+					<a href="logout.jsp">Logout</a>
 				</c:if>
 				
 				<button id="cartButton">Cart</button>

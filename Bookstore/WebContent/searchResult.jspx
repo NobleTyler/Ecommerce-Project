@@ -55,7 +55,7 @@ table, th, td {
 			</td>
 			<td><a href="/Bookstore/Book?bid=${book.value.bid}">${book.value.title}</a></td>
 			<td>$${book.value.price}</td>
-			<td><input type="button" value="Add to cart"/></td>
+			<td><jsp:include page="/addToCartButton.jspx"></jsp:include></td>
 		</tr>
 		</c:forEach>
 		</c:if>
@@ -64,6 +64,8 @@ table, th, td {
 		</c:if>
 		
 	</table>
+	<jsp:include page="/login.jspx"></jsp:include>
+	<jsp:include page="/register.jspx"></jsp:include>
 </body>
 </html>
 </jsp:root>
