@@ -1,6 +1,7 @@
 package ctrl;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.SQLException;
 
 import javax.servlet.ServletException;
@@ -58,13 +59,17 @@ public class Login extends HttpServlet {
 			if (result) {
 				request.getSession().setAttribute("username", username);
 				//request.setAttribute("username", username);
+				response.sendRedirect("/Bookstore/Start");
+			}
+			else {
+				PrintWriter out = response.getWriter();
+				out.print("wrong");
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		
 		System.out.println("session username: " + request.getSession().getAttribute("username"));
-		response.sendRedirect("/Bookstore/Start");
 	}
 
 }
