@@ -2,6 +2,7 @@ package ctrl;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -10,7 +11,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import bean.BookBean;
+import bean.BookReviewBean;
 import model.BookDAO;
+import model.BookReviewDAO;
 
 /**
  * Servlet implementation class Book
@@ -20,9 +23,11 @@ public class Book extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
 	BookDAO b;
+	BookReviewDAO br;
 	
 	public void init() {
 		b = new BookDAO();
+		br = new BookReviewDAO();
 	}
 	
     /**
@@ -41,7 +46,10 @@ public class Book extends HttpServlet {
 		
 		try {
 			BookBean book = b.retrieveBookByBid(bid);
+			List<BookReviewBean> reviews = br.retrieveBookReviews(bid);		//retrieving reviews for this particular book
+			
 			request.setAttribute("book", book);
+			request.setAttribute("reviews", reviews);
 			request.getRequestDispatcher("book.jspx").forward(request, response);
 		} catch (SQLException e) {
 			e.printStackTrace();

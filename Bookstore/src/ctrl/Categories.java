@@ -40,6 +40,7 @@ public class Categories extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		request.setAttribute("activenav", "category");								//sets the highlighted link in the navbar
 		String cat = request.getParameter("cat");
 		
 		if (request.getParameter("cat") != null) {

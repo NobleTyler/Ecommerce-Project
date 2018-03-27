@@ -11,10 +11,11 @@
 		omit-xml-declaration="true" />
 	<div class="navbar">
 		<div class="topnav">
-			<a class="active" href="/Bookstore/Start">Home</a> 
-			<a href="/Bookstore/Categories">Categories</a>
-			<a href="#contact">Contact</a> 
-			<a href="#about">About</a>
+			
+			<a class="${activenav == 'home' ? 'active' : ''}" href="/Bookstore/Start">Home</a> 
+			<a class="${activenav == 'category' ? 'active' : ''}" href="/Bookstore/Categories">Categories</a>
+			<a class="${activenav == 'contact' ? 'active' : ''}" href="#contact">Contact</a> 
+			<a class="${activenav == 'about' ? 'active' : ''}" href="#about">About</a>
 	
 			<div class="login-bar">
 				<c:if test="${username eq null}">
@@ -26,15 +27,15 @@
 					<a href="/Bookstore/Start">Logout</a>
 				</c:if>
 				
-				<button>Cart</button>
+				<button id="cartButton">Cart</button>
 			</div>
 		
-		</div>
-
-		<div class="header-bar">
-			<form action="">
-			<nobr>	<input type="text" placeholder="Search for a book"  required="true"/></nobr> <nobr><button type="submit" value="Go" >Go</button></nobr>
-			</form>
+			<div class="header-bar">
+				<form action="/Bookstore/Search" method="get">
+				<nobr><input type="text" name="booksearch" placeholder="Search for a book" required="true"/></nobr> 
+				<nobr><button type="submit" name="submit" value="booksubmit" >Go</button></nobr>
+				</form>
+			</div>
 		</div>
 	</div>
 </jsp:root>

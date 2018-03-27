@@ -19,7 +19,7 @@ public class BookReviewDAO {
 	 */
 	public List<BookReviewBean> retrieveBookReviews(int bid) throws SQLException {
 		List<BookReviewBean> reviews = new ArrayList<BookReviewBean>();
-		String query = "select * from book_review where bid=? order by reviewdate";
+		String query = "select * from book_review where bid=? order by reviewdate desc";
 		
 		try {
 			conn = DatabaseConnector.getDatabaseConnection();
