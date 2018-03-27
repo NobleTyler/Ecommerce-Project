@@ -44,7 +44,7 @@ function registerHandler(request) {
 	if (request.readyState == 4 && request.status == 200) {
 		
 		if (request.responseText.charAt(0) == 'R') {			//Registration successful
-			document.getElementById("uname-error").innerHTML = request.responseText;
+			document.getElementById("register-content").innerHTML = request.responseText;
 		}
 		else {			//registration not successful
 			document.getElementById("uname-error").innerHTML = request.responseText;
@@ -54,6 +54,48 @@ function registerHandler(request) {
 	
 }
 
+function loginAjax(address) {
+	if (validateLoginFields()) {
+		attemptLogin(address);
+	}
+}
+
 function validateLoginFields() {
-	return false;
+
+	return true;
+	
+}
+
+function attemptLogin(address) {
+	var request = new XMLHttpRequest();
+	var data = '';
+	
+	var username = document.getElementById("uname").value;
+	var password = document.getElementById("psw").value;
+	
+	data += "uname=" + username + "&psw=" + password;
+	
+	request.onreadystatechange = function() {
+		loginHandler(request);
+	};
+	
+	request.open("POST", address, true);
+	request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+	request.send(data);
+}
+
+function loginHandler(request) {
+	
+	if (request.readyState == 4 && request.status == 200) {
+		
+		if (request.responseText.charAt(0) == 'w') {			//login unsuccessful
+			document.getElementById("wrong-psw-error").innerHTML = "wrong password entered";
+		}
+		else {
+			window.location.replace("/Bookstore/Start");
+		}
+		
+		//document.getElementById("wrong-psw-error").innerHTML = request.responseText;
+	}
+	
 }

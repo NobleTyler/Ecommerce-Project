@@ -1,5 +1,5 @@
 <div id="login" class="modal">
-		<form class="modal-content animate" action="Login" method="post" style="width:500px;">
+		<form class="modal-content animate" action="" method="post" style="width:500px;">
 			<div class="imgcontainer">
 				<span
 					onclick="document.getElementById('login').style.display='none'"
@@ -8,10 +8,11 @@
 			<div class="container">
 				<label for="uname"><b>Username</b></label> 
 				<input type="text" placeholder="Enter Username" name="uname" id="uname" required="true"></input>
+				<div id="wrong-psw-error" style="color:red;">&#160;</div>
 				<label for="psw"><b>Password</b></label> 
 				<input type="password" placeholder="Enter Password" name="psw" id="psw" required="true"></input>
 
-				<button type="submit" name="submit" value="login">Login</button>
+				<button type="submit" name="submit" value="login" onclick="loginAjax('/Bookstore/Login');return false;">Login</button>
 
 				<label> <input type="checkbox" checked="checked"
 					name="remember"> Remember me </input></label>
