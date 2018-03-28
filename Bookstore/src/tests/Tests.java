@@ -225,6 +225,26 @@ public class Tests {
 		
 		return result;
 	}
+	
+	public String testShoppingCartDAO() {
+		ShoppingCartDAO scd = new ShoppingCartDAO();
+		String result = "";
+		
+		try {
+			int quantity = scd.getQuantity("mcmaceac", 7);
+			if (quantity == 1) {
+				result += "[SUCCESS]sc01: shopping cart returning correct quantity";
+			}
+			else {
+				result += "[ERROR]sc01: shopping cart returned incorrect quantity(" + quantity + ")";
+			}
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return result;
+	}
 
 	public static void main(String[] args) {
 		
@@ -233,6 +253,7 @@ public class Tests {
 		result += t.testCategoryDAO();
 		result += t.testAccountDAO();
 		result += t.testBookReviewDAO();
+		result += t.testShoppingCartDAO();
 		
 		System.out.println(result);
 		
