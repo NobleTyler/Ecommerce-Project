@@ -4,21 +4,21 @@ import java.util.List;
 
 public class ShoppingCartBean {
 
-	private String cartID;
+	private String username;
 	private List<String> bid;
 	
-	public ShoppingCartBean(String cartID, List<String> bid) {
+	public ShoppingCartBean(String username, List<String> bid) {
 		super();
-		this.cartID = cartID;
+		this.username = username;
 		this.bid = bid;
 	}
 
-	public String getCartID() {
-		return cartID;
+	public String getUsername() {
+		return username;
 	}
 
-	public void setCartID(String cartID) {
-		this.cartID = cartID;
+	public void setUsername(String username) {
+		this.username = username;
 	}
 
 	public List<String> getBid() {

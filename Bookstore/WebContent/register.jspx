@@ -1,5 +1,5 @@
 <div id="register" class="modal">
-		<form class="modal-content animate" action="" method="post" style="width:500px;">
+		<form class="modal-content animate" action="" method="post" id="register-form" style="width:500px;">
 			<div id="register-content">
 			<div class="imgcontainer">
 				<span

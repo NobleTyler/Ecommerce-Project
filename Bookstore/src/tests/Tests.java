@@ -225,6 +225,127 @@ public class Tests {
 		
 		return result;
 	}
+	
+	public String testShoppingCartDAO() {
+		ShoppingCartDAO scd = new ShoppingCartDAO();
+		String result = "";
+		
+		try {
+			//sc01
+			int quantity = scd.getQuantity("mcmaceac", 7);
+			if (quantity == 1) {
+				result += "[SUCCESS]sc01: shopping cart returning correct quantity\n";
+			}
+			else {
+				result += "[ERROR]sc01: shopping cart returned incorrect quantity(" + quantity + ")\n";
+			}
+			
+			//sc02 quantity for username that doesn't exist
+			quantity = scd.getQuantity("NON-EXISTANT USERNAME", 1);
+			if (quantity == 0) {
+				result += "[SUCCESS]sc02: shopping cart returning correct quantity\n";
+			}
+			else {
+				result += "[ERROR]sc02: shopping cart returned incorrect quantity(" + quantity + ")\n";
+			}
+			
+			//sc03 quantity for bid that doesnt exist
+			quantity = scd.getQuantity("mcmaceac", 43242414);
+			if (quantity == 0) {
+				result += "[SUCCESS]sc03: shopping cart returning correct quantity\n";
+			}
+			else {
+				result += "[ERROR]sc03: shopping cart returned incorrect quantity(" + quantity + ")\n";
+			}
+			
+			//sc04 inserting into shoppingcart
+			scd.addItemToCart("mcmaceac", 1);		
+			quantity = scd.getQuantity("mcmaceac", 1);
+			if (quantity == 1) {
+				result += "[SUCCESS]sc04: shopping cart returning correct quantity\n";
+			}
+			else {
+				result += "[ERROR]sc04: shopping cart returned incorrect quantity(" + quantity + ")\n";
+			}
+			scd.removeItemFromCart("mcmaceac", 1);
+			
+			//sc05 inserting multiple of the same item
+			scd.addItemToCart("mcmaceac", 8);
+			scd.addItemToCart("mcmaceac", 8);
+			scd.addItemToCart("mcmaceac", 8);
+			scd.addItemToCart("mcmaceac", 8);
+			quantity = scd.getQuantity("mcmaceac", 8);
+			if (quantity == 4) {
+				result += "[SUCCESS]sc05: shopping cart returning correct quantity\n";
+			}
+			else {
+				result += "[ERROR]sc05: shopping cart returned incorrect quantity(" + quantity + ")\n";
+			}
+			
+			//sc06 testing removing an item from shopping cart
+			scd.removeItemFromCart("mcmaceac", 8);
+			quantity = scd.getQuantity("mcmaceac", 8);
+			if (quantity == 0) {
+				result += "[SUCCESS]sc06: shopping cart returning correct quantity, item removed\n";
+			}
+			else {
+				result += "[ERROR]sc06: shopping cart returned incorrect quantity(" + quantity + ")\n";
+			}
+			
+			//sc07 testing removing a certain quantity of an item from shopping cart
+			scd.addItemToCart("mcmaceac", 2);
+			scd.addItemToCart("mcmaceac", 2);
+			scd.addItemToCart("mcmaceac", 2);
+			scd.addItemToCart("mcmaceac", 2);
+			scd.addItemToCart("mcmaceac", 2);
+			scd.removeItemFromCart("mcmaceac", 2, 2);
+			quantity = scd.getQuantity("mcmaceac", 2);
+			if (quantity == 3) {
+				result += "[SUCCESS]sc07: shopping cart returning correct quantity, 2 items removed\n";
+			}
+			else {
+				result += "[ERROR]sc07: shopping cart returned incorrect quantity(" + quantity + ")\n";
+			}
+			scd.removeItemFromCart("mcmaceac", 2);		//removing entire item so future testing works
+		
+			//sc08 retrieving an entire cart
+			scd.addItemToCart("test2", 1);
+			scd.addItemToCart("test2", 2);
+			scd.addItemToCart("test2", 2);
+			scd.addItemToCart("test2", 8);
+			Map<Integer, Integer> cart = scd.retrieveCartItems("test2");
+			if (cart.size() == 3 && cart.get(1) == 1 && cart.get(2) == 2 && cart.get(8) == 1) {
+				result += "[SUCCESS]sc08: shopping cart retrieved in map form!\n";
+			}
+			else {
+				result += "[ERROR]sc08: shopping cart was not retrieved!\n";
+				result += "cart.get(1): " + cart.get(1) + "\n";
+				result += "cart.get(2): " + cart.get(2) + "\n";
+				result += "cart.get(8): " + cart.get(8) + "\n";
+				result += "cart.size(): " + cart.size() + "\n";
+			}
+			scd.clearCart("test2");
+			
+			//sc09 clearing an entire cart
+			scd.addItemToCart("test", 1);
+			scd.addItemToCart("test", 2);
+			scd.addItemToCart("test", 2);
+			scd.addItemToCart("test", 8);
+			scd.clearCart("test");
+			if (scd.retrieveCartItems("test").size() == 0) {
+				result += "[SUCCESS]sc09: shopping cart cleared successfully!\n";
+			}
+			else {
+				result += "[ERROR]sc09: shopping cart was not cleared!\n";
+			}
+		
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return result;
+	}
 
 	public static void main(String[] args) {
 		
@@ -233,6 +354,7 @@ public class Tests {
 		result += t.testCategoryDAO();
 		result += t.testAccountDAO();
 		result += t.testBookReviewDAO();
+		result += t.testShoppingCartDAO();
 		
 		System.out.println(result);
 		

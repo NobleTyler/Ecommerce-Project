@@ -16,6 +16,6 @@
 	</form>
 	</c:if>
 	<c:if test="${username eq null}">
-		<input type="submit" onclick="document.getElementById('login').style.display='block'" style="width:auto;" value="Add to cart"/>
+		<input type="submit" onclick="alert('Please login to add a book to your cart!')" style="width:auto;" value="Add to cart"/>
 	</c:if>
 </jsp:root>
