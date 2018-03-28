@@ -6,6 +6,7 @@
 					class="close" title="Close Modal"></span>
 			</div>
 			<div class="container">
+				<div id="login-uname-error" style="color:red;">&#160;</div>
 				<label for="uname"><b>Username</b></label> 
 				<input type="text" placeholder="Enter Username" name="uname" id="uname" required="true"></input>
 				<div id="wrong-psw-error" style="color:red;">&#160;</div>

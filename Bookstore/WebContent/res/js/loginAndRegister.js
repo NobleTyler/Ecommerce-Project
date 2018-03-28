@@ -6,15 +6,22 @@ function registerAjax(address) {
 }
 
 function validateRegisterFields() {
+	document.getElementById("uname-error").innerHTML = " ";
+	document.getElementById("rpsw-error").innerHTML = " ";		//clearing previous error fields
+	var username = document.getElementById("regUname").value;
 	var password = document.getElementById("regPsw").value;
 	var rpassword = document.getElementById("rRegPsw").value;
 	
-	if (password == rpassword) {				//the user typed in the same password twice
-		return true;
+	if (username.trim() == "") {				//the username field is empty		
+		document.getElementById("uname-error").innerHTML = "Username must contain characters";
+		return false;
 	}
-	else {
+	else if (password != rpassword) { 			//the user did not type in the same password twice
 		document.getElementById("rpsw-error").innerHTML = "Please re-enter the same password";
 		return false;
+	}
+	else {
+		return true;
 	}
 }
 
@@ -61,6 +68,17 @@ function loginAjax(address) {
 }
 
 function validateLoginFields() {
+	document.getElementById("login-uname-error").innerHTML = " ";		//clearing previous error messages
+	document.getElementById("wrong-psw-error").innerHTML = " ";
+	var username = document.getElementById("uname").value;
+	
+	if (username.trim() == "") {
+		document.getElementById("login-uname-error").innerHTML = "please enter a valid username";
+		return false;
+	}
+	else {
+		return true;
+	}
 
 	return true;
 	
