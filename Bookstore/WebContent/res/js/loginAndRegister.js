@@ -25,6 +25,12 @@ function validateRegisterFields() {
 	}
 }
 
+function clearRegisterFields() {
+	document.getElementById("register-form").reset();
+	document.getElementById("uname-error").innerHTML = " ";
+	document.getElementById("rpsw-error").innerHTML = " ";		//clearing previous error fields
+}
+
 function registerUser(address) {
 	//var username = document.getElementById("")
 	//document.getElementById("register-content").innerHTML = "<center>Replace login</center>";
@@ -79,9 +85,13 @@ function validateLoginFields() {
 	else {
 		return true;
 	}
-
-	return true;
 	
+}
+
+function clearLoginFields() {
+	document.getElementById("login-form").reset();
+	document.getElementById("login-uname-error").innerHTML = " ";		//clearing previous error messages
+	document.getElementById("wrong-psw-error").innerHTML = " ";
 }
 
 function attemptLogin(address) {

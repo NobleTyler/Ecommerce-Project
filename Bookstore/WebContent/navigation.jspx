@@ -19,8 +19,8 @@
 	
 			<div class="login-bar">
 				<c:if test="${username eq null}">
-					<button onclick="document.getElementById('login').style.display='block'" style="width:auto;">Login</button>
-					<button onclick="document.getElementById('register').style.display='block'" style="width:auto;">Register</button>
+					<button onclick="clearLoginFields();document.getElementById('login').style.display='block'" style="width:auto;">Login</button>
+					<button onclick="clearRegisterFields();document.getElementById('register').style.display='block'" style="width:auto;">Register</button>
 				</c:if>
 				<c:if test="${username ne null}">
 					<a href="">Welcome: ${username}</a>
