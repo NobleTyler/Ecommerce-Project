@@ -4,12 +4,46 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.HashMap;
+import java.util.Map;
 
 public class ShoppingCartDAO {
 	private Connection conn;
 	
 	public ShoppingCartDAO() {
 		
+	}
+	
+	/*
+	 * @returns a map<bid, quantity> representing the items in a user's shopping cart
+	 */
+	public Map<Integer, Integer> retrieveCartItems(String username) throws SQLException {
+		Map<Integer, Integer> result = new HashMap<Integer, Integer>();
+		
+		try {
+			conn = DatabaseConnector.getDatabaseConnection();
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		String query = "SELECT BID, QUANTITY FROM SHOPPING_CART WHERE USERNAME=?";
+		
+		PreparedStatement p = conn.prepareStatement(query);
+		p.setString(1, username);
+		
+		ResultSet r = p.executeQuery();
+		while(r.next()) {
+			int bid = r.getInt("BID");
+			int quantity = r.getInt("QUANTITY");
+			
+			result.put(bid, quantity);
+		}
+		
+		p.close();
+		r.close();
+		conn.close();
+		return result;
 	}
 	
 	/*
@@ -65,10 +99,24 @@ public class ShoppingCartDAO {
 	}
 	
 	/*
-	 * removed all items from a users shopping cart
+	 * removed all items from a users shopping cart (ie when they make a purchase)
 	 */
 	public void clearCart(String username) throws SQLException {
+		try {
+			conn = DatabaseConnector.getDatabaseConnection();
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+		}
 		
+		String statement = "DELETE FROM SHOPPING_CART WHERE username=?";
+		PreparedStatement p = conn.prepareStatement(statement);
+		p.setString(1, username);
+		
+		p.execute();
+		
+		p.close();
+		conn.close();
 	}
 	
 	/*
