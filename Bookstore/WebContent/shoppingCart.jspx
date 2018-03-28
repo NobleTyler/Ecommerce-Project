@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.0">
+	<jsp:directive.page contentType="text/html; charset=UTF-8" 
+		pageEncoding="UTF-8" session="false"/>
+	<jsp:output doctype-root-element="html"
+		doctype-public="-//W3C//DTD XHTML 1.0 Transitional//EN"
+		doctype-system="http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"
+		omit-xml-declaration="true" />
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+<link rel="StyleSheet" href="${pageContext.request.contextPath}/res/css/styles.css" type="text/css" title="cse4413"
+	media="screen, print" />
+
+<link rel="StyleSheet" href="${pageContext.request.contextPath}/res/css/shoppingCart.css" type="text/css" title="cse4413"
+	media="screen, print" />
+<script type="text/javascript" src="${pageContext.request.contextPath}/res/js/function.js">;</script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/res/js/loginAndRegister.js">;</script>
+
+</head>
+	<jsp:include page="/navigation.jspx"></jsp:include>
+<body>
+<div class="row">
+  <div class="col-75">
+    <div class="container">
+      <form action="/action_page.php">
+      
+        <div class="row">
+          <div class="col-50">
+            <h3>Billing Address</h3>
+            <label for="fname"> Full Name</label>
+            <input type="text" id="fname" name="firstname" placeholder="John Cena" />
+            <label for="email"> Email</label>
+            <input type="text" id="email" name="email" placeholder="youcantseeme@domain.com" />
+            <label for="adr">Address</label>
+            <input type="text" id="adr" name="address" placeholder="4700 Keele St" />
+            <label for="city"> City</label>
+            <input type="text" id="city" name="city" placeholder="Toronto" />
+
+            <div class="row">
+              <div class="col-50">
+                <label for="state">Province</label>
+                <input type="text" id="province" name="province" placeholder="ON" />
+              </div>
+              <div class="col-50">
+                <label for="postalcode">Postal Code</label>
+                <input type="text" id="postalcode" name="postalcode" placeholder="M3J1P3" />
+              </div>
+            </div>
+          </div>
+
+          <div class="col-50">
+            <h3>Payment</h3>
+<!--             <label for="fname">Accepted Cards</label> -->
+<!--             <div class="icon-container"> -->
+<!--               <i class="fa fa-cc-visa" style="color:navy;"></i> -->
+<!--               <i class="fa fa-cc-amex" style="color:blue;"></i> -->
+<!--               <i class="fa fa-cc-mastercard" style="color:red;"></i> -->
+<!--               <i class="fa fa-cc-discover" style="color:orange;"></i> -->
+<!--             </div> -->
+            <label for="cname">Name on Card</label>
+            <input type="text" id="cname" name="cardname" placeholder="John Cena" />
+            <label for="ccnum">Credit card number</label>
+            <input type="text" id="ccnum" name="cardnumber" placeholder="1111-2222-3333-4444" />
+            <label for="expmonth">Exp Month</label>
+            <input type="text" id="expmonth" name="expmonth" placeholder="September" />
+            <div class="row">
+              <div class="col-50">
+                <label for="expyear">Exp Year</label>
+                <input type="text" id="expyear" name="expyear" placeholder="2018"/>
+              </div>
+              <div class="col-50">
+                <label for="cvv">CVV</label>
+                <input type="text" id="cvv" name="cvv" placeholder="352"/>
+              </div>
+            </div>
+          </div>
+          
+        </div>
+        <label>
+          <input type="checkbox" checked="checked" name="sameadr" /> Shipping address same as billing
+        </label>
+        <input type="submit" value="Continue to checkout" class="btn" />
+      </form>
+    </div>
+  </div>
+  <div class="col-25">
+    <div class="container">
+    
+    <!-- paceholder for where the products go -->
+      <h4>Cart <span class="price" style="color:black"> <b>4</b></span></h4>
+      <p><a href="#">Product 1</a> <span class="price">$15</span></p>
+      <p><a href="#">Product 2</a> <span class="price">$5</span></p>
+      <p><a href="#">Product 3</a> <span class="price">$8</span></p>
+      <p><a href="#">Product 4</a> <span class="price">$2</span></p>
+      <hr />
+      <p>Total <span class="price" style="color:black"><b>$30</b></span></p>
+    </div>
+  </div>
+</div>
+</body>
+
+</html>
+</jsp:root>
