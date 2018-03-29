@@ -41,7 +41,7 @@ public class Cart extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		//System.out.println("Cart post called!");
+		System.out.println("Cart post called! Username:" + request.getParameter("username") + " bid:" + request.getParameter("bid"));
 		
 		String username = request.getParameter("username");
 		int bid = Integer.parseInt(request.getParameter("bid"));

@@ -14,6 +14,7 @@
 <link rel="StyleSheet" href="${pageContext.request.contextPath}/res/css/styles.css" type="text/css" title="cse4413"
 	media="screen, print" />
 	<script type="text/javascript" src="${pageContext.request.contextPath}/res/js/loginAndRegister.js">;</script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/res/js/cart.js">;</script>
 <style>
 .crop {
     height: 300px;
@@ -55,7 +56,7 @@ table, th, td {
 			</td>
 			<td><a href="/Bookstore/Book?bid=${book.value.bid}">${book.value.title}</a></td>
 			<td>$${book.value.price}</td>
-			<td><jsp:include page="/addToCartButton.jspx"></jsp:include></td>
+			<td><jsp:include page="/addToCartButton.jspx?bid=${book.value.bid}"></jsp:include></td>
 		</tr>
 		</c:forEach>
 		</c:if>
