@@ -120,7 +120,7 @@ function loginHandler(request) {
 			document.getElementById("wrong-psw-error").innerHTML = "wrong password entered";
 		}
 		else {	//successful login, redirect to home page
-			window.location.replace("/Bookstore/Start");
+			window.location.replace(window.location.href);
 		}
 		
 		//document.getElementById("wrong-psw-error").innerHTML = request.responseText;
