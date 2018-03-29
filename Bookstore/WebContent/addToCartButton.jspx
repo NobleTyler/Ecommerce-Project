@@ -12,7 +12,7 @@
 	<c:if test="${username ne null}">
 	<form action="" method="POST">
 		 <!-- user is signed in, they can add items to their cart -->
-		<input type="submit" value="Add to cart" onclick="addTest();return false;" />
+		<input type="submit" value="Add to cart" onclick="addItemToCart('/Bookstore/Cart?bid=${param.bid}&amp;username=${username}');return false;" />
 	</form>
 	</c:if>
 	<c:if test="${username eq null}">

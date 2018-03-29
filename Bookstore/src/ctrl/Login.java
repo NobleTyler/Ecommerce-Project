@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import model.AccountDAO;
 import model.BookDAO;
+import model.ShoppingCartDAO;
 
 /**
  * Servlet implementation class Login
@@ -21,10 +22,12 @@ public class Login extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
 	AccountDAO a;
+	ShoppingCartDAO sc;
 	
 	public void init() {
     	//initializes the model
     	a = new AccountDAO();
+    	sc = new ShoppingCartDAO();
     }
 	
     /**
@@ -58,6 +61,7 @@ public class Login extends HttpServlet {
 			
 			if (result) {
 				request.getSession().setAttribute("username", username);
+				request.getSession().setAttribute("cartSize", sc.retrieveCartItems(username).size());  		//setting the cart size for the nav bar
 				//request.setAttribute("username", username);
 				response.sendRedirect("/Bookstore/Start");
 			}
