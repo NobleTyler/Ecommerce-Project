@@ -32,7 +32,7 @@
 						<button id="cartButton" onclick="alert('Your cart is empty!');">Cart(0)</button>
 					</c:if>
 					<c:if test="${cartSize ne null}">
-						<button id="cartButton" onclick="window.location='shoppingCart.jspx'">Cart(${cartSize})</button>
+						<button id="cartButton" onclick="window.location='/Bookstore/Cart'">Cart(${cartSize})</button>
 					</c:if>
 				
 			</div>
