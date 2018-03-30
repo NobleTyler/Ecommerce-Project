@@ -230,10 +230,15 @@ button {
 		
 }
 
-.header-bar input {
-	padding: 5px 10px;
-	display: inline-block;
+input[type=text] {
+  width: 100%;
+  margin-bottom: 20px;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
 }
+
+
 * {box-sizing:border-box}
 
 /* Slideshow container */

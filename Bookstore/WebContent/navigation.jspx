@@ -27,14 +27,14 @@
 					<a href="logout.jsp">Logout</a>
 				</c:if>
 				
-				<button id="cartButton">
+				
 					<c:if test="${cartSize eq null}">
-						Cart(0)
+						<button id="cartButton" onclick="alert('Your cart is empty!');">Cart(0)</button>
 					</c:if>
 					<c:if test="${cartSize ne null}">
-						Cart(${cartSize})
+						<button id="cartButton" onclick="window.location='shoppingCart.jspx'">Cart(${cartSize})</button>
 					</c:if>
-				</button>
+				
 			</div>
 		
 			<div class="header-bar">
