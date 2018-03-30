@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Map.Entry;
 
 public class ShoppingCartDAO {
 	private Connection conn;
@@ -43,6 +44,18 @@ public class ShoppingCartDAO {
 		p.close();
 		r.close();
 		conn.close();
+		return result;
+	}
+	
+	public int getCartSize(String username) throws SQLException {
+		int result = 0;
+		
+		Map<Integer, Integer> cart = retrieveCartItems(username);
+	
+		for (Entry<Integer, Integer> entry : cart.entrySet()) {
+			result += entry.getValue();
+		}
+		
 		return result;
 	}
 	

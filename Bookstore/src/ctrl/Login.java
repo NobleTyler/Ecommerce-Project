@@ -61,7 +61,7 @@ public class Login extends HttpServlet {
 			
 			if (result) {
 				request.getSession().setAttribute("username", username);
-				request.getSession().setAttribute("cartSize", sc.retrieveCartItems(username).size());  		//setting the cart size for the nav bar
+				request.getSession().setAttribute("cartSize", sc.getCartSize(username));  		//setting the cart size for the nav bar
 				//request.setAttribute("username", username);
 				response.sendRedirect("/Bookstore/Start");
 			}
