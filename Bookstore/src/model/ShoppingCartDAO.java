@@ -47,6 +47,9 @@ public class ShoppingCartDAO {
 		return result;
 	}
 	
+	/*
+	 * @returns the total cart size taking into account the quantity of each item
+	 */
 	public int getCartSize(String username) throws SQLException {
 		int result = 0;
 		
@@ -56,6 +59,35 @@ public class ShoppingCartDAO {
 			result += entry.getValue();
 		}
 		
+		return result;
+	}
+	
+	public float getCartTotalPrice(String username) throws SQLException {
+		float result = 0.0f;
+		
+		try {
+			conn = DatabaseConnector.getDatabaseConnection();
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		String query = "SELECT sum(price * quantity) as total " +
+							"from shopping_cart inner join book on shopping_cart.bid = book.bid " +
+							"where username=? " +
+							"group by shopping_cart.username";
+							
+		PreparedStatement p = conn.prepareStatement(query);
+		p.setString(1, username);
+		ResultSet r = p.executeQuery();
+		
+		if (r.next()) {
+			result = r.getFloat("total");
+		}
+		
+		r.close();
+		p.close();
+		conn.close();
 		return result;
 	}
 	

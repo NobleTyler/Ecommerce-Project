@@ -338,7 +338,21 @@ public class Tests {
 			else {
 				result += "[ERROR]sc09: shopping cart was not cleared!\n";
 			}
-		
+			
+			//sc10 testing cart total price
+			scd.addItemToCart("test", 1);
+			scd.addItemToCart("test", 2);
+			scd.addItemToCart("test", 2);
+			scd.addItemToCart("test", 8);
+			float price = scd.getCartTotalPrice("test");
+			if (price == 79.48f) {
+				result += "[SUCCESS]sc10: shopping cart total correct!\n";
+			}
+			else {
+				result += "[ERROR]sc10: shopping cart total incorrect: " + price + "\n";
+			}
+			scd.clearCart("test");
+			
 		}
 		catch (Exception e) {
 			e.printStackTrace();
