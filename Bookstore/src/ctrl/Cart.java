@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.util.Map;
+import java.util.Map.Entry;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -51,10 +52,16 @@ public class Cart extends HttpServlet {
 		try {
 			sc.addItemToCart(username, bid);								//getting the cart size after the addition of the new item for updating the display
 			Map<Integer, Integer> cart = sc.retrieveCartItems(username);
-			request.getSession().setAttribute("cartSize", cart.size());
-			out.print("Cart(" + cart.size() + ")");
 			
-			System.out.println(cart.size());
+			int cartSize = 0;
+			for (Entry<Integer, Integer> entry : cart.entrySet()) {
+				cartSize += entry.getValue();
+			}
+			
+			request.getSession().setAttribute("cartSize", cartSize);
+			out.print("Cart(" + cartSize + ")");
+			
+			System.out.println(cartSize);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
