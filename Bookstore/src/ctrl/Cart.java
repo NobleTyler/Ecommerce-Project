@@ -54,7 +54,7 @@ public class Cart extends HttpServlet {
 				
 				cartTable.append("<p><a href=\"/Bookstore/Book?bid=" + b.getBid() + "\">");
 				
-				String title = (b.getTitle().length() > 25) ? b.getTitle().substring(0, 25) + "..." : b.getTitle();
+				String title = (b.getTitle().length() > 25) ? b.getTitle().substring(0, 25) + "..." : b.getTitle();			//shortening title to fit in cart area
 				
 				cartTable.append(title + "</a> <span class=\"price\">$" + b.getPrice() + " x" + entry.getValue() + "</span></p>");
 			}
