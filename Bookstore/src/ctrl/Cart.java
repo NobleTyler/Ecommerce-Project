@@ -37,7 +37,41 @@ public class Cart extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		//response.getWriter().append("Served at: ").append(request.getContextPath());
-		System.out.println("Cart get called! Username:" + request.getParameter("username"));
+		System.out.println("Cart get called! Username:" + request.getSession().getAttribute("username"));															
+			
+		String username = request.getSession().getAttribute("username").toString();
+		//<p><a href="#">Product 1</a> <span class="price">$15</span></p>
+		BookDAO bd = new BookDAO();
+		ShoppingCartDAO sc = new ShoppingCartDAO();
+		StringBuilder cartTable = new StringBuilder();
+		try {
+			Map<Integer, Integer> cart = sc.retrieveCartItems(username);
+			//<h4>Cart <span class="price" style="color:black"> <b>4</b></span></h4>
+			cartTable.append("<h4>Cart <span class=\"price\" style=\"color:black\"> <b>" + sc.getCartSize(username) + "</b></span></h4>");
+			for (Entry<Integer, Integer> entry : cart.entrySet()) {
+				BookBean b = bd.retrieveBookByBid(entry.getKey());
+				
+				
+				cartTable.append("<p><a href=\"/Bookstore/Book?bid=" + b.getBid() + "\">");
+				
+				String title = (b.getTitle().length() > 25) ? b.getTitle().substring(0, 25) + "..." : b.getTitle();
+				
+				cartTable.append(title + "</a> <span class=\"price\">$" + b.getPrice() + " x" + entry.getValue() + "</span></p>");
+			}
+			
+			//<hr />
+		    //<p>Total <span class="price" style="color:black"><b>$30</b></span></p>
+			
+			float priceTotal = sc.getCartTotalPrice(username);
+			cartTable.append("<hr />");
+			cartTable.append("<p>Total <span class=\"price\" style=\"color:black\"><b>$" + priceTotal + "</b></span></p>");
+			
+			request.setAttribute("cartTable", cartTable);
+			request.getRequestDispatcher("shoppingCart.jspx").forward(request, response);
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 
 	/**
@@ -63,27 +97,6 @@ public class Cart extends HttpServlet {
 				out.print("Cart(" + cartSize + ")");
 				
 				System.out.println(cartSize);
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-		}
-		else {																	//bid is not in parameters, request is for entire cart contents
-			
-			//<p><a href="#">Product 1</a> <span class="price">$15</span></p>
-			BookDAO bd = new BookDAO();
-			StringBuilder cartTable = new StringBuilder();
-			try {
-				Map<Integer, Integer> cart = sc.retrieveCartItems(username);
-				float priceTotal = 0.0f;
-				for (Entry<Integer, Integer> entry : cart.entrySet()) {
-					BookBean b = bd.retrieveBookByBid(entry.getKey());
-					
-					
-					cartTable.append("<p><a href=\"/Bookstore/Book?bid= " + b.getBid() + ">");
-					cartTable.append(b.getTitle() + "</a> <span class=\"price\">" + b.getPrice() + "</span></p>");
-				}
-				
-				
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}

@@ -340,7 +340,7 @@ public class Tests {
 			}
 			
 			//sc10 testing cart total price
-			scd.addItemToCart("test", 1);
+			scd.addItemToCart("test", 1);		
 			scd.addItemToCart("test", 2);
 			scd.addItemToCart("test", 2);
 			scd.addItemToCart("test", 8);
