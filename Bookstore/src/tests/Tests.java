@@ -232,6 +232,7 @@ public class Tests {
 		
 		try {
 			//sc01
+			scd.addItemToCart("mcmaceac", 7);
 			int quantity = scd.getQuantity("mcmaceac", 7);
 			if (quantity == 1) {
 				result += "[SUCCESS]sc01: shopping cart returning correct quantity\n";
@@ -239,6 +240,7 @@ public class Tests {
 			else {
 				result += "[ERROR]sc01: shopping cart returned incorrect quantity(" + quantity + ")\n";
 			}
+			scd.clearCart("mcmaceac");
 			
 			//sc02 quantity for username that doesn't exist
 			quantity = scd.getQuantity("NON-EXISTANT USERNAME", 1);
@@ -360,6 +362,36 @@ public class Tests {
 		
 		return result;
 	}
+	
+	public String testAddressDAO() {
+		AddressDAO a = new AddressDAO();
+		String result = "";
+		
+		try {
+			AddressBean ab = new AddressBean("mcmaceac", "Matthew MacEachern", "435 Moon St.", "Aurora", "ON", "L4GM56");
+			a.addAddress(ab);
+			//ad01 testing retrieve and add address
+			if (a.retrieveAddress("mcmaceac") != null) {
+				result += "[SUCCESS]ad01: address added!\n";
+			}
+			else {
+				result += "[ERROR]ad01: address not added!\n";
+			}
+			
+			//ad02 testing update and retrieve
+			ab = new AddressBean("mcmaceac", "Matthew MacEachern", "35 Moon St.", "Aurora", "ON", "L4G4M5");
+			a.updateAddress(ab);
+			if (a.retrieveAddress("mcmaceac").getStreet().equals("35 Moon St.")) {
+				result += "[SUCCESS]ad02: address updated!\n";
+			}
+			else {
+				result += "[ERROR]ad02: address not updated!\n";
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
 
 	public static void main(String[] args) {
 		
@@ -369,6 +401,7 @@ public class Tests {
 		result += t.testAccountDAO();
 		result += t.testBookReviewDAO();
 		result += t.testShoppingCartDAO();
+		result += t.testAddressDAO();
 		
 		System.out.println(result);
 		

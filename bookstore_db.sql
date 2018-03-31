@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 28, 2018 at 09:53 PM
+-- Generation Time: Mar 31, 2018 at 11:51 PM
 -- Server version: 10.1.31-MariaDB
 -- PHP Version: 7.2.3
 
@@ -31,23 +31,23 @@ SET time_zone = "+00:00";
 CREATE TABLE `account` (
   `username` varchar(25) NOT NULL,
   `password` varchar(64) NOT NULL,
-  `pass_salt` int(11) NOT NULL,
-  `cartid` int(11) NOT NULL
+  `pass_salt` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+-- --------------------------------------------------------
+
 --
--- Dumping data for table `account`
+-- Table structure for table `address`
 --
 
-INSERT INTO `account` (`username`, `password`, `pass_salt`, `cartid`) VALUES
-('mcmaceac', 'e3f6cf92cc947ca70fb826869c76e35c82f3bb34e87458f577baf156f252410c', -533133853, 1),
-('newaccountbean', '3a152314eaf8a78ee7f9b447287e15f1f0c6dfef938872329b68d11e2c26910d', 1415534056, 2),
-('newnew', '0f5ccff3b1c13d771ae2a095e3b6122988892b82dfb27d9757efb2a8eef52da6', 309559545, 7),
-('newnewnew', '46c2d5c619db24ff926b03e99f78e862f208b3a143bb3d2d19512ce110e50800', 1644178591, 8),
-('newuser', '182b8b894fb04bb3156a33989d6cdfbd079101f5a086a82425be4b31aadca1b0', 974585865, 4),
-('test', '83d31093609f8678df693d868c7c495c5e35a149123340e7b1500df2e6f9b4a8', -1419797901, 5),
-('test2', '9e90de3a28ab80ddc5204b4e5cc4b42e9930b7d8d088f71e15ff14988e61f966', 1812828486, 6),
-('xXBook_Slayer420Xx', '5f3827dfdb9e2603aec1800678a24098d01bb7f119612e5b03d395e27c2c2f1a', -2114628124, 3);
+CREATE TABLE `address` (
+  `username` varchar(25) NOT NULL,
+  `full_name` varchar(50) NOT NULL,
+  `street` varchar(100) NOT NULL,
+  `city` varchar(50) NOT NULL,
+  `province` varchar(50) NOT NULL,
+  `postal_code` varchar(6) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -131,13 +131,6 @@ CREATE TABLE `book_review` (
   `rating` decimal(3,2) NOT NULL,
   `reviewdate` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `book_review`
---
-
-INSERT INTO `book_review` (`bid`, `username`, `reviewtext`, `rating`, `reviewdate`) VALUES
-(1, 'mcmaceac', 'Eyo dragon snugglin up with some gold, pretty dope namsayn', '5.00', '2018-03-28');
 
 -- --------------------------------------------------------
 
@@ -229,14 +222,6 @@ CREATE TABLE `shopping_cart` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `shopping_cart`
---
-
-INSERT INTO `shopping_cart` (`username`, `bid`, `quantity`) VALUES
-('mcmaceac', 7, 1),
-('mcmaceac', 47, 2);
-
---
 -- Indexes for dumped tables
 --
 
@@ -244,8 +229,13 @@ INSERT INTO `shopping_cart` (`username`, `bid`, `quantity`) VALUES
 -- Indexes for table `account`
 --
 ALTER TABLE `account`
-  ADD PRIMARY KEY (`username`),
-  ADD KEY `cartid` (`cartid`);
+  ADD PRIMARY KEY (`username`);
+
+--
+-- Indexes for table `address`
+--
+ALTER TABLE `address`
+  ADD PRIMARY KEY (`username`);
 
 --
 -- Indexes for table `book`
@@ -280,12 +270,6 @@ ALTER TABLE `shopping_cart`
 --
 
 --
--- AUTO_INCREMENT for table `account`
---
-ALTER TABLE `account`
-  MODIFY `cartid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
-
---
 -- AUTO_INCREMENT for table `book`
 --
 ALTER TABLE `book`
@@ -294,6 +278,12 @@ ALTER TABLE `book`
 --
 -- Constraints for dumped tables
 --
+
+--
+-- Constraints for table `address`
+--
+ALTER TABLE `address`
+  ADD CONSTRAINT `address_ibfk_1` FOREIGN KEY (`username`) REFERENCES `account` (`username`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `book_review`

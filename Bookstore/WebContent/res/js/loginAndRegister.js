@@ -40,8 +40,15 @@ function registerUser(address) {
 	var username = document.getElementById("regUname").value;
 	var password = document.getElementById("regPsw").value;
 	var rpassword = document.getElementById("rRegPsw").value;
+	var fname = document.getElementById("fname").value;
+	var street = document.getElementById("street").value;
+	var city = document.getElementById("city").value;
+	var province = document.getElementById("province").value;
+	var pcode = document.getElementById("pcode").value;
 	
 	data += "uname=" + username + "&psw=" + password + "&rpsw=" + rpassword;
+	data += "&fname=" + fname + "&street=" + street + "&city=" + city;
+	data += "&province=" + province + "&pcode=" + pcode;
 	
 	request.onreadystatechange = function() {
 		registerHandler(request);
