@@ -23,19 +23,31 @@ public class AddressDAO {
 			e.printStackTrace();
 		}
 		
-		String statement = "INSERT INTO ADDRESS(username, full_name, street, city, province, postal_code "
-							+ "VALUES(?,?,?,?,?,?)";
-		
-		PreparedStatement p = conn.prepareStatement(statement);
+		String query = "SELECT * FROM ADDRESS WHERE USERNAME=?";
+		PreparedStatement p = conn.prepareStatement(query);
 		p.setString(1, a.getUsername());
-		p.setString(2, a.getFullName());
-		p.setString(3, a.getStreet());
-		p.setString(4, a.getCity());
-		p.setString(5, a.getProvince());
-		p.setString(6, a.getZip().replaceAll("\\s+","")); 			//removing all spaces that might be present in the zip
+		ResultSet r = p.executeQuery();
 		
-		p.execute();
+		if (!r.next()) {				//if there isn't already an address associated with this user, add it, else, update
+			
+			String statement = "INSERT INTO ADDRESS(username, full_name, street, city, province, postal_code) "
+								+ "VALUES(?,?,?,?,?,?)";
+			
+			p = conn.prepareStatement(statement);
+			p.setString(1, a.getUsername());
+			p.setString(2, a.getFullName());
+			p.setString(3, a.getStreet());
+			p.setString(4, a.getCity());
+			p.setString(5, a.getProvince());
+			p.setString(6, a.getZip().replaceAll("\\s+","")); 			//removing all spaces that might be present in the zip
+			
+			p.execute();
+		}
+		else {
+			updateAddress(a);
+		}
 		
+		r.close();
 		p.close();
 		conn.close();
 	}
