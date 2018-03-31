@@ -97,8 +97,8 @@ public class Cart extends HttpServlet {
 			cartTable.append("<table>"
 							+ "<tr>"
 							+ "<td></td>"
-							+ "<td>Cart</td> "
-							+ "<td><span class=\"price\" style=\"color:black\"> <b>" + sc.getCartSize(username) + "</b></span></td>"
+							+ "<td><h4>Cart</h4></td> "
+							+ "<td><h4><span class=\"price\" style=\"color:black\"> <b>" + sc.getCartSize(username) + "</b></span></h4></td>"
 							+ "</tr>");
 			for (Entry<Integer, Integer> entry : cart.entrySet()) {
 				BookBean b = bd.retrieveBookByBid(entry.getKey());
