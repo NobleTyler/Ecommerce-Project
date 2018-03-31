@@ -2,24 +2,32 @@ package bean;
 
 public class AddressBean {
 
-	private String id, street, province, country, zip, phone;
-
-	public AddressBean(String id, String street, String province, String country, String zip, String phone) {
+	private String username, fullName, street, province, country, zip;
+	
+	public AddressBean(String username, String fullName, String street, String province, String country, String zip) {
 		super();
-		this.id = id;
+		this.username = username;
+		this.fullName = fullName;
 		this.street = street;
 		this.province = province;
 		this.country = country;
 		this.zip = zip;
-		this.phone = phone;
 	}
 
-	public String getId() {
-		return id;
+	public String getUsername() {
+		return username;
 	}
 
-	public void setId(String id) {
-		this.id = id;
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
+	public String getFullName() {
+		return fullName;
+	}
+
+	public void setFullName(String fullName) {
+		this.fullName = fullName;
 	}
 
 	public String getStreet() {
@@ -54,12 +62,4 @@ public class AddressBean {
 		this.zip = zip;
 	}
 
-	public String getPhone() {
-		return phone;
-	}
-
-	public void setPhone(String phone) {
-		this.phone = phone;
-	}
-	
 }
