@@ -30,28 +30,28 @@
 <div class="row">
   <div class="col-50">
     <div class="container">
-      <form action="">
+      <form action="" onsubmit="alert('Cartsize: ${cartSize}');">
       
         <div class="row">
           <div class="col-50">
             <h3>Billing Address</h3>
             <label for="fname"> Full Name</label>
-            <input type="text" id="fname" name="firstname" placeholder="John Cena" />
-            <label for="email"> Email</label>
-            <input type="text" id="email" name="email" placeholder="youcantseeme@domain.com" />
+            <input type="text" id="fname" name="firstname" value="${userAddress.fullName}" />
+            <!-- <label for="email"> Email</label>
+            <input type="text" id="email" name="email" placeholder="youcantseeme@domain.com" /> -->
             <label for="adr">Address</label>
-            <input type="text" id="adr" name="address" placeholder="4700 Keele St" />
+            <input type="text" id="adr" name="address" value="${userAddress.street}" />
             <label for="city"> City</label>
-            <input type="text" id="city" name="city" placeholder="Toronto" />
+            <input type="text" id="city" name="city" value="${userAddress.city}" />
 
             <div class="row">
               <div class="col-50">
                 <label for="state">Province</label>
-                <input type="text" id="province" name="province" placeholder="ON" />
+                <input type="text" id="province" name="province" value="${userAddress.province}" />
               </div>
               <div class="col-50">
                 <label for="postalcode">Postal Code</label>
-                <input type="text" id="postalcode" name="postalcode" placeholder="M3J1P3" />
+                <input type="text" id="postalcode" name="postalcode" value="${userAddress.zip}" />
               </div>
             </div>
           </div>
