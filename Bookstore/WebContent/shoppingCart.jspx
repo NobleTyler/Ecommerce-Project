@@ -28,9 +28,9 @@
 	<jsp:include page="/navigation.jspx"></jsp:include>
 <body>
 <div class="row">
-  <div class="col-75">
+  <div class="col-50">
     <div class="container">
-      <form action="/action_page.php">
+      <form action="">
       
         <div class="row">
           <div class="col-50">
@@ -91,7 +91,7 @@
       </form>
     </div>
   </div>
-  <div class="col-25">
+  <div class="col-50">
     <div class="container" id="cartContainer">
     	${cartTable}
     </div>
