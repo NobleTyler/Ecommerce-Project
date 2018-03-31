@@ -41,37 +41,10 @@ public class Cart extends HttpServlet {
 			
 		String username = request.getSession().getAttribute("username").toString();
 		//<p><a href="#">Product 1</a> <span class="price">$15</span></p>
-		BookDAO bd = new BookDAO();
-		ShoppingCartDAO sc = new ShoppingCartDAO();
-		StringBuilder cartTable = new StringBuilder();
-		try {
-			Map<Integer, Integer> cart = sc.retrieveCartItems(username);
-			//<h4>Cart <span class="price" style="color:black"> <b>4</b></span></h4>
-			cartTable.append("<h4>Cart <span class=\"price\" style=\"color:black\"> <b>" + sc.getCartSize(username) + "</b></span></h4>");
-			for (Entry<Integer, Integer> entry : cart.entrySet()) {
-				BookBean b = bd.retrieveBookByBid(entry.getKey());
-				
-				
-				cartTable.append("<p><a href=\"/Bookstore/Book?bid=" + b.getBid() + "\">");
-				
-				String title = (b.getTitle().length() > 25) ? b.getTitle().substring(0, 25) + "..." : b.getTitle();
-				
-				cartTable.append(title + "</a> <span class=\"price\">$" + b.getPrice() + " x" + entry.getValue() + "</span></p>");
-			}
-			
-			//<hr />
-		    //<p>Total <span class="price" style="color:black"><b>$30</b></span></p>
-			
-			float priceTotal = sc.getCartTotalPrice(username);
-			cartTable.append("<hr />");
-			cartTable.append("<p>Total <span class=\"price\" style=\"color:black\"><b>$" + priceTotal + "</b></span></p>");
-			
-			request.setAttribute("cartTable", cartTable);
-			request.getRequestDispatcher("shoppingCart.jspx").forward(request, response);
-			
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+		String cartTable = createCartTable(username);		//create the cart table for a specific user
+		
+		request.setAttribute("cartTable", cartTable);
+		request.getRequestDispatcher("shoppingCart.jspx").forward(request, response);
 	}
 
 	/**
@@ -81,10 +54,24 @@ public class Cart extends HttpServlet {
 		
 		System.out.println("Cart post called! Username:" + request.getParameter("username") + " bid:" + request.getParameter("bid"));
 		
-		String username = request.getParameter("username");
+		String username = request.getSession().getAttribute("username").toString();
 		ShoppingCartDAO sc = new ShoppingCartDAO();
 		
-		if (request.getParameter("bid") != null) {								//request is for adding a single bid to the cart
+		if (request.getParameter("incBid") != null) {								//wanting to increment quantity of a bid in the cart page
+			int bid = Integer.parseInt(request.getParameter("incBid"));
+			PrintWriter out = response.getWriter();
+			
+			
+			try {
+				sc.addItemToCart(username, bid);						
+				String cartTable = createCartTable(username);
+				
+				out.print(cartTable);
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		else if (request.getParameter("bid") != null) {								//request is for adding a single bid to the cart
 			int bid = Integer.parseInt(request.getParameter("bid"));
 			PrintWriter out = response.getWriter();
 			
@@ -95,12 +82,94 @@ public class Cart extends HttpServlet {
 				
 				request.getSession().setAttribute("cartSize", cartSize);
 				out.print("Cart(" + cartSize + ")");
-				
-				System.out.println(cartSize);
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
 		}
+		else if (request.getParameter("removeBid") != null) {					//user has pressed the remove button on the cart page
+			PrintWriter out = response.getWriter();
+			if (request.getParameter("removeBid").equals("all")) {
+				try {
+					sc.clearCart(username);
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+			else if (request.getParameter("quant") != null) {
+				System.out.println("QUANT NOT NULL: " + request.getParameter("quant"));
+				int quantToRemove = Integer.parseInt(request.getParameter("quant"));
+				int bidToRemove = Integer.parseInt(request.getParameter("removeBid"));
+				
+				try {
+					sc.removeItemFromCart(username, bidToRemove, quantToRemove);
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			else {
+				int bidToRemove = Integer.parseInt(request.getParameter("removeBid"));
+				try {
+					sc.removeItemFromCart(username, bidToRemove);
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			String cartTable = createCartTable(username);
+			out.print(cartTable);							//update the cart table
+		}
+	}
+	
+	protected String createCartTable(String username) {
+		BookDAO bd = new BookDAO();
+		ShoppingCartDAO sc = new ShoppingCartDAO();
+		StringBuilder cartTable = new StringBuilder();
+		try {
+			Map<Integer, Integer> cart = sc.retrieveCartItems(username);
+			//<h4>Cart <span class="price" style="color:black"> <b>4</b></span></h4>
+			cartTable.append("<div class='row'>"
+							+ "<div class='col-25'></div>"
+							+ "<div class='col-50'><h4>Cart <a href=\"javascript:removeItemFromCart('/Bookstore/Cart?removeBid=all')\">[Click here to clear cart]</a></h4></div> "
+							+ "<div class='col-25'><h4><span class=\"price\" style=\"color:black\"> <b>" + sc.getCartSize(username) + "</b></span></h4></div>"
+							+ "</div>");
+			for (Entry<Integer, Integer> entry : cart.entrySet()) {
+				BookBean b = bd.retrieveBookByBid(entry.getKey());
+				String title = /*(b.getTitle().length() > 25) ? b.getTitle().substring(0, 25) + "..." :*/ b.getTitle();			//shortening title to fit in cart area
+				//<a href=\"javascript:removeItemFromCart('/Bookstore/Cart?removeBid=" + b.getBid() + "')
+				cartTable.append("<div class='row'>"
+								+ "<div class='col-25'>"
+								+ 	"<div class='row'>"
+								+ 		"<div class='col-50'>"
+								+ 		"<a href=\"javascript:removeItemFromCart('/Bookstore/Cart?removeBid=" + b.getBid() + "')\">[X]</a>"
+								+ 		"</div>"
+								+ 		"<div class='col-50'>"
+								+ 		"<a href=\"javascript:removeItemFromCart('/Bookstore/Cart?removeBid=" + b.getBid() + "&quant=1')\">-</a>" 
+								+ 			entry.getValue() 
+								+ 		"<a href=\"javascript:removeItemFromCart('/Bookstore/Cart?incBid=" + b.getBid() + "')\">+</a>"
+								+ 		"</div>"
+								+ 	"</div>"
+								+ "</div>"
+								+ "<div class='col-50'><a href=\"/Bookstore/Book?bid=" + b.getBid() + "\">" + title + "</a></div> "
+								+ "<div class='col-25'><span class=\"price\">$" + b.getPrice() + "</span></div>"
+							   + "</div>");
+			}
+			
+			//<hr />
+		    //<p>Total <span class="price" style="color:black"><b>$30</b></span></p>
+			
+			float priceTotal = sc.getCartTotalPrice(username);
+			cartTable.append("<div class='row'><hr /></div>");
+			cartTable.append("<div class='row'>"
+							+ "<div class='col-25'></div>"
+							+ "<div class='col-50'>Total </div>"
+							+ "<div class='col-25'><span class=\"price\" style=\"color:black\"><b>$" + priceTotal + "</b></span></div>"
+						   + "</div>");
+
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return cartTable.toString();
 	}
 
 }

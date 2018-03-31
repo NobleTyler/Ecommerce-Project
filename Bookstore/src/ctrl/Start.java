@@ -2,6 +2,7 @@ package ctrl;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
@@ -54,14 +55,16 @@ public class Start extends HttpServlet {
     
     public void setFrontPageBooks(HttpServletRequest request) {
     	int bid = randomBook();
+    	List<Integer> randomBids = new ArrayList<Integer>();		//to remove duplicates
     	for (int i = 0; i < 6; i++) {
-			bid=(bid+1)%(allBooks.size());
-					/*try {
-				BookBean book = b.retrieveBookByBid(bid);
-				request.setAttribute("book" + i, book);
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}*/
+
+			while (randomBids.contains(bid)) {
+				bid = randomBook();
+			}
+			
+			randomBids.add(bid);
+			bid = randomBook();
+
 			request.setAttribute("randbook" + i, bid);
 		}
     }

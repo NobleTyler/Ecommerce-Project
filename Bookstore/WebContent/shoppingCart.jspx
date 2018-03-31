@@ -20,6 +20,7 @@
 
 <link rel="StyleSheet" href="${pageContext.request.contextPath}/res/css/shoppingCart.css" type="text/css" title="cse4413"
 	media="screen, print" />
+<script type="text/javascript" src="${pageContext.request.contextPath}/res/js/cart.js">;</script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/res/js/function.js">;</script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/res/js/loginAndRegister.js">;</script>
 
@@ -27,9 +28,9 @@
 	<jsp:include page="/navigation.jspx"></jsp:include>
 <body>
 <div class="row">
-  <div class="col-75">
+  <div class="col-50">
     <div class="container">
-      <form action="/action_page.php">
+      <form action="">
       
         <div class="row">
           <div class="col-50">
@@ -90,8 +91,8 @@
       </form>
     </div>
   </div>
-  <div class="col-25">
-    <div class="container">
+  <div class="col-50">
+    <div class="container" id="cartContainer">
     	${cartTable}
     </div>
   </div>
