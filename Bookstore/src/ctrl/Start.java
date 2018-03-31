@@ -57,12 +57,14 @@ public class Start extends HttpServlet {
     	int bid = randomBook();
     	List<Integer> randomBids = new ArrayList<Integer>();		//to remove duplicates
     	for (int i = 0; i < 6; i++) {
+
 			while (randomBids.contains(bid)) {
 				bid = randomBook();
 			}
 			
 			randomBids.add(bid);
 			bid = randomBook();
+
 			request.setAttribute("randbook" + i, bid);
 		}
     }
