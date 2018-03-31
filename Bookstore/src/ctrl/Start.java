@@ -55,8 +55,8 @@ public class Start extends HttpServlet {
     public void setFrontPageBooks(HttpServletRequest request) {
     	int bid = randomBook();
     	for (int i = 0; i < 6; i++) {
-			bid=bid+i%(allBooks.size());
-			/*try {
+			bid=(bid+1)%(allBooks.size());
+					/*try {
 				BookBean book = b.retrieveBookByBid(bid);
 				request.setAttribute("book" + i, book);
 			} catch (SQLException e) {
