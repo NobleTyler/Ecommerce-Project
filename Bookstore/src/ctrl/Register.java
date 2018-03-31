@@ -12,7 +12,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import bean.AccountBean;
+import bean.AddressBean;
 import model.AccountDAO;
+import model.AddressDAO;
 
 /**
  * 
@@ -23,9 +25,11 @@ public class Register extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
 	AccountDAO a;
+	AddressDAO ad;
 	
 	public void init() {
 		a = new AccountDAO();
+		ad = new AddressDAO();
 	}
 	
     /**
@@ -43,6 +47,13 @@ public class Register extends HttpServlet {
 		String username = request.getParameter("uname");
 		String password = request.getParameter("psw");
 		String rpassword = request.getParameter("rpsw");		//re-entered password
+		String fname = request.getParameter("fname");
+		String street = request.getParameter("street");
+		String city = request.getParameter("city");
+		String province = request.getParameter("province");
+		String pcode = request.getParameter("pcode");
+		
+		System.out.println("Pcode: " + pcode);
 		
 		if (username != null && password != null && rpassword != null) {
 			
@@ -50,6 +61,8 @@ public class Register extends HttpServlet {
 				PrintWriter out = response.getWriter();				//output for the form
 				
 				if (a.registerUser(username, password)) {
+					AddressBean ab = new AddressBean(username, fname, street, city, province, pcode);
+					ad.addAddress(ab);
 					out.print("Registration successful!");
 				}
 				else {

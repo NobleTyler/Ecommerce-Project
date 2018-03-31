@@ -4,7 +4,7 @@ public class AddressBean {
 
 	private String username, fullName, street, province, city, zip;
 	
-	public AddressBean(String username, String fullName, String street, String province, String city, String zip) {
+	public AddressBean(String username, String fullName, String street, String city, String province, String zip) {
 		super();
 		this.username = username;
 		this.fullName = fullName;
