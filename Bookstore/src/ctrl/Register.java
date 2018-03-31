@@ -15,6 +15,7 @@ import bean.AccountBean;
 import model.AccountDAO;
 
 /**
+ * 
  * Servlet implementation class Register
  */
 @WebServlet("/Register")
