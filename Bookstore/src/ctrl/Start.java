@@ -37,6 +37,7 @@ public class Start extends HttpServlet {
     	//initializes the model
     	a = new AccountDAO();
     	b = new BookDAO();
+    	
     	try {
     		allBooks = b.retrieveAllBooks();
     	} catch (SQLException e) {
@@ -68,7 +69,7 @@ public class Start extends HttpServlet {
 			request.setAttribute("randbook" + i, bid);
 		}
     }
-
+   
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
@@ -77,7 +78,15 @@ public class Start extends HttpServlet {
 		
 		request.setAttribute("activenav", "home");								//sets the highlighted link in the navbar
 		setFrontPageBooks(request);
-		request.getRequestDispatcher("Index.jspx").forward(request, response);
+		
+		CategoryDAO c= new CategoryDAO() ;		
+		try {
+			List<String> categories = c.retrieveAllCategories();
+			request.setAttribute("categories", categories);
+			request.getRequestDispatcher("Index.jspx").forward(request, response);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 
 	/**
