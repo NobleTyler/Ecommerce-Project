@@ -30,7 +30,7 @@
 <div class="row">
   <div class="col-50">
     <div class="container">
-      <form action="" method="post">
+      <form action="/Bookstore/Checkout" method="post">
       
         <div class="row">
           <div class="col-50">
@@ -87,8 +87,7 @@
         <label>
           <input type="checkbox" checked="checked" name="sameadr" /> Shipping address same as billing
         </label>
-        <div id="cart-empty-error" style="color:red;">&#160;</div>
-        <button type="submit" class="btn" name="submit" value="register" onclick="return false;">Continue to checkout</button>
+        <input type="submit" value="Continue to checkout" class="btn" />
       </form>
     </div>
   </div>
