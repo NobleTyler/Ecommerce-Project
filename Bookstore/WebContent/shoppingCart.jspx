@@ -36,22 +36,22 @@
           <div class="col-50">
             <h3>Billing Address</h3>
             <label for="fname"> Full Name</label>
-            <input type="text" id="fname" name="firstname" value="${userAddress.fullName}" required/>
+            <input type="text" id="fname" name="firstname" value="${userAddress.fullName}" required="true"/>
             <!-- <label for="email"> Email</label>
             <input type="text" id="email" name="email" placeholder="youcantseeme@domain.com" /> -->
             <label for="adr">Address</label>
-            <input type="text" id="adr" name="address" value="${userAddress.street}" required/>
+            <input type="text" id="adr" name="address" value="${userAddress.street}" required="true"/>
             <label for="city"> City</label>
-            <input type="text" id="city" name="city" value="${userAddress.city}" required/>
+            <input type="text" id="city" name="city" value="${userAddress.city}" required="true"/>
 
             <div class="row">
               <div class="col-50">
                 <label for="state">Province</label>
-                <input type="text" id="province" name="province" value="${userAddress.province}" required/>
+                <input type="text" id="province" name="province" value="${userAddress.province}" required="true"/>
               </div>
               <div class="col-50">
                 <label for="postalcode">Postal Code</label>
-                <input type="text" id="postalcode" name="postalcode" value="${userAddress.zip}" required/>
+                <input type="text" id="postalcode" name="postalcode" value="${userAddress.zip}" required="true"/>
               </div>
             </div>
           </div>
@@ -66,19 +66,19 @@
 <!--               <i class="fa fa-cc-discover" style="color:orange;"></i> -->
 <!--             </div> -->
             <label for="cname">Name on Card</label>
-            <input type="text" id="cname" name="cardname" placeholder="John Cena" required/>
+            <input type="text" id="cname" name="cardname" placeholder="John Cena" required="true"/>
             <label for="ccnum">Credit card number</label>
-            <input type="text" id="ccnum" name="cardnumber" placeholder="1111-2222-3333-4444" required/>
+            <input type="text" id="ccnum" name="cardnumber" placeholder="1111-2222-3333-4444" required="true"/>
             <label for="expmonth">Exp Month</label>
-            <input type="text" id="expmonth" name="expmonth" placeholder="September" required/>
+            <input type="text" id="expmonth" name="expmonth" placeholder="September" required="true"/>
             <div class="row">
               <div class="col-50">
                 <label for="expyear">Exp Year</label>
-                <input type="text" id="expyear" name="expyear" placeholder="2018" required/>
+                <input type="text" id="expyear" name="expyear" placeholder="2018" required="true"/>
               </div>
               <div class="col-50">
                 <label for="cvv">CVV</label>
-                <input type="text" id="cvv" name="cvv" placeholder="352" required/>
+                <input type="text" id="cvv" name="cvv" placeholder="352" required="true"/>
               </div>
             </div>
           </div>
