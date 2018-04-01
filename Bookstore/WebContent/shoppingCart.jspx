@@ -30,28 +30,28 @@
 <div class="row">
   <div class="col-50">
     <div class="container">
-      <form action="" onsubmit="alert('Cartsize: ${cartSize}');">
+      <form action="" method="post">
       
         <div class="row">
           <div class="col-50">
             <h3>Billing Address</h3>
             <label for="fname"> Full Name</label>
-            <input type="text" id="fname" name="firstname" value="${userAddress.fullName}" />
+            <input type="text" id="fname" name="firstname" value="${userAddress.fullName}" required/>
             <!-- <label for="email"> Email</label>
             <input type="text" id="email" name="email" placeholder="youcantseeme@domain.com" /> -->
             <label for="adr">Address</label>
-            <input type="text" id="adr" name="address" value="${userAddress.street}" />
+            <input type="text" id="adr" name="address" value="${userAddress.street}" required/>
             <label for="city"> City</label>
-            <input type="text" id="city" name="city" value="${userAddress.city}" />
+            <input type="text" id="city" name="city" value="${userAddress.city}" required/>
 
             <div class="row">
               <div class="col-50">
                 <label for="state">Province</label>
-                <input type="text" id="province" name="province" value="${userAddress.province}" />
+                <input type="text" id="province" name="province" value="${userAddress.province}" required/>
               </div>
               <div class="col-50">
                 <label for="postalcode">Postal Code</label>
-                <input type="text" id="postalcode" name="postalcode" value="${userAddress.zip}" />
+                <input type="text" id="postalcode" name="postalcode" value="${userAddress.zip}" required/>
               </div>
             </div>
           </div>
@@ -66,19 +66,19 @@
 <!--               <i class="fa fa-cc-discover" style="color:orange;"></i> -->
 <!--             </div> -->
             <label for="cname">Name on Card</label>
-            <input type="text" id="cname" name="cardname" placeholder="John Cena" />
+            <input type="text" id="cname" name="cardname" placeholder="John Cena" required/>
             <label for="ccnum">Credit card number</label>
-            <input type="text" id="ccnum" name="cardnumber" placeholder="1111-2222-3333-4444" />
+            <input type="text" id="ccnum" name="cardnumber" placeholder="1111-2222-3333-4444" required/>
             <label for="expmonth">Exp Month</label>
-            <input type="text" id="expmonth" name="expmonth" placeholder="September" />
+            <input type="text" id="expmonth" name="expmonth" placeholder="September" required/>
             <div class="row">
               <div class="col-50">
                 <label for="expyear">Exp Year</label>
-                <input type="text" id="expyear" name="expyear" placeholder="2018"/>
+                <input type="text" id="expyear" name="expyear" placeholder="2018" required/>
               </div>
               <div class="col-50">
                 <label for="cvv">CVV</label>
-                <input type="text" id="cvv" name="cvv" placeholder="352"/>
+                <input type="text" id="cvv" name="cvv" placeholder="352" required/>
               </div>
             </div>
           </div>
@@ -87,7 +87,8 @@
         <label>
           <input type="checkbox" checked="checked" name="sameadr" /> Shipping address same as billing
         </label>
-        <input type="submit" value="Continue to checkout" class="btn" />
+        <div id="cart-empty-error" style="color:red;">&#160;</div>
+        <button type="submit" class="btn" name="submit" value="register" onclick="return false;">Continue to checkout</button>
       </form>
     </div>
   </div>
