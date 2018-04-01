@@ -118,6 +118,17 @@ public class Cart extends HttpServlet {
 			String cartTable = createCartTable(username);
 			out.print(cartTable);							//update the cart table
 		}
+		
+		
+		try {												//updating the cart size
+			int cartSize = sc.getCartSize(username);
+			request.getSession().setAttribute("cartSize", cartSize);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
 	}
 	
 	protected String createCartTable(String username) {

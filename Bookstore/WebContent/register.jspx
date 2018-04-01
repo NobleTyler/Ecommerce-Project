@@ -16,17 +16,17 @@
 				<label for="psw"><b>Re-Enter Password</b></label> 
 				<input type="password" placeholder="Re-Enter Password" name="rpsw" id="rRegPsw" required="true"></input>
 					
-				<!-- 
-				<label for="fname"><b>First Name</b></label> <input type="text"
-				placeholder="Enter First Name" name="uname" required="true"></input>
-				<label for="lname"><b>Last Name</b></label> <input type="text"
-				placeholder="Enter Last Name" name="uname" required="true"></input>
-				<label for="country"><b>Country</b></label> <input type="country"
-				placeholder="Enter Country" name="uname" required="true"></input>
-				<label for="fname"><b>Postal Code/Zip</b></label> <input type="text" pattern="[0-9]{5,6}" 
-				placeholder="Enter Username" name="uname" required="true"></input>
-				-->
-					
+				<label for="fname"><b>Full Name</b></label> 
+				<input type="text" placeholder="Enter Full Name" name="fname" id="fname" required="true"></input>
+				<label for="address"><b>Street</b></label> 
+				<input type="text" placeholder="Enter Address" name="street" id="street" required="true"></input>
+				<label for="city"><b>City</b></label> 
+				<input type="text" placeholder="Enter City" name="city" id="city" required="true"></input>
+				<label for="province"><b>Province</b></label> 
+				<input type="text" placeholder="Enter Province" name="province" id="province" required="true"></input>
+				<label for="pcode"><b>Postal Code</b></label> 
+				<input type="text" pattern="[A-Za-z][0-9][A-Za-z][0-9][A-Za-z][0-9]" placeholder="Enter Postal Code" name="pcode" id="pcode" required="true"></input>
+				
 				<button type="submit" name="submit" value="register" onclick="registerAjax('/Bookstore/Register');return false;">Register</button>
 
 				<label> <input type="checkbox" checked="checked"
