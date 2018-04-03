@@ -8,27 +8,62 @@
 		omit-xml-declaration="true" />
 	<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<!--<script type="text/javascript" src="https://code.highcharts.com/highcharts.js"></script>
-<script type="text/javascript" src="https://code.highcharts.com/modules/exporting.js"></script>-->
-<script type="text/javascript"
-	src="${pageContext.request.contextPath}/res/js/topSellersChart.js"></script>
+<script src="//use.typekit.net/ftn5fet.js"></script>
+<script>try{Typekit.load({ async: true });}catch(e){}</script>
 <link rel="StyleSheet"
 	href="${pageContext.request.contextPath}/res/css/styles.css"
 	type="text/css" title="cse4413" media="screen, print" />
-  <link rel="StyleSheet"
+ <link rel="StyleSheet"
 	href="${pageContext.request.contextPath}/res/css/chartTheme.css"
-	type="text/css" title="chart" media="screen, print" />
+	type="text/css" title="cse4413" media="screen, print" />
 <title>Analytics</title>
 </head>
 <body>
 
 	<jsp:include page="/navigation.jspx"></jsp:include>
 	<jsp:include page="/login.jspx"></jsp:include>
-	<jsp:include page="/register.jspx"></jsp:include>
+	<jsp:include page="/register.jspx"></jsp:include> 
 
-	
-	<div id="container"
-		style="min-width: 300px; height: 400px; margin: 0 auto"></div>
+<table id="q-graph">
+<caption>Quarterly Results</caption>
+<thead>
+<tr>
+<th></th>
+<th class="sent">Invoiced</th>
+<th class="paid">Collected</th>
+</tr>
+</thead>
+<tbody>
+<tr class="qtr" id="q1">
+<th scope="row">Q1</th>
+<td class="sent bar" style="height: 111px;"><p>$18,450.00</p></td>
+<td class="paid bar" style="height: 99px;"><p>$16,500.00</p></td>
+</tr>
+<tr class="qtr" id="q2">
+<th scope="row">Q2</th>
+<td class="sent bar" style="height: 206px;"><p>$34,340.72</p></td>
+<td class="paid bar" style="height: 194px;"><p>$32,340.72</p></td>
+</tr>
+<tr class="qtr" id="q3">
+<th scope="row">Q3</th>
+<td class="sent bar" style="height: 259px;"><p>$43,145.52</p></td>
+<td class="paid bar" style="height: 193px;"><p>$32,225.52</p></td>
+</tr>
+<tr class="qtr" id="q4">
+<th scope="row">Q4</th>
+<td class="sent bar" style="height: 110px;"><p>$18,415.96</p></td>
+<td class="paid bar" style="height: 195px;"><p>$32,425.00</p></td>
+</tr>
+</tbody>
+</table>
+
+<div id="ticks">
+<div class="tick" style="height: 59px;"><p>$50,000</p></div>
+<div class="tick" style="height: 59px;"><p>$40,000</p></div>
+<div class="tick" style="height: 59px;"><p>$30,000</p></div>
+<div class="tick" style="height: 59px;"><p>$20,000</p></div>
+<div class="tick" style="height: 59px;"><p>$10,000</p></div>
+</div>
 </body>
 	</html>
 </jsp:root>
