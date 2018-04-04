@@ -41,34 +41,34 @@
 			<tr>
 				<td style="width:330px; height:500px">
 					<a href="/Bookstore/Book?bid=${randbook0}">
-					<img src="${pageContext.request.contextPath}/res/images/books/${randbook0}.jpg" style="max-height:100%; max-width:100%"/>
+					<img src="${pageContext.request.contextPath}/res/images/books/${randbook0}.jpg" style="height:100%; width:100%"/>
 					</a>
 				</td>
 				<td style="width:330px; height:500px">
 					<a href="/Bookstore/Book?bid=${randbook1}">
-					<img src="${pageContext.request.contextPath}/res/images/books/${randbook1}.jpg" style="max-height:100%; max-width:100%"/>
+					<img src="${pageContext.request.contextPath}/res/images/books/${randbook1}.jpg" style="height:100%; width:100%"/>
 					</a>
 				</td>
 				<td style="width:330px; height:500px">
 					<a href="/Bookstore/Book?bid=${randbook2}">
-					<img src="${pageContext.request.contextPath}/res/images/books/${randbook2}.jpg" style="max-height:100%; max-width:100%"/>
+					<img src="${pageContext.request.contextPath}/res/images/books/${randbook2}.jpg" style="height:100%; width:100%"/>
 					</a>
 				</td>
 			</tr>
 			<tr>
 				<td style="width:330px; height:500px">
 					<a href="/Bookstore/Book?bid=${randbook3}">
-					<img src="${pageContext.request.contextPath}/res/images/books/${randbook3}.jpg" style="max-height:100%; max-width:100%"/>
+					<img src="${pageContext.request.contextPath}/res/images/books/${randbook3}.jpg" style="height:100%; width:100%"/>
 					</a>
 				</td>
 				<td style="width:330px; height:500px">
 					<a href="/Bookstore/Book?bid=${randbook4}">
-					<img src="${pageContext.request.contextPath}/res/images/books/${randbook4}.jpg" style="max-height:100%; max-width:100%"/>
+					<img src="${pageContext.request.contextPath}/res/images/books/${randbook4}.jpg" style="height:100%; width:100%"/>
 					</a>
 				</td>
 				<td style="width:330px; height:500px">
 					<a href="/Bookstore/Book?bid=${randbook5}">
-					<img src="${pageContext.request.contextPath}/res/images/books/${randbook5}.jpg" style="max-height:100%; max-width:100%"/>
+					<img src="${pageContext.request.contextPath}/res/images/books/${randbook5}.jpg" style="height:100%; width:100%"/>
 					</a>
 				</td>
 			</tr>
