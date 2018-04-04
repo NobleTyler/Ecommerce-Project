@@ -16,50 +16,161 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/res/js/functions.js">;</script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/res/js/cart.js">;</script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/res/js/loginAndRegister.js">;</script>
-<style>
-.crop {
-    height: 300px;
-    /*width: 400px;*/
-    overflow: hidden;
-}
-.crop img {
-    height: 100%;
-    width: auto;
-}
-table {
-	border-collapse: collapse;
-}
-table, th, td {
-    border: 1px solid black;
-}
-</style>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" />
+<script type="text/javascript" src="${pageContext.request.contextPath}/res/js/review.js">;</script>
 <title>${book.title}</title>
+    <style>
+        .container {
+            width: 500px;
+            margin-top: 100px;
+            font-size: 25px;
+		}
+		
+		.stars{
+			position: absolute;
+    		left: 750px;
+    		top: 200px;
+		}
+		
+		.textInput{
+			position: absolute;
+    		left: 500px;
+    		top: 350px;
+		}
+		
+		.headers{
+			position: absolute;
+    		left: 500px;
+    		top: 175px;
+		}
+		
+		img{
+			width:400px;
+			height:600px;
+			padding:1px;
+   			border:1px solid #021a40;
+   			background-color:black;
+			
+		}
+		
+		select, textarea {
+		    width: 100%;
+		    padding: 12px;
+		    border: 1px solid #ccc;
+		    border-radius: 4px;
+		    box-sizing: border-box;
+		    margin-top: 6px;
+		    font-size: 20px;
+		    margin-bottom: 16px;
+		    resize: vertical;
+		}
+		
+		.rate-area {
+		  float: left;
+		  border-style: none;
+		}
+		
+		.rate-area:not(:checked) > input {
+		  position: absolute;
+		  top: -9999px;
+		  clip: rect(0,0,0,0);
+		}
+		
+		.rate-area:not(:checked) > label {
+		  float: right;
+		  width: 1em;
+		  padding: 0 .1em;
+		  overflow: hidden;
+		  white-space: nowrap;
+		  cursor: pointer;
+		  font-size: 400%;
+		  line-height: 1.2;
+		  color: lightgrey;
+		  text-shadow: 1px 1px #bbb;
+		}
+		
+		.rate-area:not(:checked) > label:before { content: '★ '; }
+		
+		.rate-area > input:checked ~ label {
+		  color: gold;
+		  text-shadow: 1px 1px #c60;
+		  font-size: 450% !important;
+		}
+		
+		.rate-area:not(:checked) > label:hover, .rate-area:not(:checked) > label:hover ~ label { color: gold; }
+		
+		.rate-area > input:checked + label:hover, .rate-area > input:checked + label:hover ~ label, .rate-area > input:checked ~ label:hover, .rate-area > input:checked ~ label:hover ~ label, .rate-area > label:hover ~ input:checked ~ label {
+		  color: gold;
+		  text-shadow: 1px 1px goldenrod;
+		}
+		
+		.rate-area > label:active {
+		  position: relative;
+		  top: 2px;
+		  left: 2px;
+		}
+		
+		input[type=submit] {
+		    background-color: #4CAF50;
+		    color: white;
+		    padding: 12px 20px;
+		    border: none;
+		    border-radius: 4px;
+		    cursor: pointer;
+		}
+		
+		input[type=submit]:hover {
+		    background-color: #45a049;
+		}
+    </style>
 </head>
+
 <body>
-	<jsp:include page="/navigation.jspx"></jsp:include>
+<jsp:include page="navigation.jspx"></jsp:include>
 	<jsp:include page="/login.jspx"></jsp:include>
 	<jsp:include page="/register.jspx"></jsp:include>
-	<table align="center">
-		<tr>
-			<td><b>Cover</b></td>
-			<td><b>Book Title</b></td>
-			<td><b>Price</b></td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>
-			<div class='crop col-xs-12 col-sm-6 col-md-6 '>
-	         	<img class="col-xs-12 col-sm-6 col-md-6" 
-	          	src="${pageContext.request.contextPath}/res/images/books/${book.bid}.jpg" alt="${book.title}"/>
-   			</div>
-			</td>
-			<td>${book.title}</td>
-			<td>$${book.price}</td>
-			<td><jsp:include page="/addToCartButton.jspx"></jsp:include></td>
-		</tr>
-	</table>
-	
-	<jsp:include page="/review.jspx"></jsp:include>
+
+     
+   <div class="container">
+   	<DIV class="imageContainer">
+   		<img src="${pageContext.request.contextPath}/res/images/books/${book.bid}.jpg" alt="${book.title}" />
+   	</DIV>
+   	<DIV class="information">
+   		<H3>
+			${book.title}
+   		</H3>
+   		<H5>
+   			Price: $${book.price}
+   		</H5>
+   		<jsp:include page="/addToCartButton.jspx"></jsp:include>
+   	</DIV>
+ 	 <form action="">
+ 	 <DIV class="header">
+ 	 	<H3 class="headers">Please click a star to rate</H3>
+ 	 </DIV>
+ 	 	<DIV class = "stars">
+ 			<ul class="rate-area">
+  			  <input type="radio" id="5-star" name="rating" value="5" /><label for="5-star" title="Amazing">5 stars</label>
+			  <input type="radio" id="4-star" name="rating" value="4" /><label for="4-star" title="Good">4 stars</label>
+			  <input type="radio" id="3-star" name="rating" value="3" /><label for="3-star" title="Average">3 stars</label>
+			  <input type="radio" id="2-star" name="rating" value="2" /><label for="2-star" title="Not Good">2 stars</label>
+			  <input type="radio" id="1-star" name="rating" value="1" /><label for="1-star" title="Bad">1 star</label>
+			</ul>
+ 	 	</DIV>
+    	<DIV class="textInput">
+    	<H3>This is where your comments go</H3>
+			<textarea rows="5" cols="100" onkeyup="count_down(this);" placeholder="Enter some text here">Enter some text here</textarea><br/>
+			<input type="submit" value="Submit" />
+        	<span class="text-muted pull-right" id="count2">100</span>
+		</DIV>
+    <DIV class="button">
+    	
+    </DIV>
+  </form>
+</div>
+     
+     
 </body>
 </html>
 </jsp:root>
