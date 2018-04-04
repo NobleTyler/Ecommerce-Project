@@ -75,11 +75,8 @@ public class Start extends HttpServlet {
 			while (randomBids.contains(bid)) {
 				bid = randomBook();
 			}
-			
-			randomBids.add(bid);
-			bid = randomBook();
-
 			request.setAttribute("randbook" + i, bid);
+			randomBids.add(bid);
 		}
     }
 
