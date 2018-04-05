@@ -1,5 +1,8 @@
 package bean;
-
+/*
+ * Used mostly for registration and billing
+ * only called for those purposes to set the registration and the billing
+ */
 public class AddressBean {
 
 	private String username, fullName, street, province, city, zip;

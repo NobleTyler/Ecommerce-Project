@@ -22,13 +22,15 @@ import model.ShoppingCartDAO;
 @WebServlet("/Login")
 public class Login extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+    
+	/**
+	 * Initiaslize the account Shopping Cart and Adress used in the login.
+	 * All of the databases are used in the login 
+	 */
 	AccountDAO a;
 	ShoppingCartDAO sc;
 	AddressDAO ad;
-	
 	public void init() {
-    	//initializes the model
     	a = new AccountDAO();
     	sc = new ShoppingCartDAO();
     	ad = new AddressDAO();
@@ -44,6 +46,7 @@ public class Login extends HttpServlet {
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * Basically just lets you know where it was served at. Not super useful
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
@@ -51,7 +54,12 @@ public class Login extends HttpServlet {
 	}
 
 	/**
+	 * This just grabs the login and if it was true
+	 * then we set the username to the stored username and then fill their card
+	 * and redirect them back to the bookstore with their username
+	 * This then persists across the ession
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * 
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {		
 		String username = request.getParameter("uname");

@@ -19,6 +19,8 @@ public class CategoryDAO {
 	
 	/*
 	 * @returns all categories in the database
+	 * This is used when we want to display all categories
+	 * Mainly for the categories page/menu	 
 	 */
 	public List<String> retrieveAllCategories() throws SQLException {
 		
@@ -49,6 +51,9 @@ public class CategoryDAO {
 	
 	/*
 	 * @returns a list of categories for a given bid
+	 * This selects the books from a category based on a book id number
+	 * Then prints a list of its categories
+	 * Most likely used to display similar books in a category
 	 */
 	public List<String> retrieveCategoriesForBook(int bid) throws SQLException {
 		
@@ -79,6 +84,9 @@ public class CategoryDAO {
 	}
 	
 	/*
+	 * This is used whenever we go to the category menu and select a category
+	 * just a quick select statment is executed then put into a hashmap
+	 * it then puts them in a bean and inserts it into the hashmap
 	 * @returns list of bids for a given category
 	 */
 	public Map<Integer, BookBean> retrieveBooksForCategory(String category) throws SQLException {

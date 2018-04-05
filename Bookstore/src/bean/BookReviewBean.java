@@ -1,7 +1,11 @@
 package bean;
 
 import java.sql.Date;
-
+/*
+ * This bean holds everything used in the review
+ * All it has are getters and setters and a constructor
+ * you know like every other bean here
+ */
 public class BookReviewBean {
 
 	private String reviewText, username;

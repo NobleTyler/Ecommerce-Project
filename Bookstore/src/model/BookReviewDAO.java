@@ -15,6 +15,8 @@ public class BookReviewDAO {
 	private Connection conn;
 	
 	/*
+	 * Returns the book reveiws fora  book
+	 * This is useful for when you have a book and want to link it to its reviews
 	 * @returns a list of book reviews for a given book bid in the form of BookReviewBeans
 	 */
 	public List<BookReviewBean> retrieveBookReviews(int bid) throws SQLException {
@@ -49,6 +51,8 @@ public class BookReviewDAO {
 	}
 	
 	/*
+	 * This retrieves the book review for a certain user id again using the select statement
+	 * its here in case you end up clicking a single person and want to see their reviews for a certain book
 	 * returns a book review based on bid,username (pk for table book_review)
 	 */
 	public BookReviewBean retrieveBookReview(int bid, String username) throws SQLException {
@@ -83,13 +87,15 @@ public class BookReviewDAO {
 	
 	/*
 	 * Adds a new review for a book through a BookReviewBean object
-	 * which contains the bid
+	 * which contains the bid,
+	 * Its obvious this one is just to add a review to the table
+	 * It also serves to overwrite any reviews if they have already entered one
 	 */
 	public void addReview(BookReviewBean b) throws SQLException {
 		List<BookReviewBean> reviews = new ArrayList<BookReviewBean>();
 		String statement = "insert into book_review(bid, username, reviewtext, rating, reviewdate) values (?,?,?,?,?)";
 		
-		//if the user has already submitted a review for this book, delete the old review and add the new (b)
+	
 		if (retrieveBookReview(b.getBid(), b.getUsername()) != null) {
 			removeReview(b.getBid(), b.getUsername());
 		}
@@ -114,6 +120,7 @@ public class BookReviewDAO {
 	}
 	
 	/*
+	 * Again used for removing a review, only a certain user should be able to remove their own review so we got that
 	 * removes a review based on the book_review primary key rid
 	 */
 	public void removeReview(int bid, String username) throws SQLException {

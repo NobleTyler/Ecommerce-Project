@@ -32,6 +32,7 @@ public class Cart extends HttpServlet {
     }
 
 	/**
+	 * This gets the username and then creates a table absed on it. After that we just forward it
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -48,6 +49,13 @@ public class Cart extends HttpServlet {
 	}
 
 	/**
+	 * Requests username 
+	 * it then gets the parameter of including the book id
+	 * and adds it to the cart table
+	 * afterwards it updates the cart by adding it and increasing the cart size
+	 * it can do add or remove and it does this all through sql commands in the cart dao
+	 * you can also add multiple bid's to the cart
+	 * most of this method relies on the update cart method as well as the ShoppingCartDao to fill these options
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -130,7 +138,13 @@ public class Cart extends HttpServlet {
 		
 		
 	}
-	
+	/**
+	 * This method creates a cart tableit retreives the items in the cart through the dao
+	 * then pritns them out  via the cartTable.append calling it for each entry
+	 * it then gets the value and basically prints all the parts in it onto the page when create Cart Table is called
+	 * @param username
+	 * @return
+	 */
 	protected String createCartTable(String username) {
 		BookDAO bd = new BookDAO();
 		ShoppingCartDAO sc = new ShoppingCartDAO();

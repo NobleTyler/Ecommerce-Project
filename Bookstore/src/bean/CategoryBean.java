@@ -1,5 +1,8 @@
 package bean;
-
+/*
+ * This category bean is used for the categories
+ * you can call it in the dao whenever you wanna search by categories i guess
+ */
 public class CategoryBean {
 
 	private String category; 

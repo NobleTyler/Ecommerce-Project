@@ -1,5 +1,7 @@
 package bean;
-
+/*
+ * Has everything you need to know about the book minus the iamge url
+ */
 public class BookBean {
 
 	private int bid;

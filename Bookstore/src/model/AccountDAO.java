@@ -11,7 +11,10 @@ public class AccountDAO {
 	private Connection conn;
 	
 	/*
-	 * registers a new user with the given password
+	 * Registers a user by adding them to the database
+	 * First query to make sure they don't exist
+	 * After querying if the query contains an entry that is shared return the name is taken
+	 * If not it is salted and added to the database of accounts
 	 */
 	public boolean registerUser(String username, String password) throws SQLException, NoSuchAlgorithmException {
 		
@@ -29,7 +32,7 @@ public class AccountDAO {
 		PreparedStatement p = conn.prepareStatement(query);
 		p.setString(1, username);
 		ResultSet r = p.executeQuery();
-		if (r.next()) {		//username is already taken!
+		if (r.next()) {		
 			result = false;
 		}
 		else {
@@ -41,13 +44,10 @@ public class AccountDAO {
 			p.setInt(3, salt);
 			p.execute();
 		}
-		
 		conn.close();
 		p.close();
 		r.close();
-		
 		return result;
-		
 	}
 	
 	/*
@@ -59,6 +59,10 @@ public class AccountDAO {
 
 	/*
 	 * attempts to login using the given username and password
+	 * This works by selecting from the database where the user name is found
+	 * It then uses the salt and password to match to the username
+	 * all of which are set through queries.
+	 * If they are matching the connection is closed and the user is logged in.
 	 * @returns true if successful login
 	 */
 	public boolean attemptLogin(String username, String password) throws SQLException {
@@ -77,7 +81,6 @@ public class AccountDAO {
 		p.setString(1, username);
 		ResultSet r = p.executeQuery();
 		
-		//if the username is found check to see if the pw matches
 		if (r.next()) {
 			String pw = r.getString("PASSWORD");
 			int salt = r.getInt("PASS_SALT");

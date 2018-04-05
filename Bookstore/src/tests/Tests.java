@@ -127,7 +127,7 @@ public class Tests {
 			}
 			
 			// a02 attempt to log in (correct password)
-			if (a.attemptLogin("mcmaceac", "shitpass")) {
+			if (a.attemptLogin("mcmaceac", "1")) {
 				result += "[SUCCESS]a02: Login successful!\n";
 			}
 			else {
@@ -152,7 +152,7 @@ public class Tests {
 			}
 			
 			//a05 attempt to register account with accountbean
-			ab = new AccountBean("xXBook_Slayer420Xx", "ieatbooksforbreakfast");
+			ab = new AccountBean("mcmaceac", "1");
 			if (a.attemptLogin(ab)) {
 				result += "[SUCCESS]a05: Account successfully logged in! (AccountBean)\n";
 			}
@@ -208,7 +208,7 @@ public class Tests {
 			
 			//br03 adding a new review and then deleting to test review deletion
 			b.setReviewText("Yea dragons and stuff yo");
-			b.setUsername("xXBook_Slayer420Xx");
+			b.setUsername("mcmaceac");
 			brd.addReview(b);
 			brd.removeReview(b.getBid(), b.getUsername());
 			if (brd.retrieveBookReviews(bid).size() > 1) {
@@ -309,13 +309,14 @@ public class Tests {
 				result += "[ERROR]sc07: shopping cart returned incorrect quantity(" + quantity + ")\n";
 			}
 			scd.removeItemFromCart("mcmaceac", 2);		//removing entire item so future testing works
-		
+			scd.clearCart("mcmaceac");
+			
 			//sc08 retrieving an entire cart
-			scd.addItemToCart("test2", 1);
-			scd.addItemToCart("test2", 2);
-			scd.addItemToCart("test2", 2);
-			scd.addItemToCart("test2", 8);
-			Map<Integer, Integer> cart = scd.retrieveCartItems("test2");
+			scd.addItemToCart("mcmaceac", 1);
+			scd.addItemToCart("mcmaceac", 2);
+			scd.addItemToCart("mcmaceac", 2);
+			scd.addItemToCart("mcmaceac", 8);
+			Map<Integer, Integer> cart = scd.retrieveCartItems("mcmaceac");
 			if (cart.size() == 3 && cart.get(1) == 1 && cart.get(2) == 2 && cart.get(8) == 1) {
 				result += "[SUCCESS]sc08: shopping cart retrieved in map form!\n";
 			}
@@ -326,14 +327,14 @@ public class Tests {
 				result += "cart.get(8): " + cart.get(8) + "\n";
 				result += "cart.size(): " + cart.size() + "\n";
 			}
-			scd.clearCart("test2");
+			scd.clearCart("mcmaceac");
 			
 			//sc09 clearing an entire cart
-			scd.addItemToCart("test", 1);
-			scd.addItemToCart("test", 2);
-			scd.addItemToCart("test", 2);
-			scd.addItemToCart("test", 8);
-			scd.clearCart("test");
+			scd.addItemToCart("mcmaceac", 1);
+			scd.addItemToCart("mcmaceac", 2);
+			scd.addItemToCart("mcmaceac", 2);
+			scd.addItemToCart("mcmaceac", 8);
+			scd.clearCart("mcmaceac");
 			if (scd.retrieveCartItems("test").size() == 0) {
 				result += "[SUCCESS]sc09: shopping cart cleared successfully!\n";
 			}
@@ -342,18 +343,18 @@ public class Tests {
 			}
 			
 			//sc10 testing cart total price
-			scd.addItemToCart("test", 1);		
-			scd.addItemToCart("test", 2);
-			scd.addItemToCart("test", 2);
-			scd.addItemToCart("test", 8);
-			float price = scd.getCartTotalPrice("test");
+			scd.addItemToCart("mcmaceac", 1);		
+			scd.addItemToCart("mcmaceac", 2);
+			scd.addItemToCart("mcmaceac", 2);
+			scd.addItemToCart("mcmaceac", 8);
+			float price = scd.getCartTotalPrice("mcmaceac");
 			if (price == 79.48f) {
 				result += "[SUCCESS]sc10: shopping cart total correct!\n";
 			}
 			else {
 				result += "[ERROR]sc10: shopping cart total incorrect: " + price + "\n";
 			}
-			scd.clearCart("test");
+			scd.clearCart("mcmaceac");
 			
 		}
 		catch (Exception e) {

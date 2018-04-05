@@ -16,6 +16,7 @@ public class ShoppingCartDAO {
 	}
 	
 	/*
+	 * Retrieves car items by using the query string
 	 * @returns a map<bid, quantity> representing the items in a user's shopping cart
 	 */
 	public Map<Integer, Integer> retrieveCartItems(String username) throws SQLException {
@@ -49,6 +50,7 @@ public class ShoppingCartDAO {
 	
 	/*
 	 * @returns the total cart size taking into account the quantity of each item
+	 * Works by iterating through the cart and adding to an int that is later retrurned	 
 	 */
 	public int getCartSize(String username) throws SQLException {
 		int result = 0;
@@ -61,7 +63,11 @@ public class ShoppingCartDAO {
 		
 		return result;
 	}
-	
+	/*
+	 * Opens the database and again itterates through the query set
+	 * Takes the result set then adds to a float which is later returned as
+	 * the total price of the cart
+	 */
 	public float getCartTotalPrice(String username) throws SQLException {
 		float result = 0.0f;
 		
@@ -92,6 +98,7 @@ public class ShoppingCartDAO {
 	}
 	
 	/*
+	 * Calls an sql statement that deletes from the table whatever book id is passed
 	 * removes an item from the users shopping cart (all of the quantity gets removed)
 	 */
 	public void removeItemFromCart(String username, int bid) throws SQLException {
@@ -114,6 +121,9 @@ public class ShoppingCartDAO {
 	}
 	
 	/*
+	 * An overloaded method of the original this one accounts for quantity
+	 * Calls an update statement rather than a delete statement as the previous ones did
+	 * this is because we dont want to drop the entry necessarily we may just want to reduce the quantity
 	 * removes a certain quantity of an item from a shopping cart
 	 */
 	public void removeItemFromCart(String username, int bid, int quantity) throws SQLException {
@@ -144,6 +154,8 @@ public class ShoppingCartDAO {
 	}
 	
 	/*
+	 * Deletes the entire column to remove that entire cart
+	 * Does this by you know just setting the username to the Delete function
 	 * removed all items from a users shopping cart (ie when they make a purchase)
 	 */
 	public void clearCart(String username) throws SQLException {
@@ -165,7 +177,8 @@ public class ShoppingCartDAO {
 	}
 	
 	/*
-	 * add a single item to the user's shopping cart
+	 * add a single item to the user's shopping cart by using update if the quantity is greater than one
+	 * else it uses the insert into  and then executes the statement
 	 */
 	public void addItemToCart(String username, int bid) throws SQLException {
 		int quantity = getQuantity(username, bid);			//the current quantity of the item in the user's shoppingcart
@@ -196,11 +209,12 @@ public class ShoppingCartDAO {
 	}
 	
 	/*
+	 * This gets the quantity in the cart of the user
+	 * Used for a lot of those delete statements and print statements
 	 * @returns the quantity of a single product a particular user has in their shopping cart
 	 */
 	public int getQuantity(String username, int bid) throws SQLException {
-		int quantity = 0;			//default return value in the case that no results are returned
-		
+		int quantity = 0;			
 		try {
 			conn = DatabaseConnector.getDatabaseConnection();
 		}

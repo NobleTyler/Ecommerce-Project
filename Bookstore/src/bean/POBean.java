@@ -1,5 +1,10 @@
 package bean;
 
+/*
+ * Thats right its a bean and this bean is for the account stuff
+ * but this has more to do with the adress DAO
+ * thats what this ties to
+ */
 public class POBean {
 
 	private String id, lname, fname, status;
