@@ -24,9 +24,13 @@ import model.AddressDAO;
 public class Register extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
+	
+	/**
+	 * Initialize the Account and Address model
+	 * These are both required to tie the account details together
+	 */
 	AccountDAO a;
 	AddressDAO ad;
-	
 	public void init() {
 		a = new AccountDAO();
 		ad = new AddressDAO();
@@ -41,6 +45,11 @@ public class Register extends HttpServlet {
     }
 
 	/**
+	 * Grab all the parameters from the form
+	 * Then we use the account.register user to call that function
+	 * once called the adressbean takes in the rest of the user info.
+	 * Add that adress to the database as well as the user and it is complete
+	 * the user is registered then inform the user
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

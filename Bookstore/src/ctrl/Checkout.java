@@ -36,6 +36,10 @@ public class Checkout extends HttpServlet {
 	}
 
 	/**
+	 * get the username, then get the cartsize of them
+	 * then set the price through the get Cart total price method
+	 * then foreward them to the checkout
+	 * this is basically called when they click the checkout button
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
