@@ -1,5 +1,9 @@
 package bean;
-
+/*
+ * Most of the books have this bean attached to them
+ * just contains their book id and their price and id
+ * bid is used everywhere
+ */
 public class POItemBean {
 
 	private String id, bid;

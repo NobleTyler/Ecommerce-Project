@@ -1,7 +1,11 @@
 package bean;
 
 import java.util.Date;
-
+/*
+ * Holds information on what is visited
+ * the event type and when it is visited
+ * will later be used for analytics purposes
+ */
 public class VisitEventBean {
 
 	private Date day;
