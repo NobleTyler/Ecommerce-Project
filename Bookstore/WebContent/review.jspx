@@ -10,9 +10,44 @@
 		doctype-system="http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"
 		omit-xml-declaration="true" />
 
+	<style>
+	#reviews {
+    	font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    	border-collapse: collapse;
+    	width:100%
+}
+
+	#reviews td, #reviews th {
+    	border: 1px solid #ddd;
+    	padding: 8px;
+    	width: 90%;
+}
+
+	#reviews tr:nth-child(even){background-color: #f2f2f2;}
+
+	#reviews tr:hover {background-color: #ddd;}
+
+	#reviews th {
+    	padding-top: 12px;
+    	padding-bottom: 12px;
+    	text-align: left;
+    	background-color: #4CAF50;
+    	color: white;
+	}
+		
+	</style>
+	
+	<c:if test="${notEmpty ne null}">
 	<div>
-		<table>
+		<table id="reviews">
+		<tr>
+		    <th>User Name</th>
+		    <th>Rating (/5)</th>
+		    <th>Review</th>
+		    <th>Date reviewed</th>
+  		</tr>
 		<c:forEach items="${reviews}" var="review">
+		
 			<tr>
 				<td>${review.username}</td>
 				<td>${review.rating}</td>
@@ -22,4 +57,5 @@
 		</c:forEach>
 		</table>
 	</div>
+	</c:if>
 </jsp:root>
