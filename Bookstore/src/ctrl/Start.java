@@ -94,7 +94,6 @@ public class Start extends HttpServlet {
 	}
 
 	/**
-	 * 
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

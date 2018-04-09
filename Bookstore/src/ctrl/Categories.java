@@ -21,8 +21,11 @@ import model.CategoryDAO;
 public class Categories extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
+	/*
+	 * Initialize the category DAO
+	 * this is necessary to you know access the categories database
+	 */
 	CategoryDAO c;
-	
 	public void init() {
 		c = new CategoryDAO();
 	}
@@ -36,6 +39,10 @@ public class Categories extends HttpServlet {
     }
 
 	/**
+	 * Sets the category button to green
+	 * As well as when looking for the category it retrieves books from that cattagory by querieying
+	 * then sets the books used as an attribute
+	 * If there is none I guess it just retrieves all categories 
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

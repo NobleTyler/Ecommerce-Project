@@ -1,7 +1,10 @@
 package bean;
 
 import java.util.List;
-
+/*
+ * this one is used to attach a username to a list of BID's
+ * anyawys thats all this holds other than that its still a bean
+ */
 public class ShoppingCartBean {
 
 	private String username;

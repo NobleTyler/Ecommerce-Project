@@ -14,7 +14,12 @@ public class AddressDAO {
 		
 	}
 	
-	//adds a new address to the database
+	/*
+	 * Adds an adress to the database
+	 * this is used for registration, and only called on each new registration
+	 * If an adress is already there for the user update 
+	 * as well remove all spaces in the zip so its a proper zip code
+	 */
 	public void addAddress(AddressBean a) throws SQLException {
 		try {
 			conn = DatabaseConnector.getDatabaseConnection();
@@ -28,7 +33,7 @@ public class AddressDAO {
 		p.setString(1, a.getUsername());
 		ResultSet r = p.executeQuery();
 		
-		if (!r.next()) {				//if there isn't already an address associated with this user, add it, else, update
+		if (!r.next()) {				
 			
 			String statement = "INSERT INTO ADDRESS(username, full_name, street, city, province, postal_code) "
 								+ "VALUES(?,?,?,?,?,?)";
@@ -39,8 +44,7 @@ public class AddressDAO {
 			p.setString(3, a.getStreet());
 			p.setString(4, a.getCity());
 			p.setString(5, a.getProvince());
-			p.setString(6, a.getZip().replaceAll("\\s+","")); 			//removing all spaces that might be present in the zip
-			
+			p.setString(6, a.getZip().replaceAll("\\s+","")); 						
 			p.execute();
 		}
 		else {
@@ -52,7 +56,11 @@ public class AddressDAO {
 		conn.close();
 	}
 	
-	//updated address information for a particular user (contained in the address bean)
+	/*
+	 * updated address information for a particular user (contained in the address bean)
+	 * This is just incase somebody moves, it remains unused however
+	 */
+	
 	public void updateAddress(AddressBean a) throws SQLException {
 		try {
 			conn = DatabaseConnector.getDatabaseConnection();
@@ -61,18 +69,22 @@ public class AddressDAO {
 			e.printStackTrace();
 		}
 		
-		String statement = "DELETE FROM ADDRESS WHERE USERNAME=?";			//delete old address
+		String statement = "DELETE FROM ADDRESS WHERE USERNAME=?";		
 		PreparedStatement p = conn.prepareStatement(statement);
 		p.setString(1, a.getUsername());
 		p.execute();
 		
-		addAddress(a);														//add new address
+		addAddress(a);												
 		
 		p.close();
 		conn.close();
 	}
 	
-	//@returns address information for a particular user
+	/*
+	 * @returns address information for a particular user
+	 * Retrieves the adress of a user, may be displayed upon order
+	 * For billing or shipping information
+	 */
 	public AddressBean retrieveAddress(String username) throws SQLException {
 		try {
 			conn = DatabaseConnector.getDatabaseConnection();

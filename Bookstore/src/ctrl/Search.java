@@ -22,10 +22,13 @@ import model.BookDAO;
 public class Search extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
+
+	/**
+	 * Initialize the model
+	 * in this case BookDAO
+	 */
 	BookDAO b;
-	
 	public void init() {
-    	//initializes the model
     	b = new BookDAO();
     }
 	
@@ -38,10 +41,12 @@ public class Search extends HttpServlet {
     }
 
 	/**
+	 * When searching we query all books by grabbing the booksearch parameter
+	 * we then call what queries the list of books for the string
+	 * we then set the attribute and display those books in a later jspx
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		//response.getWriter().append("Served at: ").append(request.getContextPath());
 		String queryString = request.getParameter("booksearch");
 		try {

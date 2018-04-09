@@ -15,7 +15,11 @@ public class BookDAO {
 	public BookDAO() {
 		
 	}
-	
+	/*
+	 * Book id's are a key value so there should be no duplicates
+	 * this is used frequently to display the book and for many other purposes
+	 * Then it just grabs the title and price, which you display when they view the book
+	 */
 	public BookBean retrieveBookByBid(int bid) throws SQLException {
 		
 		try {
@@ -32,7 +36,6 @@ public class BookDAO {
 		ResultSet r = p.executeQuery();
 		
 		BookBean book = null;
-		//There should only be 1 result value since bid is the pk
 		while (r.next()) {
 			String title = r.getString("TITLE");
 			float price = r.getBigDecimal("PRICE").floatValue();
@@ -45,7 +48,10 @@ public class BookDAO {
 		
 		return book;
 	}
-	
+	/*
+	 * Gets every book based on the BID, doesnt pass anything just grabs every book
+	 * useful for when you want to view every book
+	 */
 	public List<Integer> retrieveAllBooks() throws SQLException {
 		List<Integer> bids = new ArrayList<Integer>();
 		
@@ -70,7 +76,11 @@ public class BookDAO {
 		
 		return bids;
 	}
-	
+	/*
+	 * Retrieve all by title, is frequently used in the search function
+	 * simply a select statment with a like this time
+	 * then puts what it found in a bean and displays that later
+	 */
 	public Map<Integer, BookBean> retrieveBooksByTitle(String t) throws SQLException {
 		Map<Integer, BookBean> m = new HashMap<Integer, BookBean>();
 		
@@ -104,7 +114,10 @@ public class BookDAO {
 		
 		return m;
 	}
-	
+	/*
+	 * This is for adding a book usually done by an admin for when a new book comes out
+	 * Its just an inser into statement really
+	 */
 	public void insertBook(BookBean book) throws SQLException {
 		
 		try {
