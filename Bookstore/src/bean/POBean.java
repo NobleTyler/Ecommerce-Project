@@ -1,22 +1,24 @@
 package bean;
 
-/*
- * Thats right its a bean and this bean is for the account stuff
- * but this has more to do with the adress DAO
- * thats what this ties to
- */
+import java.sql.Timestamp;
+
 public class POBean {
 
-	private String id, lname, fname, status;
-	private AddressBean address;
-	
-	public POBean(String id, String lname, String fname, String status, AddressBean address) {
+	private String id;
+	private String lname, fname, username, status;
+	private Timestamp date;
+
+	public final static String PROCESSED = "PROCESSED";
+	public final static String DENIED = "DENIED";
+
+	public POBean(String id, String lname, String fname, String username, String status, Timestamp date) {
 		super();
 		this.id = id;
 		this.lname = lname;
 		this.fname = fname;
+		this.username = username;
 		this.status = status;
-		this.address = address;
+		this.date = date;
 	}
 
 	public String getId() {
@@ -25,6 +27,14 @@ public class POBean {
 
 	public void setId(String id) {
 		this.id = id;
+	}
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
 	}
 
 	public String getLname() {
@@ -43,20 +53,21 @@ public class POBean {
 		this.fname = fname;
 	}
 
-	public String getStatus() {
-		return status;
+	public String getUsername() {
+		return username;
 	}
 
-	public void setStatus(String status) {
-		this.status = status;
+	public void setUsername(String username) {
+		this.username = username;
 	}
 
-	public AddressBean getAddress() {
-		return address;
+	public Timestamp getDate() {
+		return date;
 	}
 
-	public void setAddress(AddressBean address) {
-		this.address = address;
+	public void setDate(Timestamp date) {
+		this.date = date;
 	}
+
 	
 }

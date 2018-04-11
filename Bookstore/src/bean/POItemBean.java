@@ -1,19 +1,15 @@
 package bean;
-/*
- * Most of the books have this bean attached to them
- * just contains their book id and their price and id
- * bid is used everywhere
- */
-public class POItemBean {
 
-	private String id, bid;
-	private float price;
+public class POItemBean {
 	
-	public POItemBean(String id, String bid, float price) {
+	private String id;
+	private int bid, quantity;
+	
+	public POItemBean(String id, int bid, int quantity) {
 		super();
 		this.id = id;
 		this.bid = bid;
-		this.price = price;
+		this.quantity = quantity;
 	}
 
 	public String getId() {
@@ -24,20 +20,20 @@ public class POItemBean {
 		this.id = id;
 	}
 
-	public String getBid() {
+	public int getBid() {
 		return bid;
 	}
 
-	public void setBid(String bid) {
+	public void setBid(int bid) {
 		this.bid = bid;
 	}
 
-	public float getPrice() {
-		return price;
+	public int getQuantity() {
+		return quantity;
 	}
 
-	public void setPrice(float price) {
-		this.price = price;
+	public void setQuantity(int quantity) {
+		this.quantity = quantity;
 	}
 	
 }

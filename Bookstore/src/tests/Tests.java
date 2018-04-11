@@ -4,6 +4,7 @@ import model.*;
 import java.security.NoSuchAlgorithmException;
 import java.sql.Date;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -393,6 +394,32 @@ public class Tests {
 		}
 		return result;
 	}
+	
+	public String testPODAOs() {
+		POContainer pc = new POContainer();
+		ShoppingCartDAO scd = new ShoppingCartDAO();
+		String result = "";
+		
+		try {
+			String username = "mcmaceac";
+			Timestamp currentTime = new Timestamp(System.currentTimeMillis());
+			String id = currentTime.toString() + username;
+			POBean pb = new POBean(id, "MacEachern", "Matthew", username, POBean.PROCESSED, currentTime);
+			
+			scd.addItemToCart(username, 1);
+			scd.addItemToCart(username, 2);
+			scd.addItemToCart(username, 4);
+			
+			pc.addProductOrder(pb, scd.retrieveCartItems(username));
+			
+			scd.clearCart(username);
+		}
+		catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return result;
+	}
 
 
 	public static void main(String[] args) {
@@ -404,6 +431,7 @@ public class Tests {
 		result += t.testBookReviewDAO();
 		result += t.testShoppingCartDAO();
 		result += t.testAddressDAO();
+		result += t.testPODAOs();
 		
 		System.out.println(result);
 		
