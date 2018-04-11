@@ -17,7 +17,7 @@ function validateRegisterFields() {
 	
 	var tester=true;
 	var regex=/^(?=.*\d)(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z]).{6,9}$/;
-
+	var regexlogin=/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 	var minLength=6;
 	var maxLength=9;
 	errors=[];
@@ -35,6 +35,11 @@ function validateRegisterFields() {
 		document.getElementById("uname-error").innerHTML = "Username must contain characters";
 		tester= false;
 	}
+	if(regexlogin.test(username)==false)
+		{
+		errors.push("Username must be a valid email adress.");
+		tester=false;
+		}
 	if(password != rpassword) { 			//the user did not type in the same password twice
 		document.getElementById("rpsw-error").innerHTML = "Please re-enter the same password";
 		tester=false
@@ -143,10 +148,11 @@ function loginAjax(address) {
 function validateLoginFields() {
 	document.getElementById("login-uname-error").innerHTML = " ";		//clearing previous error messages
 	document.getElementById("wrong-psw-error").innerHTML = " ";
+	
 	var username = document.getElementById("uname").value;
 	
 	if (username.trim() == "") {
-		document.getElementById("login-uname-error").innerHTML = "please enter a valid username";
+		document.getElementById("login-uname-error").innerHTML = "Please enter a valid username.";
 		return false;
 	}
 	else {
