@@ -9,7 +9,7 @@
 			<div class="container">
 			
 				<label for="uname"><b>Username</b></label> 
-				<input type="text" placeholder="Enter Username" name="uname" id="regUname" ></input>
+				<input type="email" placeholder="Enter Username" name="uname" id="regUname" ></input>
 				<div id="uname-error" style="color:red;">&#160;</div>
 				
 				<label for="psw"><b>Password</b></label> 
