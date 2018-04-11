@@ -9,10 +9,8 @@
 			<div class="container">
 			
 				<label for="uname"><b>Username</b></label> 
-<<<<<<< HEAD
-=======
 				<input type="email" placeholder="Enter Username" name="uname" id="regUname" ></input>
->>>>>>> refs/remotes/origin/master
+
 				<div id="uname-error" style="color:red;">&#160;</div>
 				<input type="text" placeholder="Enter Username" name="uname" id="regUname" ></input>
 				
