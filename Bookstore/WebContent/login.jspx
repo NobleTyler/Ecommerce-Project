@@ -24,7 +24,7 @@
 				<button type="button"
 					onclick="document.getElementById('login').style.display='none'"
 					class="cancelbtn">Cancel</button>
-				<span class="psw">Forgot <a href="#">password?</a></span>
+				<span class="psw"> <a href="mailto:admins@freshbooks.com">Forgot password?</a></span>
 			</div>
 		</form>
 	</div>
