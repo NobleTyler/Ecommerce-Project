@@ -204,7 +204,7 @@
     	<H3>This is where your comments go</H3>
 			<textarea rows="5" cols="100" onkeyup="count_down(this);" name="comment" placeholder="Enter some text here">Enter some text here</textarea><br/>
 			<input type="submit" onclick="return buttonIsPressed();" name="submit" value="Submit" />
-        	<span class="text-muted pull-right" id="count2">100</span>
+        	<span class="text-muted pull-right" id="count2">1000</span>
 		</DIV>
     <DIV class="button">
     	

@@ -20,7 +20,7 @@
 	#reviews td, #reviews th {
     	border: 1px solid #ddd;
     	padding: 8px;
-    	width: 90%;
+    	width: 30%;
 }
 
 	#reviews tr:nth-child(even){background-color: #f2f2f2;}
