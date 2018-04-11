@@ -8,27 +8,87 @@ function registerAjax(address) {
 function validateRegisterFields() {
 	document.getElementById("uname-error").innerHTML = " ";
 	document.getElementById("rpsw-error").innerHTML = " ";		//clearing previous error fields
+	document.getElementById("password-error").innerHTML = " ";
+	document.getElementById("fname-error").innerHTML = " ";
+	document.getElementById("city-error").innerHTML = " ";
+	document.getElementById("address-error").innerHTML = " ";
+	document.getElementById("province-error").innerHTML = " ";
+	document.getElementById("pcode-error").innerHTML = " ";
+	
+	var tester=true;
+	var regex=/^(?=.*\d)(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z]).{6,9}$/;
+
+	var minLength=6;
+	var maxLength=9;
+	errors=[];
+	
 	var username = document.getElementById("regUname").value;
 	var password = document.getElementById("regPsw").value;
 	var rpassword = document.getElementById("rRegPsw").value;
+	var fname = document.getElementById("fname").value;
+	var city=document.getElementById("city").value;
+	var address=document.getElementById("street").value;
+	var province=document.getElementById("province").value;
+	var postalCode=document.getElementById("pcode").value;
 	
-	if (username.trim() == "") {				//the username field is empty		
+	if(username.trim() == "") {				//the username field is empty		
 		document.getElementById("uname-error").innerHTML = "Username must contain characters";
-		return false;
+		tester= false;
 	}
-	else if (password != rpassword) { 			//the user did not type in the same password twice
+	if(password != rpassword) { 			//the user did not type in the same password twice
 		document.getElementById("rpsw-error").innerHTML = "Please re-enter the same password";
-		return false;
+		tester=false
 	}
-	else {
-		return true;
+	if(password.trim()==""){
+		document.getElementById("password-error").innerHTML = "Password must contain characters";
+		tester=false;
 	}
+	if(regex.test(password)==false){
+		errors.push("Password must be "+minLength+"-"+maxLength+" characters long and \n" +
+				"-must contain a special character\n" +
+				"-must contain an uppercase letter\n" +
+				"-must contain a lowercase letter\n" +
+				"-must contain a number");
+		tester=false;
+	}
+	
+	if(fname.trim()==""){
+		document.getElementById("fname-error").innerHTML = "Full name cannot be empty";
+		tester=false;
+	}
+	if(city.trim()==""){
+		document.getElementById("city-error").innerHTML = "City name cannot be empty";
+		tester=false;
+	}
+	if(address.trim()==""){
+		document.getElementById("address-error").innerHTML = "Address cannot be empty";
+		tester=false;
+	}
+	if(province.trim()==""){
+		document.getElementById("province-error").innerHTML = "Province cannot be empty";
+		tester=false;
+	}
+	if(postalCode.trim()==""){
+		document.getElementById("pcode-error").innerHTML = "Postal code cannot be empty";
+		tester=false;
+	}
+	
+	if(errors.length>0){
+		alert(errors.join("\n"))
+	}
+	
+	return tester;
 }
 
 function clearRegisterFields() {
 	document.getElementById("register-form").reset();
 	document.getElementById("uname-error").innerHTML = " ";
 	document.getElementById("rpsw-error").innerHTML = " ";		//clearing previous error fields
+	document.getElementById("fname-error").innerHTML = " ";
+	document.getElementById("city-error").innerHTML = " ";
+	document.getElementById("address-error").innerHTML = " ";
+	document.getElementById("province-error").innerHTML = " ";
+	document.getElementById("pcode-error").innerHTML = " ";
 }
 
 function registerUser(address) {
