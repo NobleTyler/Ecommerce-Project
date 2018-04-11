@@ -3,71 +3,46 @@
 	xmlns:c="http://java.sun.com/jsp/jstl/core"
 	xmlns:fn="http://java.sun.com/jsp/jstl/functions"
 	xmlns:f="http://java.sun.com/jsp/jstl/fmt" version="2.0">
-	<jsp:directive.page contentType="text/html; charset=UTF-8"
-		pageEncoding="UTF-8" session="true" />
+	<jsp:directive.page contentType="text/html; charset=UTF-8" 
+		pageEncoding="UTF-8" session="true"/>
 	<jsp:output doctype-root-element="html"
 		doctype-public="-//W3C//DTD XHTML 1.0 Transitional//EN"
 		doctype-system="http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"
 		omit-xml-declaration="true" />
-		<html xmlns="http://www.w3.org/1999/xhtml">
 	<div class="navbar">
 		<div class="topnav">
-			<a class="${activenav == 'home' ? 'active' : ''}"
-				href="/Bookstore/Start">Home</a>
-
-
-			<div class="dropdown">
-				<button class="dropbtn">Categories</button>
-				<div class="dropdown-content">
-					<a href="/Bookstore/Categories?cat=">This changed right</a>
-					<c:forEach items="${categories}" var="category">
-						<a href="/Bookstore/Categories?cat=${category}">${category}</a>
-					</c:forEach>
-				</div>
-			</div>
-
-
-
-			<a class="${activenav == 'contact' ? 'active' : ''}" href="#contact">Contact</a>
+			
+			<a class="${activenav == 'home' ? 'active' : ''}" href="/Bookstore/Start">Home</a> 
+			<a class="${activenav == 'category' ? 'active' : ''}" href="/Bookstore/Categories">Categories</a>
+			<a class="${activenav == 'contact' ? 'active' : ''}" href="#contact">Contact</a> 
 			<a class="${activenav == 'about' ? 'active' : ''}" href="#about">About</a>
-
+	
 			<div class="login-bar">
 				<c:if test="${username eq null}">
-					<button
-						onclick="clearLoginFields();document.getElementById('login').style.display='block'"
-						style="width: auto;">Login</button>
-					<button
-						onclick="clearRegisterFields();document.getElementById('register').style.display='block'"
-						style="width: auto;">Register</button>
+					<button onclick="clearLoginFields();document.getElementById('login').style.display='block'" style="width:auto;">Login</button>
+					<button onclick="clearRegisterFields();document.getElementById('register').style.display='block'" style="width:auto;">Register</button>
 				</c:if>
 				<c:if test="${username ne null}">
 					<a href="">Welcome: ${username}</a>
 					<a href="logout.jsp">Logout</a>
 				</c:if>
-
-
-				<c:if test="${cartSize eq null}">
-					<button id="cartButton" onclick="alert('Your cart is empty!');">Cart(0)</button>
-				</c:if>
-				<c:if test="${cartSize ne null}">
-					<button id="cartButton" onclick="window.location='/Bookstore/Cart'">Cart(${cartSize})</button>
-				</c:if>
-
+				
+				
+					<c:if test="${cartSize eq null}">
+						<button id="cartButton" onclick="alert('Your cart is empty!');">Cart(0)</button>
+					</c:if>
+					<c:if test="${cartSize ne null}">
+						<button id="cartButton" onclick="window.location='/Bookstore/Cart'">Cart(${cartSize})</button>
+					</c:if>
+				
 			</div>
-
+		
 			<div class="header-bar">
 				<form action="/Bookstore/Search" method="get">
-					<nobr>
-						<input type="text" name="booksearch"
-							placeholder="Search for a book" required="true" />
-					</nobr>
-					<nobr>
-						<button type="submit" name="submit" value="booksubmit">Go</button>
-					</nobr>
+				<nobr><input type="text" name="booksearch" placeholder="Search for a book" required="true"/></nobr> 
+				<nobr><button type="submit" name="submit" value="booksubmit" >Go</button></nobr>
 				</form>
 			</div>
 		</div>
 	</div>
-	</html>
 </jsp:root>
-
