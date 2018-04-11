@@ -8,10 +8,30 @@
 		omit-xml-declaration="true" />
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<link rel="StyleSheet" href="styles.css" type="text/css" title="cse4413"
+<link rel="StyleSheet" href="${pageContext.request.contextPath}/res/css/styles.css" type="text/css" title="cse4413"
 	media="screen, print" />
-	<script type="text/javascript" src="${pageContext.request.contextPath}/function.js">;</script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/res/js/functions.js">;</script>
 	<meta name="viewport" content="width=device-width, initial-scale=1"></meta>
+	<style>
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+    width: 100%;
+    border: 1px solid #ddd;
+}
+
+th, td {
+    text-align: left;
+    padding: 8px;
+    witdh:3px;
+    height:10px;
+}
+#tableImg{
+  witdh:30px;
+    height:30px;
+}
+tr:nth-child(even){background-color: #f2f2f2}
+</style>
 <title>Catalogue</title>
 </head>
 <body>
@@ -53,6 +73,62 @@
   <span class="dot" onclick="currentSlide(3)"></span> 
 </div>
 
+
+<!--  Heres where the table goes -->
+<div style="overflow-x:auto;">
+  <table>
+    <tr>
+      <th>Recommended for you</th>
+    </tr>
+    <tr>
+    <div class="tableImg">
+      <td>Jill</td>
+      <td>Smith</td>
+      <td><img src="https://www.nationalgeographic.com/content/dam/animals/thumbs/rights-exempt/mammals/d/domestic-dog_thumb.ngsversion.1484159404151.adapt.1900.1.jpg"  ></img></td>
+      <td>50</td>
+      <td>50</td>
+      <td>50</td>
+      <td>50</td>
+      <td>50</td>
+      <td>50</td>
+      <td>50</td>
+      <td>50</td>
+      <td>50</td>
+       </div>
+    </tr>
+ 
+    <tr>
+      <td>Based On</td>
+      <td>Book name</td>
+ 
+      <td>94</td>
+      <td>94</td>
+      <td>94</td>
+      <td>94</td>
+      <td>94</td>
+      <td>94</td>
+      <td>94</td>
+      <td>94</td>
+      <td>94</td>
+      <td>95555</td>
+    
+    </tr>
+    <tr>
+       <td>Based On</td>
+      <td>Book name</td>
+      <td>67</td>
+      <td>67</td>
+      <td>67</td>
+      <td>67</td>
+      <td>67</td>
+      <td>67</td>
+      <td>67</td>
+      <td>67</td>
+      <td>67</td>
+      <td>67</td>
+    </tr>
+  </table>
+</div>
 
 </body>
 </html>

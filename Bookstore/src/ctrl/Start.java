@@ -42,6 +42,7 @@ public class Start extends HttpServlet {
     public void init() {
     	a = new AccountDAO();
     	b = new BookDAO();
+    	
     	try {
     		allBooks = b.retrieveAllBooks();
     	} catch (SQLException e) {
@@ -79,7 +80,7 @@ public class Start extends HttpServlet {
 			randomBids.add(bid);
 		}
     }
-
+   
 	/**
 	 * Sets the highlighted link in the navbar
 	 * As well just reloads index.jspx whenever its called
@@ -90,7 +91,15 @@ public class Start extends HttpServlet {
 		// TODO Auto-generated method stub
 		request.setAttribute("activenav", "home");								
 		setFrontPageBooks(request);
-		request.getRequestDispatcher("Index.jspx").forward(request, response);
+		
+		CategoryDAO c= new CategoryDAO() ;		
+		try {
+			List<String> categories = c.retrieveAllCategories();
+			request.setAttribute("categories", categories);
+			request.getRequestDispatcher("Index.jspx").forward(request, response);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 
 	/**
