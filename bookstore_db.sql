@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 31, 2018 at 11:51 PM
+-- Generation Time: Apr 11, 2018 at 06:51 PM
 -- Server version: 10.1.31-MariaDB
 -- PHP Version: 7.2.3
 
@@ -34,6 +34,16 @@ CREATE TABLE `account` (
   `pass_salt` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `account`
+--
+
+INSERT INTO `account` (`username`, `password`, `pass_salt`) VALUES
+('mcmaceac', '765524d53b9f49328356a4e9c76fbf7a44f51e5f621e87d7060cda63f0b98359', -1266778087),
+('taccount', 'a1a4f7c5716341af6b01f833f3f9cf174473d448ac582c2c7949f1d7da33f334', 1502449763),
+('test4', '72735481e25c2d28c56f74038914ecceb6a670bacaff7f6eb869b08f38a59cc9', -1231945052),
+('testaccount', '506df7e6bb5b54cfe555d266a9e3780a32a404c5541aedcd2c392a92f25488a7', -2070581990);
+
 -- --------------------------------------------------------
 
 --
@@ -48,6 +58,14 @@ CREATE TABLE `address` (
   `province` varchar(50) NOT NULL,
   `postal_code` varchar(6) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `address`
+--
+
+INSERT INTO `address` (`username`, `full_name`, `street`, `city`, `province`, `postal_code`) VALUES
+('mcmaceac', 'Matthew MacEachern', '35 Moon St.', 'Aurora', 'ON', 'L4G4M5'),
+('test4', 'Matt 2', '35 popla', 'Aurora', 'ON', 'L4G3M4');
 
 -- --------------------------------------------------------
 
@@ -132,6 +150,13 @@ CREATE TABLE `book_review` (
   `reviewdate` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `book_review`
+--
+
+INSERT INTO `book_review` (`bid`, `username`, `reviewtext`, `rating`, `reviewdate`) VALUES
+(4, 'mcmaceac', 'Hardest class I ever took', '4.00', '2018-04-11');
+
 -- --------------------------------------------------------
 
 --
@@ -212,6 +237,32 @@ INSERT INTO `category` (`bid`, `category`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `po`
+--
+
+CREATE TABLE `po` (
+  `id` int(11) NOT NULL,
+  `lname` varchar(25) NOT NULL,
+  `fname` varchar(25) NOT NULL,
+  `status` enum('PROCESSED','DENIED','','') NOT NULL,
+  `username` varchar(25) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `po_item`
+--
+
+CREATE TABLE `po_item` (
+  `id` int(11) NOT NULL,
+  `bid` int(11) NOT NULL,
+  `quantity` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `shopping_cart`
 --
 
@@ -220,6 +271,15 @@ CREATE TABLE `shopping_cart` (
   `bid` int(11) NOT NULL,
   `quantity` int(11) NOT NULL DEFAULT '1'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `shopping_cart`
+--
+
+INSERT INTO `shopping_cart` (`username`, `bid`, `quantity`) VALUES
+('mcmaceac', 4, 4),
+('test4', 32, 2),
+('test4', 33, 4);
 
 --
 -- Indexes for dumped tables
@@ -258,6 +318,20 @@ ALTER TABLE `category`
   ADD KEY `bid` (`bid`);
 
 --
+-- Indexes for table `po`
+--
+ALTER TABLE `po`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `username` (`username`);
+
+--
+-- Indexes for table `po_item`
+--
+ALTER TABLE `po_item`
+  ADD PRIMARY KEY (`id`,`bid`),
+  ADD KEY `bid` (`bid`);
+
+--
 -- Indexes for table `shopping_cart`
 --
 ALTER TABLE `shopping_cart`
@@ -274,6 +348,12 @@ ALTER TABLE `shopping_cart`
 --
 ALTER TABLE `book`
   MODIFY `bid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
+
+--
+-- AUTO_INCREMENT for table `po`
+--
+ALTER TABLE `po`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- Constraints for dumped tables
@@ -297,6 +377,19 @@ ALTER TABLE `book_review`
 --
 ALTER TABLE `category`
   ADD CONSTRAINT `category_ibfk_1` FOREIGN KEY (`bid`) REFERENCES `book` (`bid`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `po`
+--
+ALTER TABLE `po`
+  ADD CONSTRAINT `po_ibfk_1` FOREIGN KEY (`username`) REFERENCES `account` (`username`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `po_item`
+--
+ALTER TABLE `po_item`
+  ADD CONSTRAINT `po_item_ibfk_1` FOREIGN KEY (`id`) REFERENCES `po` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `po_item_ibfk_2` FOREIGN KEY (`bid`) REFERENCES `book` (`bid`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `shopping_cart`
