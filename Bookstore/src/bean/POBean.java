@@ -1,7 +1,11 @@
 package bean;
 
 import java.sql.Timestamp;
-
+/*
+ * The product order bean ties to the PO item bean
+ * it holds a lot of the stuff for the users name and delivery 
+ * if anything needs to change for the order most of it will be done here
+ */
 public class POBean {
 
 	private String id;

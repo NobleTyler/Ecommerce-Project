@@ -17,6 +17,8 @@ import model.ShoppingCartDAO;
 
 /**
  * Servlet implementation class Checkout
+ *  This class works by adding attributes from the cart to a database
+ *  also stores a lot to do with requests for request tracking
  */
 @WebServlet("/Checkout")
 public class Checkout extends HttpServlet {

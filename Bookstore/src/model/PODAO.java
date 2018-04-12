@@ -10,7 +10,11 @@ import java.util.ArrayList;
 
 import bean.POBean;
 import bean.POItemBean;
-
+/*
+ * Used for acessing the PO overall
+ * for things like the users name and adress can be queried from here
+ * Anything used in overall orders comes from here 
+ */
 public class PODAO {
 	
 	private Connection conn;
@@ -18,7 +22,9 @@ public class PODAO {
 	public PODAO() {
 		
 	}
-	
+	/*
+	 * This method inserts all necessary information about the user into the product order
+	 */
 	public void insertProductOrder(POBean productOrder) throws SQLException {
 		
 		try {
@@ -44,7 +50,10 @@ public class PODAO {
 		p.close();
 		conn.close();
 	}
-	
+	/*
+	 * This is a retreive method for the product order
+	 *see the PO Container for its usage
+	 */
 	public POBean retrievePO(String id) throws SQLException {
 		try {
 			conn = DatabaseConnector.getDatabaseConnection();
@@ -72,7 +81,11 @@ public class PODAO {
 		return po;
 	}
 	
-	//only return product orders that are processed
+	/*
+	 * This is a retreive method for the product order
+	 * sorted by month ordered
+	 *see the PO Container for its usage
+	 */
 	public List<POBean> retrievePOByMonth(int month) throws SQLException {
 		try {
 			conn = DatabaseConnector.getDatabaseConnection();
@@ -105,7 +118,10 @@ public class PODAO {
 		
 		return orders;
 	}
-	
+	/*
+	 * This checks if a certain user has purchased an item
+	 * it is called for the review to make sure they have purchased the order
+	 */
 	public boolean userPurchasedBook(String username, int bid) throws SQLException {
 		try {
 			conn = DatabaseConnector.getDatabaseConnection();
@@ -126,7 +142,7 @@ public class PODAO {
 		
 		boolean result = false;
 		
-		if (r.next()) {				//return true if the user has purchased the book
+		if (r.next()) {				
 			result = true;
 		}
 		
