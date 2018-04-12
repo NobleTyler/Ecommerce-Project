@@ -429,13 +429,29 @@ public class Tests {
 				result += "[ERROR]po02: testing retrieving by month (3) returned " + marchPO + "\n";
 			}
 			
-			//po02 testing retrieving by month
+			//po03 testing retrieving by month
 			int aprilPO = pc.getPOByMonth(4).size();
 			if (aprilPO > 0) {
 				result += "[SUCCESS]po03: testing retrieving by month (4)\n";
 			}
 			else {
 				result += "[ERROR]po03: testing retrieving by month (4) returned " + aprilPO + "\n";
+			}
+			
+			//po04 testing if a user has purchased a book
+			if (pc.userPurchasedBook("mcmaceac", 49)) {
+				result += "[SUCCESS]po04: testing if mcmaceac has purchased 49\n";
+			}
+			else {
+				result += "[ERROR]po04: testing if mcmaceac has purchased 49\n";
+			}
+			
+			//po05 testing if a user has purchased a book
+			if (!pc.userPurchasedBook("mcmaceac", 27)) {
+				result += "[SUCCESS]po05: testing if mcmaceac has not purchased 27\n";
+			}
+			else {
+				result += "[ERROR]po05: testing if mcmaceac has not purchased 27\n";
 			}
 			
 			scd.clearCart(username);
