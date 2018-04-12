@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 11, 2018 at 06:51 PM
+-- Generation Time: Apr 12, 2018 at 05:31 AM
 -- Server version: 10.1.31-MariaDB
 -- PHP Version: 7.2.3
 
@@ -241,12 +241,27 @@ INSERT INTO `category` (`bid`, `category`) VALUES
 --
 
 CREATE TABLE `po` (
-  `id` int(11) NOT NULL,
+  `id` varchar(100) NOT NULL,
+  `username` varchar(25) NOT NULL,
   `lname` varchar(25) NOT NULL,
   `fname` varchar(25) NOT NULL,
-  `status` enum('PROCESSED','DENIED','','') NOT NULL,
-  `username` varchar(25) NOT NULL
+  `date` datetime NOT NULL,
+  `status` varchar(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `po`
+--
+
+INSERT INTO `po` (`id`, `username`, `lname`, `fname`, `date`, `status`) VALUES
+('2018-04-11 17:58:27.956mcmaceac', 'mcmaceac', 'MacEachern', 'Matthew', '2018-04-11 17:58:27', 'PROCESSED'),
+('2018-04-11 18:41:04.879mcmaceac', 'mcmaceac', 'MacEachern', 'Matthew', '2018-04-11 18:41:04', 'PROCESSED'),
+('2018-04-11 20:37:33.88mcmaceac', 'mcmaceac', 'MacEachern', 'Matthew', '2018-04-11 20:37:33', 'PROCESSED'),
+('2018-04-11 20:38:15.546mcmaceac', 'mcmaceac', 'MacEachern', 'Matthew', '2018-04-11 20:38:15', 'PROCESSED'),
+('2018-04-11 23:22:32.457mcmaceac', 'mcmaceac', 'Mac', 'Mat', '2018-04-11 23:22:32', 'PROCESSED'),
+('2018-04-11 23:23:23.13mcmaceac', 'mcmaceac', 'Mac', 'Mat', '2018-04-11 23:23:23', 'DENIED'),
+('2018-04-11 23:24:20.311mcmaceac', 'mcmaceac', 'Mac', 'Mat', '2018-04-11 23:24:20', 'DENIED'),
+('2018-04-11 23:24:37.863mcmaceac', 'mcmaceac', 'das', 'dsa', '2018-04-11 23:24:37', 'PROCESSED');
 
 -- --------------------------------------------------------
 
@@ -255,10 +270,32 @@ CREATE TABLE `po` (
 --
 
 CREATE TABLE `po_item` (
-  `id` int(11) NOT NULL,
+  `id` varchar(100) NOT NULL,
   `bid` int(11) NOT NULL,
   `quantity` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `po_item`
+--
+
+INSERT INTO `po_item` (`id`, `bid`, `quantity`) VALUES
+('2018-04-11 17:58:27.956mcmaceac', 1, 1),
+('2018-04-11 17:58:27.956mcmaceac', 2, 1),
+('2018-04-11 17:58:27.956mcmaceac', 4, 1),
+('2018-04-11 18:41:04.879mcmaceac', 1, 1),
+('2018-04-11 18:41:04.879mcmaceac', 2, 1),
+('2018-04-11 18:41:04.879mcmaceac', 4, 1),
+('2018-04-11 20:37:33.88mcmaceac', 1, 1),
+('2018-04-11 20:37:33.88mcmaceac', 2, 1),
+('2018-04-11 20:37:33.88mcmaceac', 4, 1),
+('2018-04-11 20:38:15.546mcmaceac', 1, 1),
+('2018-04-11 20:38:15.546mcmaceac', 2, 1),
+('2018-04-11 20:38:15.546mcmaceac', 4, 1),
+('2018-04-11 23:22:32.457mcmaceac', 49, 3),
+('2018-04-11 23:23:23.13mcmaceac', 49, 3),
+('2018-04-11 23:24:20.311mcmaceac', 49, 3),
+('2018-04-11 23:24:37.863mcmaceac', 49, 3);
 
 -- --------------------------------------------------------
 
@@ -277,7 +314,7 @@ CREATE TABLE `shopping_cart` (
 --
 
 INSERT INTO `shopping_cart` (`username`, `bid`, `quantity`) VALUES
-('mcmaceac', 4, 4),
+('mcmaceac', 49, 3),
 ('test4', 32, 2),
 ('test4', 33, 4);
 
@@ -329,6 +366,7 @@ ALTER TABLE `po`
 --
 ALTER TABLE `po_item`
   ADD PRIMARY KEY (`id`,`bid`),
+  ADD KEY `id` (`id`),
   ADD KEY `bid` (`bid`);
 
 --
@@ -348,12 +386,6 @@ ALTER TABLE `shopping_cart`
 --
 ALTER TABLE `book`
   MODIFY `bid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
-
---
--- AUTO_INCREMENT for table `po`
---
-ALTER TABLE `po`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- Constraints for dumped tables
@@ -388,8 +420,8 @@ ALTER TABLE `po`
 -- Constraints for table `po_item`
 --
 ALTER TABLE `po_item`
-  ADD CONSTRAINT `po_item_ibfk_1` FOREIGN KEY (`id`) REFERENCES `po` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `po_item_ibfk_2` FOREIGN KEY (`bid`) REFERENCES `book` (`bid`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `po_item_ibfk_1` FOREIGN KEY (`bid`) REFERENCES `book` (`bid`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `po_item_ibfk_2` FOREIGN KEY (`id`) REFERENCES `po` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `shopping_cart`
