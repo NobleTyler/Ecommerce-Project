@@ -414,10 +414,28 @@ public class Tests {
 			
 			//po01 adding a cart of size 3 to a product order
 			if (pc.getPOItems(id).size() == 3) {
-				result += "[SUCCESS]po01: adding a cart of size 3 to a product order";
+				result += "[SUCCESS]po01: adding a cart of size 3 to a product order\n";
 			}
 			else {
-				result += "[ERROR]po01: adding a cart of size 3 to a product order";
+				result += "[ERROR]po01: adding a cart of size 3 to a product order\n";
+			}
+			
+			//po02 testing retrieving by month
+			int marchPO = pc.getPOByMonth(3).size();
+			if (marchPO == 0) {
+				result += "[SUCCESS]po02: testing retrieving by month (3)\n";
+			}
+			else {
+				result += "[ERROR]po02: testing retrieving by month (3) returned " + marchPO + "\n";
+			}
+			
+			//po02 testing retrieving by month
+			int aprilPO = pc.getPOByMonth(4).size();
+			if (aprilPO > 0) {
+				result += "[SUCCESS]po02: testing retrieving by month (4)\n";
+			}
+			else {
+				result += "[ERROR]po02: testing retrieving by month (4) returned " + aprilPO + "\n";
 			}
 			
 			scd.clearCart(username);

@@ -72,6 +72,7 @@ public class PODAO {
 		return po;
 	}
 	
+	//only return product orders that are processed
 	public List<POBean> retrievePOByMonth(int month) throws SQLException {
 		try {
 			conn = DatabaseConnector.getDatabaseConnection();
@@ -80,7 +81,7 @@ public class PODAO {
 			e.printStackTrace();
 		}
 		
-		String query = "SELECT * FROM po WHERE MONTH(DATE)=?";
+		String query = "SELECT * FROM po WHERE MONTH(DATE)=? and status='PROCESSED'";
 		PreparedStatement p = conn.prepareStatement(query);
 		p.setInt(1, month);
 		
