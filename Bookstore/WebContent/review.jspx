@@ -38,6 +38,9 @@
 	</style>
 	
 	<c:if test="${notEmpty ne null}">
+	<h3>
+		Reviews
+	</h3>
 	<div>
 		<table id="reviews">
 		<tr>
@@ -57,5 +60,11 @@
 		</c:forEach>
 		</table>
 	</div>
+	</c:if>
+	
+	<c:if test="${notEmpty eq null}">
+	<h3>
+		This book has no reviews yet.
+	</h3>
 	</c:if>
 </jsp:root>

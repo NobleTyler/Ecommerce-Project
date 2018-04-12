@@ -172,7 +172,7 @@
 
      
    <div class="container">
-   <c:if test="${username ne null}">
+   <c:if test="${hasBought ne null}">
    	<DIV class="imageContainer">
    		<img src="${pageContext.request.contextPath}/res/images/books/${book.bid}.jpg" alt="${book.title}" />
    	</DIV>
@@ -202,7 +202,7 @@
  	 	</DIV>
     	<DIV class="textInput">
     	<H3>This is where your comments go</H3>
-			<textarea rows="5" cols="100" onkeyup="count_down(this);" name="comment" placeholder="Enter some text here">Enter some text here</textarea><br/>
+			<textarea rows="5" cols="100" onkeyup="count_down(this);" name="comment" id="comment" placeholder="Enter some text here">Enter some text here</textarea><br/>
 			<input type="submit" onclick="return buttonIsPressed();" name="submit" value="Submit" />
         	<span class="text-muted pull-right" id="count2">1000</span>
 		</DIV>
@@ -212,7 +212,7 @@
   </form>
   </c:if>
   
-  <c:if test="${username eq null}">
+  <c:if test="${hasBought eq null}">
    	<DIV class="imageContainer">
    		<img id="emptyImg" src="${pageContext.request.contextPath}/res/images/books/${book.bid}.jpg" alt="${book.title}" />
    	</DIV>
