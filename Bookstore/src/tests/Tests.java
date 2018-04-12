@@ -412,6 +412,14 @@ public class Tests {
 			
 			pc.addProductOrder(pb, scd.retrieveCartItems(username));
 			
+			//po01 adding a cart of size 3 to a product order
+			if (pc.getPOItems(id).size() == 3) {
+				result += "[SUCCESS]po01: adding a cart of size 3 to a product order";
+			}
+			else {
+				result += "[ERROR]po01: adding a cart of size 3 to a product order";
+			}
+			
 			scd.clearCart(username);
 		}
 		catch (SQLException e) {

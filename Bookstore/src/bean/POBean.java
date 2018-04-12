@@ -10,6 +10,8 @@ public class POBean {
 
 	public final static String PROCESSED = "PROCESSED";
 	public final static String DENIED = "DENIED";
+	
+	public POBean() {}
 
 	public POBean(String id, String lname, String fname, String username, String status, Timestamp date) {
 		super();
@@ -24,7 +26,7 @@ public class POBean {
 	public String getId() {
 		return id;
 	}
-
+ 
 	public void setId(String id) {
 		this.id = id;
 	}

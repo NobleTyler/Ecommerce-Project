@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.List;
 import java.util.ArrayList;
 
@@ -42,6 +43,66 @@ public class PODAO {
 		
 		p.close();
 		conn.close();
+	}
+	
+	public POBean retrievePO(String id) throws SQLException {
+		try {
+			conn = DatabaseConnector.getDatabaseConnection();
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		String query = "SELECT * FROM po WHERE id=?";
+		PreparedStatement p = conn.prepareStatement(query);
+		p.setString(1, id);
+		
+		ResultSet r = p.executeQuery();
+		
+		POBean po = null;
+		if (r.next()) {
+			String lname = r.getString("lname");
+			String fname = r.getString("fname");
+			String username = r.getString("username");
+			String status = r.getString("status");
+			Timestamp date = r.getTimestamp("date");
+			po = new POBean(id, lname, fname, username, status, date);
+		}
+		
+		return po;
+	}
+	
+	public List<POBean> retrievePOByMonth(int month) throws SQLException {
+		try {
+			conn = DatabaseConnector.getDatabaseConnection();
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		String query = "SELECT * FROM po WHERE MONTH(DATE)=?";
+		PreparedStatement p = conn.prepareStatement(query);
+		p.setInt(1, month);
+		
+		ResultSet r = p.executeQuery();
+		List<POBean> orders = new ArrayList<POBean>();
+		
+		while (r.next()) {
+			String id = r.getString("id");
+			String lname = r.getString("lname");
+			String fname = r.getString("fname");
+			String username = r.getString("username");
+			String status = r.getString("status");
+			Timestamp date = r.getTimestamp("date");
+			
+			orders.add(new POBean(id, lname, fname, username, status, date));
+		}
+		
+		p.close();
+		r.close();
+		conn.close();
+		
+		return orders;
 	}
 	
 }
