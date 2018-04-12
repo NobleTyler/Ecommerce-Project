@@ -10,10 +10,7 @@
 			
 				<label for="uname"><b>Username</b></label> 
 				<input type="email" placeholder="Enter Username" name="uname" id="regUname" ></input>
-
 				<div id="uname-error" style="color:red;">&#160;</div>
-				<input type="text" placeholder="Enter Username" name="uname" id="regUname" ></input>
-				
 				
 				<label for="psw"><b>Password</b></label> 
 				<div id="password-error" style="color:red;">&#160;</div>
