@@ -36,4 +36,8 @@ public class POContainer {
 	public List<POBean> getPOByMonth(int month) throws SQLException {
 		return po.retrievePOByMonth(month);
 	}
+	
+	public boolean userPurchasedBook(String username, int bid) throws SQLException {
+		return po.userPurchasedBook(username, bid);
+	}
 }

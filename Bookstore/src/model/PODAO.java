@@ -106,4 +106,31 @@ public class PODAO {
 		return orders;
 	}
 	
+	public boolean userPurchasedBook(String username, int bid) throws SQLException {
+		try {
+			conn = DatabaseConnector.getDatabaseConnection();
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		String query = "SELECT username, bid, status "
+				+ "FROM po INNER JOIN po_item on po.id = po_item.id "
+				+ "WHERE status='PROCESSED' AND username=? AND bid=?";
+		
+		PreparedStatement p = conn.prepareStatement(query);
+		p.setString(1, username);
+		p.setInt(2, bid);
+		
+		ResultSet r = p.executeQuery();
+		
+		boolean result = false;
+		
+		if (r.next()) {				//return true if the user has purchased the book
+			result = true;
+		}
+		
+		return result;
+	}
+	
 }
