@@ -1,7 +1,11 @@
 package bean;
 
 public class POItemBean {
-	
+	/*
+	 * POItem is used in each product order
+	 * as long as it has an item in the cart POitem is used
+	 * if you need any information about a singular item look here
+	 */
 	private String id;
 	private int bid, quantity;
 	

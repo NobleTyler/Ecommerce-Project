@@ -14,6 +14,7 @@ import bean.BookBean;
 import bean.BookReviewBean;
 import model.BookDAO;
 import model.BookReviewDAO;
+import model.POContainer;
 
 /**
  * Servlet implementation class Book
@@ -25,10 +26,12 @@ public class Book extends HttpServlet {
 	
 	BookDAO b;
 	BookReviewDAO br;
+	POContainer pc;
 
 	public void init() {
 		b = new BookDAO();
 		br = new BookReviewDAO();
+		pc = new POContainer();
 	}
 	
     /**
@@ -46,12 +49,24 @@ public class Book extends HttpServlet {
 		
 		String bidd=request.getParameter("bid");
 		int bid = Integer.parseInt(bidd);
+		String hasBought ="damn";
 		
 		request.getSession().setAttribute("bookID", bidd);
-		
-		
 		try {
 			BookBean book = b.retrieveBookByBid(bid);
+			String username=null;
+			try {
+				username=request.getSession().getAttribute("username").toString();
+			}
+			catch(Exception e) {
+
+			}
+			
+			if(username!=null) {
+				if(pc.userPurchasedBook(username, bid)==true) {
+					request.setAttribute("hasBought", hasBought);
+				}
+			}
 			
 			List<BookReviewBean> reviews = br.retrieveBookReviews(bid);		//retrieving reviews for this particular book
 			request.setAttribute("book", book);
