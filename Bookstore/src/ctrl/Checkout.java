@@ -3,6 +3,7 @@ package ctrl;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -10,6 +11,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import bean.POBean;
+import model.POContainer;
 import model.ShoppingCartDAO;
 
 /**
@@ -18,13 +21,15 @@ import model.ShoppingCartDAO;
 @WebServlet("/Checkout")
 public class Checkout extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	
+	private static int requestNumber;		//used to track
        
     /**
      * @see HttpServlet#HttpServlet()
      */
     public Checkout() {
         super();
-        // TODO Auto-generated constructor stub
+        requestNumber = 0;
     }
 
 	/**
@@ -43,15 +48,42 @@ public class Checkout extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		ShoppingCartDAO sc = new ShoppingCartDAO();
-		String username = request.getSession().getAttribute("username").toString();
-		try {
-			int cartSize = sc.getCartSize(username);
-			System.out.println("Checkout cartSize: " + cartSize);
-			request.setAttribute("cartPrice", sc.getCartTotalPrice(username));
-
-		} catch (SQLException e) {
-			e.printStackTrace();
+		String submitParam = request.getParameter("submit");
+		
+		//System.out.println(submitParam);
+		String cartSubmit = "Continue to checkout";
+		
+		if (submitParam.equals(cartSubmit)) {
+			ShoppingCartDAO sc = new ShoppingCartDAO();
+			POContainer poContain = new POContainer();
+			String username = request.getSession().getAttribute("username").toString();
+			try {
+				int cartSize = sc.getCartSize(username);
+				System.out.println("Checkout cartSize: " + cartSize);
+				request.setAttribute("cartPrice", sc.getCartTotalPrice(username));
+				
+				String lname = request.getParameter("cardlname");
+				String fname = request.getParameter("cardfname");
+				Timestamp date = new Timestamp(System.currentTimeMillis());
+				String status = POBean.DENIED;		//default value until verified card (hard coded for every third request for now)
+				String id = date.toString() + username;
+				
+				POBean po = new POBean(id, lname, fname, username, status, date);
+				request.setAttribute("productOrder", po);			//passing the po to the confirm order page
+				
+				if (requestNumber % 3 == 0) {				//hard coded only to accept every third request
+					po.setStatus(POBean.PROCESSED);
+					request.setAttribute("orderApproved", true);
+				}
+				else {
+					request.setAttribute("orderApproved", false);
+				}
+				requestNumber++;
+				//default value for status is denied, so we only set to processed if it is the third request
+				poContain.addProductOrder(po, sc.retrieveCartItems(po.getUsername()));
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
 		}
 		request.getRequestDispatcher("checkout.jspx").forward(request, response);
 	}

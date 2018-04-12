@@ -30,7 +30,7 @@
 <div class="row">
   <div class="col-50">
     <div class="container">
-      <form action="/Bookstore/Checkout" method="post">
+      <form action="/Bookstore/Checkout" method="post" onsubmit="return confirm('Press ok to confirm your order');">
       
         <div class="row">
           <div class="col-50">
@@ -65,8 +65,16 @@
 <!--               <i class="fa fa-cc-mastercard" style="color:red;"></i> -->
 <!--               <i class="fa fa-cc-discover" style="color:orange;"></i> -->
 <!--             </div> -->
-            <label for="cname">Name on Card</label>
-            <input type="text" id="cname" name="cardname" placeholder="John Cena" required="true"/>
+			<div class="row">
+              <div class="col-50">
+              	<label for="cname">First name on card</label>
+            	<input type="text" id="cfname" name="cardfname" placeholder="John" required="true"/>
+              </div>
+              <div class="col-50">
+             	 <label for="cname">Last name on card</label>
+           		 <input type="text" id="clname" name="cardlname" placeholder="Cena" required="true"/>
+              </div>
+            </div>
             <label for="ccnum">Credit card number</label>
             <input type="text" id="ccnum" name="cardnumber" placeholder="1111-2222-3333-4444" required="true"/>
             <label for="expmonth">Exp Month</label>
@@ -87,7 +95,7 @@
         <label>
           <input type="checkbox" checked="checked" name="sameadr" /> Shipping address same as billing
         </label>
-        <input type="submit" value="Continue to checkout" class="btn" />
+        <input type="submit" value="Continue to checkout" class="btn" name="submit"/>
       </form>
     </div>
   </div>
