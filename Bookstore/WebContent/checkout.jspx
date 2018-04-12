@@ -22,13 +22,14 @@
 </head>
 <jsp:include page="/navigation.jspx"></jsp:include>
 <body>
-	<table align="center">
-		<tr>
-			<td><b>Total:</b>$${cartPrice}</td>
-		</tr>
-		<tr><td><button>Confirm order</button></td></tr>
-	</table>
-	
+	<c:choose>
+	<c:when test="${not orderApproved and orderApproved ne null}">
+		Purchase order denied!
+	</c:when>
+	<c:when test="${orderApproved}">
+		Purchase order approved!
+	</c:when>
+	</c:choose>
 </body>
 </html>
 </jsp:root>

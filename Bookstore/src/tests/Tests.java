@@ -432,10 +432,10 @@ public class Tests {
 			//po02 testing retrieving by month
 			int aprilPO = pc.getPOByMonth(4).size();
 			if (aprilPO > 0) {
-				result += "[SUCCESS]po02: testing retrieving by month (4)\n";
+				result += "[SUCCESS]po03: testing retrieving by month (4)\n";
 			}
 			else {
-				result += "[ERROR]po02: testing retrieving by month (4) returned " + aprilPO + "\n";
+				result += "[ERROR]po03: testing retrieving by month (4) returned " + aprilPO + "\n";
 			}
 			
 			scd.clearCart(username);
