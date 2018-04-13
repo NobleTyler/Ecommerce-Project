@@ -76,6 +76,8 @@ public class Checkout extends HttpServlet {
 				if (requestNumber % 3 == 0) {				//hard coded only to accept every third request
 					po.setStatus(POBean.PROCESSED);
 					request.setAttribute("orderApproved", true);
+					sc.clearCart(username); 			//order has been processed, clear users cart
+					request.getSession().setAttribute("cartSize", 0);
 				}
 				else {
 					request.setAttribute("orderApproved", false);
