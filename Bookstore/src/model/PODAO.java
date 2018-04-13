@@ -8,6 +8,7 @@ import java.sql.Timestamp;
 import java.util.List;
 import java.util.ArrayList;
 
+import bean.OrderHistoryBean;
 import bean.POBean;
 import bean.POItemBean;
 /*
@@ -153,4 +154,34 @@ public class PODAO {
 		return result;
 	}
 	
+	public List<OrderHistoryBean> retrieveOrderHistory(String username) throws SQLException{
+		try {
+			conn = DatabaseConnector.getDatabaseConnection();
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		String query = "SELECT date, status, book.title, quantity, (book.price * quantity) as total "
+				+ "FROM po, po_item, book "
+				+ "where po.id=po_item.id and book.bid=po_item.bid and username=?";
+		
+		PreparedStatement p = conn.prepareStatement(query);
+		p.setString(1, username);
+		ResultSet r = p.executeQuery();
+		
+		List<OrderHistoryBean> ohb = new ArrayList<OrderHistoryBean>();
+		
+		while (r.next()) {
+			Timestamp time= r.getTimestamp("date");
+			String status = r.getString("status");
+			String title = r.getString("title");
+			int quantity = r.getInt("quantity");
+			double total = r.getDouble("total");
+			
+			OrderHistoryBean ob = new OrderHistoryBean(time,status,title,quantity,total);
+			ohb.add(ob);
+		}
+		return ohb;
+	}
 }

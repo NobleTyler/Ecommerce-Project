@@ -23,7 +23,8 @@
 					<button onclick="clearRegisterFields();document.getElementById('register').style.display='block'" style="width:auto;">Register</button>
 				</c:if>
 				<c:if test="${username ne null}">
-					<a href="">Welcome: ${username}</a>
+				
+					<a href="OrderHistory">Welcome: ${username}</a>
 					<a href="logout.jsp">Logout</a>
 				</c:if>
 				
