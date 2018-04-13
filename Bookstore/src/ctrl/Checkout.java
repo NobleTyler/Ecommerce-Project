@@ -73,18 +73,23 @@ public class Checkout extends HttpServlet {
 				POBean po = new POBean(id, lname, fname, username, status, date);
 				request.setAttribute("productOrder", po);			//passing the po to the confirm order page
 				
+				boolean orderApproved = false;
+				
 				if (requestNumber % 3 == 0) {				//hard coded only to accept every third request
 					po.setStatus(POBean.PROCESSED);
-					request.setAttribute("orderApproved", true);
-					sc.clearCart(username); 			//order has been processed, clear users cart
-					request.getSession().setAttribute("cartSize", 0);
-				}
-				else {
-					request.setAttribute("orderApproved", false);
+					orderApproved = true;
 				}
 				requestNumber++;
 				//default value for status is denied, so we only set to processed if it is the third request
 				poContain.addProductOrder(po, sc.retrieveCartItems(po.getUsername()));
+				request.setAttribute("orderApproved", true);
+				
+				if (orderApproved) {
+					sc.clearCart(username); 			//order has been processed, clear users cart
+					request.getSession().setAttribute("cartSize", 0);
+				}
+				
+				
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
