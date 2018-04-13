@@ -146,6 +146,10 @@ public class PODAO {
 			result = true;
 		}
 		
+		r.close();
+		p.close();
+		conn.close();
+		
 		return result;
 	}
 	
