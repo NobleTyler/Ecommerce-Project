@@ -15,8 +15,6 @@ public class POBean {
 	public final static String PROCESSED = "PROCESSED";
 	public final static String DENIED = "DENIED";
 	
-	public POBean() {}
-
 	public POBean(String id, String lname, String fname, String username, String status, Timestamp date) {
 		super();
 		this.id = id;
