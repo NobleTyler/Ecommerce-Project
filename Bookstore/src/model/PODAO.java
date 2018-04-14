@@ -23,6 +23,42 @@ public class PODAO {
 	public PODAO() {
 		
 	}
+	
+	public List<POBean> retrieveAllPO() throws SQLException {
+		try {
+			conn = DatabaseConnector.getDatabaseConnection();
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		String statement = "SELECT * FROM PO";
+		
+	
+		PreparedStatement p = conn.prepareStatement(statement);
+		ResultSet r = p.executeQuery();
+		
+		List<POBean> poList = new ArrayList<POBean>();
+		
+		while (r.next()) {
+			String id = r.getString("id");
+			String lname = r.getString("lname");
+			String fname = r.getString("fname");
+			String username = r.getString("username");
+			String status = r.getString("status");
+			Timestamp date = r.getTimestamp("date");
+			POBean po = new POBean(id, lname, fname, username, status, date);
+			
+			poList.add(po);
+		}
+		
+		p.close();
+		r.close();
+		conn.close();
+		
+		return poList;
+	}
+	
 	/*
 	 * This method inserts all necessary information about the user into the product order
 	 */
