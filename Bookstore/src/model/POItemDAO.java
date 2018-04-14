@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import bean.BookBean;
 import bean.POBean;
 import bean.POItemBean;
 
@@ -77,6 +78,29 @@ public class POItemDAO {
 		p.close();
 		conn.close();
 		return items;
+	}
+	/*
+	 * This is used by our analytics to grab the most popular books
+	 * works by checking through the order and querying for quantity and summing from the table
+	 */
+	public void mostPopular(POItemBean itemBean)throws SQLException{
+		try {
+			conn = DatabaseConnector.getDatabaseConnection();
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+		String aggregateQuery="SELECT book.title, book.price, book.bid, sum(quantity) as purchases FROM po_item, po, book where po_item.id=po.id and book.bid=po_item.bid group by bid order by purchases desc limit 10";
+		PreparedStatement p = conn.prepareStatement(aggregateQuery);
+		p.setString(1, itemBean.getId());
+		p.setInt(2, itemBean.getBid());
+		p.setInt(3, itemBean.getQuantity());
+		
+		p.execute();
+		
+		conn.close();
+		p.close();
+		
 	}
 	
 }
