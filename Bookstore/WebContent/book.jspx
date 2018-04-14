@@ -28,7 +28,6 @@
 	<jsp:include page="/login.jspx"></jsp:include>
 	<jsp:include page="/register.jspx"></jsp:include>
 
-     
    <div class="container">
    <c:if test="${hasBought ne null}">
    	<DIV class="imageContainer">
@@ -59,10 +58,9 @@
 			</ul>
  	 	</DIV>
     	<DIV class="textInput">
-    	<H3>This is where your comments go</H3>
+    	<H3>This is where your comments go: <SPAN id="count2"> 1000</SPAN> characters left</H3>
 			<textarea rows="5" cols="100" onkeyup="count_down(this);" name="comment" id="comment" placeholder="Enter some text here">Enter some text here</textarea><br/>
 			<input type="submit" onclick="return buttonIsPressed();" name="submit" value="Submit" />
-        	<span class="text-muted pull-right" id="count2">1000</span>
 		</DIV>
     <DIV class="button">
     	
