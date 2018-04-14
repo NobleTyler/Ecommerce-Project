@@ -13,156 +13,14 @@
 <head>
 <link rel="StyleSheet" href="${pageContext.request.contextPath}/res/css/styles.css" type="text/css" title="cse4413"
 	media="screen, print" />
+<link rel="StyleSheet" href="${pageContext.request.contextPath}/res/css/Book.css" title="cse4413"
+	media="screen, print" />
 <script type="text/javascript" src="${pageContext.request.contextPath}/res/js/functions.js">;</script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/res/js/cart.js">;</script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/res/js/loginAndRegister.js">;</script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
-<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" />
 <script type="text/javascript" src="${pageContext.request.contextPath}/res/js/review.js">;</script>
 <title>${book.title}</title>
-    <style>
-        .container {
-            width: 500px;
-            margin-top: 100px;
-            font-size: 25px;
-		}
-		
-		.stars{
-			position: absolute;
-    		left: 750px;
-    		top: 200px;
-		}
-		
-		#emptyReview{
-			position:absolute;
-			top:950px;
-			left:0px;
-		}
-		
-		.textInput{
-			position: absolute;
-    		left: 500px;
-    		top: 350px;
-		}
-		
-		#EmptyPrice{
-			position: absolute;
-    		left: 800px;
-    		top: 800px;
-		}
-		
-		#fullReview{
-			position: absolute;
-    		left: 0px;
-    		top: 1030px;
-		}
-		
-		#EmptyTitle{
-			position: absolute;
-    		top: 100px;
-		}
-		.headers{
-			position: absolute;
-    		left: 500px;
-    		top: 175px;
-		}
-		
-		.emptyCart{
-			position: absolute;
-    		left: 810px;
-    		top: 880px;
-		}
-		
-		img{
-			width:400px;
-			height:600px;
-			padding:1px;
-   			border:1px solid #021a40;
-   			background-color:black;
-			
-		}
-		
-		#emptyImg{
-			width:400px;
-			height:600px;
-			position: absolute;
-    		top:0; left:0; right:0; bottom:0; 
-    		margin:auto;
-			padding:1px;
-   			border:1px solid #021a40;
-   			background-color:black;
-		}
-		
-		select, textarea {
-		    width: 100%;
-		    padding: 12px;
-		    border: 1px solid #ccc;
-		    border-radius: 4px;
-		    box-sizing: border-box;
-		    margin-top: 6px;
-		    font-size: 20px;
-		    margin-bottom: 16px;
-		    resize: vertical;
-		}
-		
-		.rate-area {
-		  float: left;
-		  border-style: none;
-		}
-		
-		.rate-area:not(:checked) > input {
-		  position: absolute;
-		  top: -9999px;
-		  clip: rect(0,0,0,0);
-		}
-		
-		.rate-area:not(:checked) > label {
-		  float: right;
-		  width: 1em;
-		  padding: 0 .1em;
-		  overflow: hidden;
-		  white-space: nowrap;
-		  cursor: pointer;
-		  font-size: 400%;
-		  line-height: 1.2;
-		  color: lightgrey;
-		  text-shadow: 1px 1px #bbb;
-		}
-		
-		.rate-area:not(:checked) > label:before { content: '★ '; }
-		
-		.rate-area > input:checked ~ label {
-		  color: gold;
-		  text-shadow: 1px 1px #c60;
-		  font-size: 450% !important;
-		}
-		
-		.rate-area:not(:checked) > label:hover, .rate-area:not(:checked) > label:hover ~ label { color: gold; }
-		
-		.rate-area > input:checked + label:hover, .rate-area > input:checked + label:hover ~ label, .rate-area > input:checked ~ label:hover, .rate-area > input:checked ~ label:hover ~ label, .rate-area > label:hover ~ input:checked ~ label {
-		  color: gold;
-		  text-shadow: 1px 1px goldenrod;
-		}
-		
-		.rate-area > label:active {
-		  position: relative;
-		  top: 2px;
-		  left: 2px;
-		}
-		
-		input[type=submit] {
-		    background-color: #4CAF50;
-		    color: white;
-		    padding: 12px 20px;
-		    border: none;
-		    border-radius: 4px;
-		    cursor: pointer;
-		}
-		
-		input[type=submit]:hover {
-		    background-color: #45a049;
-		}
-    </style>
+
 </head>
 
 <body>
@@ -213,21 +71,22 @@
   </c:if>
   
   <c:if test="${hasBought eq null}">
+
    	<DIV class="imageContainer">
-   		<img id="emptyImg" src="${pageContext.request.contextPath}/res/images/books/${book.bid}.jpg" alt="${book.title}" />
+   		<img src="${pageContext.request.contextPath}/res/images/books/${book.bid}.jpg" alt="${book.title}" />
    	</DIV>
-   	<DIV class="information1">
-   		<H3 id="EmptyTitle">
+   	<DIV class="information">
+   		<H3>
 			${book.title}
    		</H3>
-   		<H5 id="EmptyPrice">
+   		<H5>
    			Price: $${book.price}
    		</H5>
-   		<div class="emptyCart"> <jsp:include page="/addToCartButton.jspx"></jsp:include> </div>
+   		<jsp:include page="/addToCartButton.jspx"></jsp:include>
+		<div id="emptyReview"><jsp:include page="/review.jspx"></jsp:include></div>
    	</DIV>
-   	<div id="emptyReview">
-	   	<jsp:include page="/review.jspx"></jsp:include>
-	</div>
+   	
+ 	   
   </c:if>
   
 </div>
