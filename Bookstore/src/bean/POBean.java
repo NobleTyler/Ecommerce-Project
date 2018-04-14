@@ -6,6 +6,10 @@ import java.sql.Timestamp;
  * it holds a lot of the stuff for the users name and delivery 
  * if anything needs to change for the order most of it will be done here
  */
+
+import javax.xml.bind.annotation.XmlRootElement;
+
+@XmlRootElement
 public class POBean {
 
 	private String id;
@@ -14,6 +18,8 @@ public class POBean {
 
 	public final static String PROCESSED = "PROCESSED";
 	public final static String DENIED = "DENIED";
+	
+	public POBean() { }	//required for xml generation
 	
 	public POBean(String id, String lname, String fname, String username, String status, Timestamp date) {
 		super();
