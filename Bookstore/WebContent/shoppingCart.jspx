@@ -17,20 +17,19 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
 <link rel="StyleSheet" href="${pageContext.request.contextPath}/res/css/styles.css" type="text/css" title="cse4413"
 	media="screen, print" />
-
 <link rel="StyleSheet" href="${pageContext.request.contextPath}/res/css/shoppingCart.css" type="text/css" title="cse4413"
 	media="screen, print" />
 <script type="text/javascript" src="${pageContext.request.contextPath}/res/js/cart.js">;</script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/res/js/function.js">;</script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/res/js/loginAndRegister.js">;</script>
-
+<script type="text/javascript" src="${pageContext.request.contextPath}/res/js/validateCheckout.js">;</script>
 </head>
 	<jsp:include page="/navigation.jspx"></jsp:include>
 <body>
 <div class="row">
   <div class="col-50">
     <div class="container">
-      <form action="/Bookstore/Checkout" method="post" onsubmit="return confirm('Press ok to confirm your order');">
+      <form action="/Bookstore/Checkout" method="post"> <!--  onsubmit="return confirm('Press ok to confirm your order');" -->
       
         <div class="row">
           <div class="col-50">
@@ -68,16 +67,19 @@
             </div>
             <label for="ccnum">Credit card number</label>
             <input type="text" id="ccnum" name="cardnumber" placeholder="1111-2222-3333-4444" required="true"/>
-            <label for="expmonth">Exp Month</label>
-            <input type="text" id="expmonth" name="expmonth" placeholder="September" required="true"/>
+            
             <div class="row">
               <div class="col-50">
+                <label for="expmonth">Expiry Month</label>
+                <input type="number" id="expmonth" name="expmonth" placeholder="01"  required="true"/>
+              </div>
+              <div class="col-50">
                 <label for="expyear">Exp Year</label>
-                <input type="text" id="expyear" name="expyear" placeholder="2018" required="true"/>
+                <input type="number" id="expyear" name="expyear" placeholder="2018" required="true"/>
               </div>
               <div class="col-50">
                 <label for="cvv">CVV</label>
-                <input type="text" id="cvv" name="cvv" placeholder="352" required="true"/>
+                <input type="number" id="cvv" name="cvv" placeholder="000" size="3" required="true"/>
               </div>
             </div>
           </div>
@@ -86,7 +88,7 @@
         <label>
           <input type="checkbox" checked="checked" name="sameadr" /> Shipping address same as billing
         </label>
-        <input type="submit" value="Continue to checkout" class="btn" name="submit"/>
+        <input type="submit" value="Continue to checkout" class="btn" name="submit" onclick="return validateInfo();"/>
       </form>
     </div>
   </div>
