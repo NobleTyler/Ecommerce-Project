@@ -1,3 +1,17 @@
+function validateInfo(){
+	var cfname = document.getElementById("cfname").value;
+	var clname = document.getElementById("clname").value;
+	var ccnum = document.getElementById("ccnum").value;
+	var exp = document.getElementById("expmonth").value;
+	var expyear = document.getElementById("expyear").value;
+	var ccv = document.getElementById("ccv").value;
+	
+	errors=[];
+	var cardRegex=/^([0-9]{4}[\s-]?){3}([0-9]{4})$/;
+	
+	
+}
+
 function addItemToCart(address) {
 	var request = new XMLHttpRequest();
 	
