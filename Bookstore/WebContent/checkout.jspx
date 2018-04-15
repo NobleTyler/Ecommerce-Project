@@ -17,17 +17,32 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
 <link rel="StyleSheet" href="${pageContext.request.contextPath}/res/css/styles.css" type="text/css" title="cse4413"
 	media="screen, print" />
+	
+<style>
+	#purchaseAccepted, #purchaseDenied{
+   		width: 350px;
+    	height: 100px;
 
+    	position: absolute;
+    	top:0;
+    	bottom: 0;
+    	left: 0;
+    	right: 0;
+
+    	margin: auto;
+   		
+	}
+</style>
 <title>Checkout</title>
 </head>
 <jsp:include page="/navigation.jspx"></jsp:include>
 <body>
 	<c:choose>
 	<c:when test="${not orderApproved and orderApproved ne null}">
-		Purchase order denied!
+		<div id="purchaseDenied"><h2 text-align= "center">Purchase order denied! Please try again</h2></div>
 	</c:when>
 	<c:when test="${orderApproved}">
-		Purchase order approved!
+		<div id="purchaseAccepted"><h2 text-align= "center">Purchase order approved! Thanks for shopping with us.</h2></div>
 	</c:when>
 	</c:choose>
 </body>
