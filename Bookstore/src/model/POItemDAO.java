@@ -83,7 +83,7 @@ public class POItemDAO {
 	 * This is used by our analytics to grab the most popular books
 	 * works by checking through the order and querying for quantity and summing from the table
 	 */
-	public void mostPopular(POItemBean itemBean)throws SQLException{
+	public List<BookBean> mostPopular( )throws SQLException{
 		try {
 			conn = DatabaseConnector.getDatabaseConnection();
 		}
@@ -92,14 +92,25 @@ public class POItemDAO {
 		}
 		String aggregateQuery="SELECT book.title, book.price, book.bid, sum(quantity) as purchases FROM po_item, po, book where po_item.id=po.id and book.bid=po_item.bid group by bid order by purchases desc limit 10";
 		PreparedStatement p = conn.prepareStatement(aggregateQuery);
-		p.setString(1, itemBean.getId());
-		p.setInt(2, itemBean.getBid());
-		p.setInt(3, itemBean.getQuantity());
+	
 		
-		p.execute();
+
+		ResultSet r = p.executeQuery();
 		
-		conn.close();
+		List<BookBean> items = new ArrayList<BookBean>();
+		while (r.next()) {
+			int bid = r.getInt("bid");
+			String title = r.getString("title");
+			String id = r.getString("id");
+			float price= r.getFloat("price");
+			System.out.println(title);
+			items.add(new BookBean( bid, title, price));
+		}
+		
+		r.close();
 		p.close();
+		conn.close();
+		return items;
 		
 	}
 	
