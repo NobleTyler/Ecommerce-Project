@@ -8,8 +8,7 @@ function count_down(obj) {
 		alert("Too much text")
 
 	} else {
-		element.style.color = 'grey';
-		element.innerHTML.value = object.value.length + "/" + "1000";
+		element.innerHTML.value = object.value.length;
 	}
 
 }
