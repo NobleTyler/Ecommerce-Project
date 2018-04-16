@@ -82,9 +82,7 @@
    		</H5>
    		<jsp:include page="/addToCartButton.jspx"></jsp:include>
 		<div id="emptyReview"><jsp:include page="/review.jspx"></jsp:include></div>
-   	</DIV>
-   	
- 	   
+   	</DIV>	   
   </c:if>
   
 </div>
