@@ -3,8 +3,11 @@ package ctrl;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -14,10 +17,12 @@ import javax.servlet.http.HttpServletResponse;
 
 import bean.BookBean;
 import bean.BookReviewBean;
+import bean.OrderHistoryBean;
 import model.BookDAO;
 import model.BookReviewDAO;
 import model.DatabaseConnector;
 import model.POContainer;
+import model.PODAO;
 import model.POItemDAO;
 
 /**
@@ -30,14 +35,14 @@ public class Analytics extends HttpServlet {
 
 	BookDAO b;
 	BookReviewDAO br;
-	POContainer pc;
+	PODAO po;
 	POItemDAO pd;
 	private int mostPopCount = 10;
 
 	public void init() {
 		b = new BookDAO();
 		br = new BookReviewDAO();
-		pc = new POContainer();
+		po = new PODAO();
 		pd = new POItemDAO();
 	}
 
@@ -60,40 +65,39 @@ public class Analytics extends HttpServlet {
 					request.setAttribute("popular" + i, iterBook.next().getBid());
 					i++;
 				}
+			System.out.println("WHATS UP BITCH");
 			
-			request.getRequestDispatcher("analytics.jspx").forward(request, response);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 
-		/*
-		 * String bidd=request.getParameter("bid"); int bid =
-		 * Integer.parseInt(bidd); String hasBought ="damn";
-		 * 
-		 * request.getSession().setAttribute("bookID", bidd); try { BookBean
-		 * book = b.retrieveBookByBid(bid); String username=null; try {
-		 * username=request.getSession().getAttribute("username").toString(); }
-		 * catch(Exception e) {
-		 * 
-		 * }
-		 * 
-		 * if(username!=null) { if(pc.userPurchasedBook(username, bid)==true) {
-		 * request.setAttribute("hasBought", hasBought); } }
-		 * 
-		 * List<BookReviewBean> reviews = br.retrieveBookReviews(bid);
-		 * //retrieving reviews for this particular book
-		 * request.setAttribute("book", book); if(!reviews.isEmpty()) { String
-		 * notEmpty=""; request.setAttribute("notEmpty", notEmpty); }
-		 * request.setAttribute("reviews", reviews);
-		 * //request.getRequestDispatcher("BookReviewAdd").forward(request,
-		 * response);
-		 * 
-		 * 
-		 * request.getRequestDispatcher("book.jspx").forward(request, response);
-		 * 
-		 * 
-		 * } catch (SQLException e) { e.printStackTrace(); }
-		 */
+		
+		//Current Date to get report period
+		
+		
+		try {
+			//UC A1: Set report with book id and quantity as attribute.
+			request.setAttribute("report", po.retrievePOByMonth(month));
+			System.out.println(request.getAttribute("report"));
+			
+			List<OrderHistoryBean> report =  po.retrieveOrderHistory(yearMonthFormat.format(date)+"01");
+			Iterator<OrderHistoryBean> iteReport= report.iterator();
+			while(iteReport.hasNext())
+				System.out.println(iteReport.next().getTitle());
+			
+			//UC A3: Set all PO records as attribute.
+			request.setAttribute("anonymizedpo", po.retrieveAllPO());
+			List<OrderHistoryBean> anonPO =  po.retrieveOrderHistory(yearMonthFormat.format(date)+"01");
+			Iterator<OrderHistoryBean> iteAnonPO= anonPo.iterator();
+			while(iteReport.hasNext())
+				System.out.println(iteAnonPO.next().getTitle());
+			//Forward to page
+			request.getRequestDispatcher("/analytics.jspx").forward(request, response);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		
 	}
 
 	/**
