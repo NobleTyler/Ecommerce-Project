@@ -37,6 +37,7 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/res/js/function.js">;</script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/res/js/loginAndRegister.js">;</script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/res/js/validateCheckout.js">;</script>
+<title>Shopping Cart</title>
 </head>
 	<jsp:include page="/navigation.jspx"></jsp:include>
 <body>
