@@ -90,7 +90,7 @@ public class POItemDAO {
 		catch (Exception e) {
 			e.printStackTrace();
 		}
-		String aggregateQuery="SELECT book.title, book.price, book.bid, sum(quantity) as purchases FROM po_item, po, book where po_item.id=po.id and book.bid=po_item.bid group by bid order by purchases desc limit 10";
+		String aggregateQuery="SELECT book.title, book.price, book.bid, sum(quantity) as purchases FROM po_item, po, book where po_item.id=po.id and book.bid=po_item.bid group by bid order by purchases DESC limit 10";
 		PreparedStatement p = conn.prepareStatement(aggregateQuery);
 	
 		
@@ -101,9 +101,8 @@ public class POItemDAO {
 		while (r.next()) {
 			int bid = r.getInt("bid");
 			String title = r.getString("title");
-			String id = r.getString("id");
 			float price= r.getFloat("price");
-			System.out.println(title);
+		
 			items.add(new BookBean( bid, title, price));
 		}
 		

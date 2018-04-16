@@ -26,12 +26,12 @@ import javax.servlet.http.HttpSessionListener;
  *
  */
 @WebListener
-public class Analytics implements ServletContextListener, ServletContextAttributeListener, HttpSessionListener, HttpSessionAttributeListener, HttpSessionActivationListener, HttpSessionBindingListener, HttpSessionIdListener, ServletRequestListener, ServletRequestAttributeListener, AsyncListener {
+public class Analistener implements ServletContextListener, ServletContextAttributeListener, HttpSessionListener, HttpSessionAttributeListener, HttpSessionActivationListener, HttpSessionBindingListener, HttpSessionIdListener, ServletRequestListener, ServletRequestAttributeListener, AsyncListener {
 
     /**
      * Default constructor. 
      */
-    public Analytics() {
+    public Analistener() {
         // TODO Auto-generated constructor stub
     }
 
