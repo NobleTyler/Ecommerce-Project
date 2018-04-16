@@ -22,20 +22,18 @@
 					<button onclick="clearLoginFields();document.getElementById('login').style.display='block'" style="width:auto;">Login</button>
 					<button onclick="clearRegisterFields();document.getElementById('register').style.display='block'" style="width:auto;">Register</button>
 				</c:if>
-				<c:if test="${username ne null}">
-				
+				<c:if test="${username ne null}">			
 					<a href="OrderHistory">Welcome: ${username}</a>
 					<a href="logout.jsp">Logout</a>
 				</c:if>
 				
 				
 					<c:if test="${cartSize eq null}">
-						<button id="cartButton" onclick="alert('Your cart is empty!');">Cart(0)</button>
+						<button id="cartButton" onclick="alert('Your are not logged in! Please log in to access the cart');">Cart(0)</button>
 					</c:if>
 					<c:if test="${cartSize ne null}">
 						<button id="cartButton" onclick="window.location='/Bookstore/Cart'">Cart(${cartSize})</button>
-					</c:if>
-				
+					</c:if>				
 			</div>
 		
 			<div class="header-bar">

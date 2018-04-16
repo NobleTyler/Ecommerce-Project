@@ -20,7 +20,7 @@
 	
 <style>
 	#purchaseAccepted, #purchaseDenied{
-   		width: 350px;
+   		width: 650px;
     	height: 100px;
 
     	position: absolute;
