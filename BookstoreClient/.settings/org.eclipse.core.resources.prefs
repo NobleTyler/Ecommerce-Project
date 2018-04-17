@@ -1,0 +1,5 @@
+eclipse.preferences.version=1
+encoding//src/services/catalog/Catalog.java=UTF-8
+encoding//src/services/catalog/CatalogService.java=UTF-8
+encoding//src/services/catalog/CatalogServiceLocator.java=UTF-8
+encoding//src/services/catalog/CatalogSoapBindingStub.java=UTF-8
