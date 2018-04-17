@@ -18,6 +18,7 @@ import javax.servlet.http.HttpServletResponse;
 import bean.BookBean;
 import bean.BookReviewBean;
 import bean.OrderHistoryBean;
+import bean.POBean;
 import model.BookDAO;
 import model.BookReviewDAO;
 import model.DatabaseConnector;
@@ -37,7 +38,7 @@ public class Analytics extends HttpServlet {
 	BookReviewDAO br;
 	PODAO po;
 	POItemDAO pd;
-	private int mostPopCount = 10;
+
 
 	public void init() {
 		b = new BookDAO();
@@ -56,7 +57,10 @@ public class Analytics extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-			
+		int month=1;
+			if(request.getSession().getAttribute("month")!=null)
+				 month= Integer.parseInt(request.getSession().getAttribute("month").toString());
+		
 		try {
 			List<BookBean> mostPop = pd.mostPopular();
 			Iterator<BookBean> iterBook= mostPop.iterator();
@@ -65,34 +69,28 @@ public class Analytics extends HttpServlet {
 					request.setAttribute("popular" + i, iterBook.next().getBid());
 					i++;
 				}
-			System.out.println("WHATS UP BITCH");
-			
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-
-		
-		//Current Date to get report period
-		
-		
-		try {
+				//String submitParameter = request.getParameter("submit");
+				
 			//UC A1: Set report with book id and quantity as attribute.
 			request.setAttribute("report", po.retrievePOByMonth(month));
 			System.out.println(request.getAttribute("report"));
 			
-			List<OrderHistoryBean> report =  po.retrieveOrderHistory(yearMonthFormat.format(date)+"01");
-			Iterator<OrderHistoryBean> iteReport= report.iterator();
+			List<POBean> report =  po.retrieveAllPO();
+			Iterator<POBean> iteReport= report.iterator();
 			while(iteReport.hasNext())
-				System.out.println(iteReport.next().getTitle());
+				System.out.println(iteReport.next().getDate());
 			
 			//UC A3: Set all PO records as attribute.
-			request.setAttribute("anonymizedpo", po.retrieveAllPO());
+	/*		request.setAttribute("anonymizedpo", po.retrieveAllPO());
 			List<OrderHistoryBean> anonPO =  po.retrieveOrderHistory(yearMonthFormat.format(date)+"01");
 			Iterator<OrderHistoryBean> iteAnonPO= anonPo.iterator();
 			while(iteReport.hasNext())
 				System.out.println(iteAnonPO.next().getTitle());
 			//Forward to page
+			 */
+				
 			request.getRequestDispatcher("/analytics.jspx").forward(request, response);
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -108,6 +106,12 @@ public class Analytics extends HttpServlet {
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
+	}
+	
+	private void serveJSP(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		
+		request.getRequestDispatcher("/analytics.jspx").forward(request, response);
 	}
 
 }
