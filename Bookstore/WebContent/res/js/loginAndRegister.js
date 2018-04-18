@@ -36,11 +36,10 @@ function validateRegisterFields() {
 		document.getElementById("uname-error").innerHTML = "Username must contain characters";
 		tester= false;
 	}
-	if(regexlogin.test(username)==false)
-		{
+	if(regexlogin.test(username)==false){
 		errors.push("Username must be a valid email adress.");
 		tester=false;
-		}
+	}
 	if(password != rpassword) { 			//the user did not type in the same password twice
 		document.getElementById("rpsw-error").innerHTML = "Please re-enter the same password";
 		tester=false

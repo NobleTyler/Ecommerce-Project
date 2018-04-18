@@ -13,7 +13,7 @@
 <head>
 <link rel="StyleSheet" href="${pageContext.request.contextPath}/res/css/styles.css" type="text/css" title="cse4413"
 	media="screen, print" />
-	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"/>
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/res/css/categories.css"/>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/res/js/loginAndRegister.js">;</script>
 <title>Categories</title>
 </head>
@@ -21,10 +21,10 @@
 	<jsp:include page="/navigation.jspx"></jsp:include>
 	<jsp:include page="/login.jspx"></jsp:include>
 	<jsp:include page="/register.jspx"></jsp:include>
-	<table align="center" class="w3-table-all w3-hoverable" >
+	<table class="w3-table-all w3-hoverable" >
 	<c:forEach items="${categories}" var="category">
 		<tr>
-			<td><a href="/Bookstore/Categories?cat=${category}">${category}</a></td>
+			<td align="center"><a href="/Bookstore/Categories?cat=${category}">${category}</a></td>
 		</tr>
 	</c:forEach>
 	</table>
