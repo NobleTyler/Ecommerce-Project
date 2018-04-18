@@ -90,7 +90,7 @@ public class POItemDAO {
 		catch (Exception e) {
 			e.printStackTrace();
 		}
-		String aggregateQuery="SELECT book.title, book.price, book.bid, sum(quantity) as purchases FROM po_item, po, book where po_item.id=po.id and book.bid=po_item.bid group by bid order by purchases DESC limit 10";
+		String aggregateQuery="SELECT book.title, book.price, book.bid, sum(quantity) as purchases FROM po_item, po, book WHERE po_item.id=po.id and book.bid=po_item.bid group by bid order by purchases DESC limit 10";
 		PreparedStatement p = conn.prepareStatement(aggregateQuery);
 	
 		ResultSet r = p.executeQuery();
@@ -110,5 +110,32 @@ public class POItemDAO {
 		return items;
 		
 	}
+	public List<BookBean> mostPopularMonthly(int month )throws SQLException{
+		try {
+			conn = DatabaseConnector.getDatabaseConnection();
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+		String aggregateQuery="SELECT book.title, book.price, book.bid, sum(quantity) as purchases FROM po_item, po, book WHERE po_item.id=po.id and book.bid=po_item.bid and po.date='2018' group by bid order by purchases DESC limit 10";
+		
+		PreparedStatement p = conn.prepareStatement(aggregateQuery);
 	
+		ResultSet r = p.executeQuery();
+		
+		List<BookBean> items = new ArrayList<BookBean>();
+		while (r.next()) {
+			int bid = r.getInt("bid");
+			String title = r.getString("title");
+			float price= r.getFloat("price");
+		
+			items.add(new BookBean( bid, title, price));
+		}
+		
+		r.close();
+		p.close();
+		conn.close();
+		return items;
+		
+	}
 }

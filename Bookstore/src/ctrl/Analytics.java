@@ -78,7 +78,7 @@ public class Analytics extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		System.out.println("fajdfalk");
+	
 		if (request.getParameter("submitted") != null) {
 		populateByMonth(request, response);
 		}
@@ -107,14 +107,13 @@ public class Analytics extends HttpServlet {
 
 		try {
 			// Get the product orders
-			request.setAttribute("report", po.retrievePOByMonth(month));
+			
 				// Get all product orders
-			System.out.println("This gets here");
-			List<POBean> report = po.retrieveAllPO();
+			List<POBean> report = po.retrievePOByMonth(month);
 			Iterator<POBean> iteReport = report.iterator();
 				while (iteReport.hasNext())
 					System.out.println(iteReport.next().getDate());
-			
+				request.setAttribute("monthly", report);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
