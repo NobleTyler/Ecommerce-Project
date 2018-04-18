@@ -97,12 +97,7 @@ public class Analytics extends HttpServlet {
 
 	private void populatePopular(HttpServletRequest request, HttpServletResponse response) throws SQLException {
 		List<BookBean> mostPop = pd.mostPopular();
-		Iterator<BookBean> iterBook = mostPop.iterator();
-		int i = 0;
-		while (iterBook.hasNext()) {
-			request.setAttribute("popular" + i, iterBook.next().getBid());
-			i++;
-		}
+		request.setAttribute("popular", mostPop);
 	}
 
 	private void populateByMonth(HttpServletRequest request, HttpServletResponse response) {
