@@ -39,7 +39,6 @@ public class Analytics extends HttpServlet {
 	PODAO po;
 	POItemDAO pd;
 
-
 	public void init() {
 		b = new BookDAO();
 		br = new BookReviewDAO();
@@ -50,52 +49,22 @@ public class Analytics extends HttpServlet {
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-
+	private void serveJSP(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		String target = "/analytics.jspx";
+		request.getRequestDispatcher(target).forward(request, response);
+	}
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		int month=1;
-			if(request.getSession().getAttribute("month")!=null)
-				 month= Integer.parseInt(request.getSession().getAttribute("month").toString());
+		serveJSP(request, response);
 		
-		try {
-			List<BookBean> mostPop = pd.mostPopular();
-			Iterator<BookBean> iterBook= mostPop.iterator();
-			int i=0;
-				while (iterBook.hasNext()) {
-					request.setAttribute("popular" + i, iterBook.next().getBid());
-					i++;
-				}
-				//String submitParameter = request.getParameter("submit");
-				
-			//UC A1: Set report with book id and quantity as attribute.
-			request.setAttribute("report", po.retrievePOByMonth(month));
-			System.out.println(request.getAttribute("report"));
-			
-			List<POBean> report =  po.retrieveAllPO();
-			Iterator<POBean> iteReport= report.iterator();
-			while(iteReport.hasNext())
-				System.out.println(iteReport.next().getDate());
-			
-			//UC A3: Set all PO records as attribute.
-	/*		request.setAttribute("anonymizedpo", po.retrieveAllPO());
-			List<OrderHistoryBean> anonPO =  po.retrieveOrderHistory(yearMonthFormat.format(date)+"01");
-			Iterator<OrderHistoryBean> iteAnonPO= anonPo.iterator();
-			while(iteReport.hasNext())
-				System.out.println(iteAnonPO.next().getTitle());
-			//Forward to page
-			 */
-				
-			request.getRequestDispatcher("/analytics.jspx").forward(request, response);
-			
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
 
 		
+
 	}
 
 	/**
@@ -104,14 +73,48 @@ public class Analytics extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
-	}
+		int month = 1;
+		System.out.println("fajdfalk");
 	
-	private void serveJSP(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+		if (request.getSession().getAttribute("month") != null)
+			month = Integer.parseInt(request.getSession().getAttribute("month").toString());
+
+		try {
+			// Get the product orders
+			List<BookBean> mostPop = pd.mostPopular();
+			Iterator<BookBean> iterBook = mostPop.iterator();
+			int i = 0;
+			while (iterBook.hasNext()) {
+				request.setAttribute("popular" + i, iterBook.next().getBid());
+				i++;
+			}
+
+			// UC A1: Set report with book id and quantity as attribute.
+			request.setAttribute("report", po.retrievePOByMonth(month));
 		
-		request.getRequestDispatcher("/analytics.jspx").forward(request, response);
+			if (request.getParameter("submitted") != null) {
+				// Get all product orders
+				System.out.println("This gets here");
+				List<POBean> report = po.retrieveAllPO();
+				Iterator<POBean> iteReport = report.iterator();
+				while (iteReport.hasNext())
+					System.out.println(iteReport.next().getDate());
+			}
+			// UC A3: Set all PO records as attribute.
+			/*
+			 * request.setAttribute("anonymizedpo", po.retrieveAllPO());
+			 * List<OrderHistoryBean> anonPO =
+			 * po.retrieveOrderHistory(yearMonthFormat.format(date)+"01");
+			 * Iterator<OrderHistoryBean> iteAnonPO= anonPo.iterator();
+			 * while(iteReport.hasNext())
+			 * System.out.println(iteAnonPO.next().getTitle()); //Forward to
+			 * page
+			 */
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		doGet(request, response);
 	}
 
 }
