@@ -86,10 +86,10 @@
 		</table>
 </form>
 	</div>
-	<div id="ajaxTarget"></div>
+	<div id="results"></div>
 	 <input name="month" id="month" type="number" value="5"/>
 	<button onclick="getPOMonth'${pageContext.request.contextPath}/Analytics');return false;"
-							name='submitted' value='submitted' id='submitted'>Report</button>
+							name='submitted' value='submitted' id='submitted'>Get Monthly</button>
 
 
 </body>

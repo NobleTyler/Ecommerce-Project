@@ -54,16 +54,20 @@ public class Analytics extends HttpServlet {
 		String target = "/analytics.jspx";
 		request.getRequestDispatcher(target).forward(request, response);
 	}
+
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		try {
+			populatePopular(request, response);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		serveJSP(request, response);
-		
-
-		
 
 	}
 
@@ -73,48 +77,51 @@ public class Analytics extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		int month = 1;
+
 		System.out.println("fajdfalk");
-	
+		if (request.getParameter("submitted") != null) {
+		populateByMonth(request, response);
+		}
+		// UC A3: Set all PO records as attribute.
+		/*
+		 * request.setAttribute("anonymizedpo", po.retrieveAllPO());
+		 * List<OrderHistoryBean> anonPO =
+		 * po.retrieveOrderHistory(yearMonthFormat.format(date)+"01");
+		 * Iterator<OrderHistoryBean> iteAnonPO= anonPo.iterator();
+		 * while(iteReport.hasNext())
+		 * System.out.println(iteAnonPO.next().getTitle()); //Forward to page
+		 */
+
+		doGet(request, response);
+	}
+
+	private void populatePopular(HttpServletRequest request, HttpServletResponse response) throws SQLException {
+		List<BookBean> mostPop = pd.mostPopular();
+		Iterator<BookBean> iterBook = mostPop.iterator();
+		int i = 0;
+		while (iterBook.hasNext()) {
+			request.setAttribute("popular" + i, iterBook.next().getBid());
+			i++;
+		}
+	}
+
+	private void populateByMonth(HttpServletRequest request, HttpServletResponse response) {
+		int month = 1;
 		if (request.getSession().getAttribute("month") != null)
 			month = Integer.parseInt(request.getSession().getAttribute("month").toString());
 
 		try {
 			// Get the product orders
-			List<BookBean> mostPop = pd.mostPopular();
-			Iterator<BookBean> iterBook = mostPop.iterator();
-			int i = 0;
-			while (iterBook.hasNext()) {
-				request.setAttribute("popular" + i, iterBook.next().getBid());
-				i++;
-			}
-
-			// UC A1: Set report with book id and quantity as attribute.
 			request.setAttribute("report", po.retrievePOByMonth(month));
-		
-			if (request.getParameter("submitted") != null) {
 				// Get all product orders
 				System.out.println("This gets here");
 				List<POBean> report = po.retrieveAllPO();
 				Iterator<POBean> iteReport = report.iterator();
 				while (iteReport.hasNext())
 					System.out.println(iteReport.next().getDate());
-			}
-			// UC A3: Set all PO records as attribute.
-			/*
-			 * request.setAttribute("anonymizedpo", po.retrieveAllPO());
-			 * List<OrderHistoryBean> anonPO =
-			 * po.retrieveOrderHistory(yearMonthFormat.format(date)+"01");
-			 * Iterator<OrderHistoryBean> iteAnonPO= anonPo.iterator();
-			 * while(iteReport.hasNext())
-			 * System.out.println(iteAnonPO.next().getTitle()); //Forward to
-			 * page
-			 */
-
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		doGet(request, response);
 	}
-
 }
