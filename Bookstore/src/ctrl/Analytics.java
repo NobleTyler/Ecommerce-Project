@@ -109,9 +109,9 @@ public class Analytics extends HttpServlet {
 			// Get the product orders
 			request.setAttribute("report", po.retrievePOByMonth(month));
 				// Get all product orders
-				System.out.println("This gets here");
-				List<POBean> report = po.retrieveAllPO();
-				Iterator<POBean> iteReport = report.iterator();
+			System.out.println("This gets here");
+			List<POBean> report = po.retrieveAllPO();
+			Iterator<POBean> iteReport = report.iterator();
 				while (iteReport.hasNext())
 					System.out.println(iteReport.next().getDate());
 			

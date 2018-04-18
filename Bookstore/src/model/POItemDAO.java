@@ -93,8 +93,6 @@ public class POItemDAO {
 		String aggregateQuery="SELECT book.title, book.price, book.bid, sum(quantity) as purchases FROM po_item, po, book where po_item.id=po.id and book.bid=po_item.bid group by bid order by purchases DESC limit 10";
 		PreparedStatement p = conn.prepareStatement(aggregateQuery);
 	
-		
-
 		ResultSet r = p.executeQuery();
 		
 		List<BookBean> items = new ArrayList<BookBean>();

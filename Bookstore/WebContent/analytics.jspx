@@ -35,6 +35,12 @@
 					<a href="/Bookstore/Book?bid=${pops.bid}">
 					<img width="400px" height="600px" src="${pageContext.request.contextPath}/res/images/books/${pops.bid}.jpg" alt="${pops.title}" />
 					</a>
+					<H3>
+						${pops.title}
+   					</H3>
+   					<H5>
+   						Price: $${pops.price}
+   					</H5>
 				</td>
 			</tr>
 			</c:forEach>
@@ -47,7 +53,6 @@
 	 <input name="month" id="month" type="number" value="5"/>
 	<input type="submit" name="submitted" value="submitted" />
 	</form>
-
 
 </body>
 	</html>
