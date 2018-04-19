@@ -122,4 +122,7 @@ public class Analytics extends HttpServlet {
 		}
 		
 	}
+	private void anonPO(HttpServletRequest request, HttpServletResponse response){
+		
+	}
 }
