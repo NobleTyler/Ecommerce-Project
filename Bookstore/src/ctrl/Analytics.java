@@ -109,13 +109,13 @@ public class Analytics extends HttpServlet {
 			month = Integer.parseInt(request.getSession().getAttribute("month").toString());
 
 		try {
-			List<POBean> report = po.retrievePOByMonth(month);
+			List<BookBean> report = pd.mostPopularMonthly(month);
 		/*	monthTable.append("<legend> Most PopularBooks this month</legend>"+
 			"<table border='1' align='center'>"+
 			"</table>");*/
-			Iterator<POBean> iteReport = report.iterator();
+			Iterator<BookBean> iteReport = report.iterator();
 				while (iteReport.hasNext())
-					System.out.println(iteReport.next().getDate());
+					System.out.println(iteReport.next().getTitle());
 				request.setAttribute("monthly", report);
 		} catch (Exception e) {
 			e.printStackTrace();

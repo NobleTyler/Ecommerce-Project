@@ -53,20 +53,41 @@
 		<c:forEach items="${monthly}" var="mont">
 			<tr>
 				<td style="width:330px; height:500px">
-					<a href="/Bookstore/Book?bid=${pops.bid}">
+					<a href="/Bookstore/Book?bid=${mont.bid}">
 					<img width="400px" height="600px" src="${pageContext.request.contextPath}/res/images/books/${mont.bid}.jpg" alt="${mont.title}" />
 					</a>
 					<H3>
 						<!-- ${mont.title} -->
    					</H3>
    					<H5>
-   						Price: $${mont.price}
+   						Price: $${mont.fname}
    					</H5>
 				</td>
 			</tr>
 			</c:forEach>
 		</table>
 </form>	 
+<form action="" method="POST">
+<legend>Anonymized Orders</legend>
+<table border="1" align="center">
+		<c:forEach items="${anonymizedpo}" var="apo">
+			<tr>
+				<td style="width:330px; height:500px">
+					<a href="/Bookstore/Book?bid=${apo.bid}">
+					<img width="400px" height="600px" src="${pageContext.request.contextPath}/res/images/books/${apo.bid}.jpg" alt="${apo.title}" />
+					</a>
+					<H3>
+						<!-- ${mont.title} -->
+   					</H3>
+   					<H5>
+   						Price: $${apo.price}
+   					</H5>
+				</td>
+			</tr>
+			</c:forEach>
+		</table>
+</form>	 
+
 	 <form action="Analytics" method="post">
 	 <input name="month" id="month" type="number" value="5"/>
 	<input type="submit" name="submitted" value="submitted" />
