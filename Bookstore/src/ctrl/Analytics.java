@@ -104,9 +104,11 @@ public class Analytics extends HttpServlet {
 	private void populateByMonth(HttpServletRequest request, HttpServletResponse response) {
 
 		//StringBuilder monthTable = new StringBuilder();
-		int month = 4;
-		if (request.getSession().getAttribute("month") != null)
-			month = Integer.parseInt(request.getSession().getAttribute("month").toString());
+		int month = 0;
+		if(request.getParameter("submitted")!=null) {
+			month=Integer.parseInt(request.getParameter("month"));
+			System.out.println(month);
+		}
 
 		try {
 			List<BookBean> report = pd.mostPopularMonthly(month);
