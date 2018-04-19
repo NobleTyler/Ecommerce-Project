@@ -60,7 +60,7 @@
 						<!-- ${mont.title} -->
    					</H3>
    					<H5>
-   						Price: $${mont.fname}
+   						Price: $${mont.title}
    					</H5>
 				</td>
 			</tr>
