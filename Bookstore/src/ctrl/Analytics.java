@@ -1,14 +1,9 @@
 package ctrl;
 
 import java.io.IOException;
-import java.sql.Connection;
 import java.sql.SQLException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -16,13 +11,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import bean.BookBean;
-import bean.BookReviewBean;
-import bean.OrderHistoryBean;
-import bean.POBean;
 import model.BookDAO;
 import model.BookReviewDAO;
-import model.DatabaseConnector;
-import model.POContainer;
 import model.PODAO;
 import model.POItemDAO;
 
@@ -63,6 +53,7 @@ public class Analytics extends HttpServlet {
 			throws ServletException, IOException {
 		try {
 			populatePopular(request, response);
+			anonPO(request, response);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -125,6 +116,11 @@ public class Analytics extends HttpServlet {
 		
 	}
 	private void anonPO(HttpServletRequest request, HttpServletResponse response){
-		
+		try {
+			request.setAttribute("anonymizedpo", po.retrieveAllPO());
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 }
