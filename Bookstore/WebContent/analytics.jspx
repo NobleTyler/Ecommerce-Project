@@ -28,7 +28,7 @@
 <div class="sales">
 <form action="" method="POST">
 <legend>Most Popular Books</legend>
-<table border="1" align="center">
+<table border="1" align="left">
 		<c:forEach items="${popular}" var="pops">
 			<tr>
 				<td style="width:330px; height:500px">
@@ -60,7 +60,7 @@
 						<!-- ${mont.title} -->
    					</H3>
    					<H5>
-   						Price: $${mont.fname}
+   						Price: $${mont.title}
    					</H5>
 				</td>
 			</tr>
@@ -69,18 +69,16 @@
 </form>	 
 <form action="" method="POST">
 <legend>Anonymized Orders</legend>
-<table border="1" align="center">
+<table border="1" align="right">
 		<c:forEach items="${anonymizedpo}" var="apo">
 			<tr>
 				<td style="width:330px; height:500px">
-					<a href="/Bookstore/Book?bid=${apo.bid}">
-					<img width="400px" height="600px" src="${pageContext.request.contextPath}/res/images/books/${apo.bid}.jpg" alt="${apo.title}" />
-					</a>
+					
 					<H3>
-						<!-- ${mont.title} -->
+						 ${apo.lname}
    					</H3>
    					<H5>
-   						Price: $${apo.price}
+   						Price: ${apo.fname}
    					</H5>
 				</td>
 			</tr>
@@ -89,7 +87,8 @@
 </form>	 
 
 	 <form action="Analytics" method="post">
-	 <input name="month" id="month" type="number" value="5"/>
+	 <input name="month" id="month" type="number" min="1"  max ="12" value="5"/>
+	
 	<input type="submit" name="submitted" value="submitted" />
 	</form>
 
