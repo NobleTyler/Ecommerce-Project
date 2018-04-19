@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import bean.BookBean;
 import bean.POBean;
 import bean.POItemBean;
 
@@ -78,5 +79,63 @@ public class POItemDAO {
 		conn.close();
 		return items;
 	}
+	/*
+	 * This is used by our analytics to grab the most popular books
+	 * works by checking through the order and querying for quantity and summing from the table
+	 */
+	public List<BookBean> mostPopular( )throws SQLException{
+		try {
+			conn = DatabaseConnector.getDatabaseConnection();
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+		String aggregateQuery="SELECT book.title, book.price, book.bid, sum(quantity) as purchases FROM po_item, po, book WHERE po_item.id=po.id and book.bid=po_item.bid group by bid order by purchases DESC limit 10";
+		PreparedStatement p = conn.prepareStatement(aggregateQuery);
 	
+		ResultSet r = p.executeQuery();
+		
+		List<BookBean> items = new ArrayList<BookBean>();
+		while (r.next()) {
+			int bid = r.getInt("bid");
+			String title = r.getString("title");
+			float price= r.getFloat("price");
+		
+			items.add(new BookBean( bid, title, price));
+		}
+		
+		r.close();
+		p.close();
+		conn.close();
+		return items;
+		
+	}
+	public List<BookBean> mostPopularMonthly(int month )throws SQLException{
+		try {
+			conn = DatabaseConnector.getDatabaseConnection();
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+		String aggregateQuery="SELECT book.title, book.price, book.bid, po.date, po.username, sum(quantity) as purchases FROM po_item, po, book WHERE po_item.id=po.id and book.bid=po_item.bid and po.date like '%-0?-%' group by bid order by purchases ";
+		
+		PreparedStatement p = conn.prepareStatement(aggregateQuery);
+		p.setInt(1, month);
+		ResultSet r = p.executeQuery();
+		
+		List<BookBean> items = new ArrayList<BookBean>();
+		while (r.next()) {
+			int bid = r.getInt("bid");
+			String title = r.getString("title");
+			float price= r.getFloat("price");
+		
+			items.add(new BookBean( bid, title, price));
+		}
+		
+		r.close();
+		p.close();
+		conn.close();
+		return items;
+		
+	}
 }
