@@ -28,7 +28,7 @@
 <div class="sales">
 <form action="" method="POST">
 <legend>Most Popular Books</legend>
-<table border="1" align="center">
+<table border="1" align="left">
 		<c:forEach items="${popular}" var="pops">
 			<tr>
 				<td style="width:330px; height:500px">
@@ -69,7 +69,7 @@
 </form>	 
 <form action="" method="POST">
 <legend>Anonymized Orders</legend>
-<table border="1" align="center">
+<table border="1" align="right">
 		<c:forEach items="${anonymizedpo}" var="apo">
 			<tr>
 				<td style="width:330px; height:500px">
