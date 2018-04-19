@@ -117,10 +117,10 @@ public class POItemDAO {
 		catch (Exception e) {
 			e.printStackTrace();
 		}
-		String aggregateQuery="SELECT book.title, book.price, book.bid, sum(quantity) as purchases FROM po_item, po, book WHERE po_item.id=po.id and book.bid=po_item.bid and po.date='2018' group by bid order by purchases DESC limit 10";
+		String aggregateQuery="SELECT book.title, book.price, book.bid, po.date, po.username, sum(quantity) as purchases FROM po_item, po, book WHERE po_item.id=po.id and book.bid=po_item.bid and po.date like '%-0?-%' group by bid order by purchases ";
 		
 		PreparedStatement p = conn.prepareStatement(aggregateQuery);
-	
+		p.setInt(1, month);
 		ResultSet r = p.executeQuery();
 		
 		List<BookBean> items = new ArrayList<BookBean>();

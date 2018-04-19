@@ -37,8 +37,6 @@ public class OrderHistory extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		Writer ro= response.getWriter();
 		String username=request.getSession().getAttribute("username").toString();
 		ArrayList<OrderHistoryBean> odb=null;
 		try {

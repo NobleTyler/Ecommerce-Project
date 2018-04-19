@@ -7,18 +7,13 @@ function validate()
 {
 	var result = true;
 	var error = "";
-	var prefix = document.getElementById("namePrefix").value;
-	var creditTaken = document.getElementById("creditTaken").value;
+	var month = document.getElementById("month").value;
+
 	
 	//alert("grab it and hold on we going for a wild ride");
-	if (isNaN(creditTaken) || creditTaken < 0 || creditTaken.trim() == "" )
+	if (isNaN(month) || month < 0 || creditTaken.trim() == "" || month > 12)
 	{
-		error = "If thats how many credits you've got you fucked up.\n";
-		result = false;
-	}
-	if (prefix.length < 1)
-	{
-		error = "Im onto your bullshit...put in a real prefix!\n";
+		error = "Please input a proper month \n";
 		result = false;
 	}
 	
@@ -33,7 +28,7 @@ function validate()
 
 
 function getPOMonth(address){
-	
+	if(validate(month)){
 		 var request = new XMLHttpRequest();
 		
 		
@@ -49,7 +44,7 @@ function getPOMonth(address){
 		 request.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 		 request.send(data);
 	//	 alert("its javascript mother fucker and it works");
-	
+	}
 	
 }
 

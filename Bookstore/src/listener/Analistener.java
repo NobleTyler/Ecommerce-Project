@@ -42,7 +42,7 @@ public class Analistener implements HttpSessionAttributeListener {
      * @see HttpSessionAttributeListener#attributeReplaced(HttpSessionBindingEvent)
      */
     public void attributeReplaced(HttpSessionBindingEvent event)  { 
-    	if (event.getName().equals("poupdated")) {
+    	if (event.getName().equals("cartSize")) {
 	    	try {
 	    		System.out.println("map:"+pd.mostPopular().toString());
 				event.getSession().setAttribute("mostpopular", pd.mostPopular());
@@ -51,7 +51,7 @@ public class Analistener implements HttpSessionAttributeListener {
 				e.printStackTrace();
 			}
     	}
-    	System.out.println("//maxPrinciple: " + event.getSession().getAttribute("maxPrinciple"));
+    	
     }
 	
 }

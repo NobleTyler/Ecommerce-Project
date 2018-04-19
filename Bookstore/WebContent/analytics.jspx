@@ -57,7 +57,7 @@
 					<img width="400px" height="600px" src="${pageContext.request.contextPath}/res/images/books/${mont.bid}.jpg" alt="${mont.title}" />
 					</a>
 					<H3>
-						${mont.title}
+						<!-- ${mont.title} -->
    					</H3>
    					<H5>
    						Price: $${mont.price}

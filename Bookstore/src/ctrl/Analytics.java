@@ -67,6 +67,7 @@ public class Analytics extends HttpServlet {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		//populateByMonth(request, response);
 		serveJSP(request, response);
 
 	}
@@ -101,15 +102,17 @@ public class Analytics extends HttpServlet {
 	}
 
 	private void populateByMonth(HttpServletRequest request, HttpServletResponse response) {
-		int month = 1;
+
+		//StringBuilder monthTable = new StringBuilder();
+		int month = 4;
 		if (request.getSession().getAttribute("month") != null)
 			month = Integer.parseInt(request.getSession().getAttribute("month").toString());
 
 		try {
-			// Get the product orders
-			
-				// Get all product orders
 			List<POBean> report = po.retrievePOByMonth(month);
+		/*	monthTable.append("<legend> Most PopularBooks this month</legend>"+
+			"<table border='1' align='center'>"+
+			"</table>");*/
 			Iterator<POBean> iteReport = report.iterator();
 				while (iteReport.hasNext())
 					System.out.println(iteReport.next().getDate());
@@ -117,5 +120,6 @@ public class Analytics extends HttpServlet {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		
 	}
 }
