@@ -53,7 +53,7 @@ public class Checkout extends HttpServlet {
 		String submitParam = request.getParameter("submit");
 		
 		//System.out.println(submitParam);
-		String cartSubmit = "Continue to checkout";
+		String cartSubmit = "Confirm order";
 		
 		if (submitParam.equals(cartSubmit)) {
 			ShoppingCartDAO sc = new ShoppingCartDAO();
