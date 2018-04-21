@@ -20,7 +20,7 @@
 	
 <style>
 	#purchaseAccepted, #purchaseDenied{
-   		width: 650px;
+   		width: 700px;
     	height: 100px;
 
     	position: absolute;
@@ -39,10 +39,10 @@
 <body>
 	<c:choose>
 	<c:when test="${not orderApproved and orderApproved ne null}">
-		<div id="purchaseDenied"><h2 text-align= "center">Purchase order denied! Please try again</h2></div>
+		<div id="purchaseDenied"><h2 text-align= "center">Credit Card Authorization Failed. Please try again</h2></div>
 	</c:when>
 	<c:when test="${orderApproved}">
-		<div id="purchaseAccepted"><h2 text-align= "center">Purchase order approved! Thanks for shopping with us.</h2></div>
+		<div id="purchaseAccepted"><h2 text-align= "center">Order Successfully Completed. Thanks for shopping with us.</h2></div>
 	</c:when>
 	</c:choose>
 </body>

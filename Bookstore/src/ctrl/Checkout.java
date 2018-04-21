@@ -82,7 +82,7 @@ public class Checkout extends HttpServlet {
 				requestNumber++;
 				//default value for status is denied, so we only set to processed if it is the third request
 				poContain.addProductOrder(po, sc.retrieveCartItems(po.getUsername()));
-				request.setAttribute("orderApproved", true);
+				request.setAttribute("orderApproved", orderApproved);
 				
 				if (orderApproved) {
 					sc.clearCart(username); 			//order has been processed, clear users cart
