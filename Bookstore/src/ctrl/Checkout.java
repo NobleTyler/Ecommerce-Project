@@ -53,7 +53,7 @@ public class Checkout extends HttpServlet {
 		String submitParam = request.getParameter("submit");
 		
 		//System.out.println(submitParam);
-		String cartSubmit = "Continue to checkout";
+		String cartSubmit = "Confirm order";
 		
 		if (submitParam.equals(cartSubmit)) {
 			ShoppingCartDAO sc = new ShoppingCartDAO();
@@ -82,7 +82,7 @@ public class Checkout extends HttpServlet {
 				requestNumber++;
 				//default value for status is denied, so we only set to processed if it is the third request
 				poContain.addProductOrder(po, sc.retrieveCartItems(po.getUsername()));
-				request.setAttribute("orderApproved", true);
+				request.setAttribute("orderApproved", orderApproved);
 				
 				if (orderApproved) {
 					sc.clearCart(username); 			//order has been processed, clear users cart
