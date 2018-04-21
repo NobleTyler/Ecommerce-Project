@@ -19,8 +19,21 @@
 	media="screen, print" />
 	
 <style>
-	#purchaseAccepted, #purchaseDenied{
+	#purchaseAccepted{
    		width: 700px;
+    	height: 100px;
+
+    	position: absolute;
+    	top:0;
+    	bottom: 0;
+    	left: 0;
+    	right: 0;
+
+    	margin: auto;
+   		
+	}
+	#purchaseDenied{
+   		width: 575px;
     	height: 100px;
 
     	position: absolute;
