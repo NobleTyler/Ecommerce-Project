@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import bean.BookBean;
+import filter.Anonymizer;
 import model.BookDAO;
 import model.BookReviewDAO;
 import model.PODAO;
@@ -98,17 +99,14 @@ public class Analytics extends HttpServlet {
 		int month = 0;
 		if(request.getParameter("submitted")!=null) {
 			month=Integer.parseInt(request.getParameter("month"));
-			System.out.println(month);
+		
 		}
 
 		try {
 			List<BookBean> report = pd.mostPopularMonthly(month);
-		/*	monthTable.append("<legend> Most PopularBooks this month</legend>"+
-			"<table border='1' align='center'>"+
-			"</table>");*/
-			Iterator<BookBean> iteReport = report.iterator();
+	/*		Iterator<BookBean> iteReport = report.iterator();
 				while (iteReport.hasNext())
-					System.out.println(iteReport.next().getTitle());
+					System.out.println(iteReport.next().getTitle());*/
 				request.setAttribute("monthly", report);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -117,6 +115,7 @@ public class Analytics extends HttpServlet {
 	}
 	private void anonPO(HttpServletRequest request, HttpServletResponse response){
 		try {
+			
 			request.setAttribute("anonymizedpo", po.retrieveAllPO());
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
