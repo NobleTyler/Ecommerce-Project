@@ -8,10 +8,33 @@
 		omit-xml-declaration="true" />
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<title>Exception thrown</title>
+<link rel="StyleSheet" href="${pageContext.request.contextPath}/res/css/styles.css" type="text/css" title="cse4413"
+	media="screen, print" />
+<script type="text/javascript" src="${pageContext.request.contextPath}/res/js/functions.js">;</script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/res/js/cart.js">;</script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/res/js/loginAndRegister.js">;</script>
+<style>
+	#textArea{
+   		width: 600px;
+    	height: 100px;
+
+    	position: absolute;
+    	top:0;
+    	bottom: 0;
+    	left: 0;
+    	right: 0;
+
+    	margin: auto;
+   		
+	}
+</style>
+<title>Exception Thrown</title>
 </head>
 <body>
-	You need to go back to school because your code just threw an exception. This sucks :(
+	<jsp:include page="/navigation.jspx"></jsp:include>
+	<jsp:include page="/login.jspx"></jsp:include>
+	<jsp:include page="/register.jspx"></jsp:include>
+	<div id="textArea"><h2 text-align= "center">An exception was thrown on our end. This sucks :(</h2></div>
 </body>
 </html>
 </jsp:root>
