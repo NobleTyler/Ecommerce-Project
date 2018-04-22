@@ -25,12 +25,14 @@
 	<jsp:include page="/login.jspx"></jsp:include>
 	<jsp:include page="/register.jspx"></jsp:include> 
 
-<div class="sales">
+
 <form action="" method="POST">
 <legend>Most Popular Books</legend>
-<table border="1" align="left">
+<table border="1" width="100%">
+	<tbody class = "scrollable">
+		<tr>
 		<c:forEach items="${popular}" var="pops">
-			<tr>
+	
 				<td style="width:330px; height:500px">
 					<a href="/Bookstore/Book?bid=${pops.bid}">
 					<img width="400px" height="600px" src="${pageContext.request.contextPath}/res/images/books/${pops.bid}.jpg" alt="${pops.title}" />
@@ -42,36 +44,21 @@
    						Price: $${pops.price}
    					</H5>
 				</td>
-			</tr>
+			
 			</c:forEach>
+			</tr>
+			</tbody>
 		</table>
 </form>
-	</div>
-<form action="" method="POST">
-<legend>Most Popular Books this month</legend>
-<table border="1" align="center">
-		<c:forEach items="${monthly}" var="mont">
-			<tr>
-				<td style="width:330px; height:500px">
-					<a href="/Bookstore/Book?bid=${mont.bid}">
-					<img width="400px" height="600px" src="${pageContext.request.contextPath}/res/images/books/${mont.bid}.jpg" alt="${mont.title}" />
-					</a>
-					<H3>
-						<!-- ${mont.title} -->
-   					</H3>
-   					<H5>
-   						Price: $${mont.title}
-   					</H5>
-				</td>
-			</tr>
-			</c:forEach>
-		</table>
-</form>	 
+	
+ 
 <form action="" method="POST">
 <legend>Anonymized Orders</legend>
-<table border="1" align="right">
+<table border="1">
+<tbody class = "scrollable">
+	<tr>
 		<c:forEach items="${anonymizedpo}" var="apo">
-			<tr>
+		
 				<td style="width:330px; height:500px">
 					
 					<H3>
@@ -81,17 +68,43 @@
    						Price: ${apo.fname}
    					</H5>
 				</td>
-			</tr>
+			
 			</c:forEach>
+			</tr>
+			</tbody>
 		</table>
 </form>	 
+<form action="" method="POST">
+<legend>Most Popular Books this month</legend>
+<table border="1" >
+<tbody class = "scrollable">
+<tr>
+		<c:forEach items="${monthly}" var="mont">
+			
+				<td style="width:330px; height:500px">
+					<a href="/Bookstore/Book?bid=${mont.bid}">
+					<img width="400px" height="600px" src="${pageContext.request.contextPath}/res/images/books/${mont.bid}.jpg" alt="${mont.title}" />
+					</a>
+					<H3>
+						 ${mont.title}
+   					</H3>
+   					<H5>
+   						Price: $${mont.price}
+   					</H5>
+				</td>
+			
+			</c:forEach>
+			</tr>
+			</tbody>
+		</table>
+</form>	
 
 	 <form action="Analytics" method="post">
 	 <input name="month" id="month" type="number" min="1"  max ="12" value="5"/>
 	
 	<input type="submit" name="submitted" value="submitted" />
 	</form>
-
+	
 </body>
 	</html>
 </jsp:root>

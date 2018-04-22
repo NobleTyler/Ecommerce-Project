@@ -36,7 +36,10 @@ public class Analytics extends HttpServlet {
 		po = new PODAO();
 		pd = new POItemDAO();
 	}
-
+	   public Analytics() {
+	        super();
+	        // TODO Auto-generated constructor stub
+	    }
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
@@ -53,14 +56,15 @@ public class Analytics extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		try {
-			populatePopular(request, response);
 			anonPO(request, response);
+			populatePopular(request, response);	
+			serveJSP(request, response);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		//populateByMonth(request, response);
-		serveJSP(request, response);
+		
 
 	}
 
@@ -75,16 +79,7 @@ public class Analytics extends HttpServlet {
 		if (request.getParameter("submitted") != null) {
 		populateByMonth(request, response);
 		}
-		// UC A3: Set all PO records as attribute.
-		/*
-		 * request.setAttribute("anonymizedpo", po.retrieveAllPO());
-		 * List<OrderHistoryBean> anonPO =
-		 * po.retrieveOrderHistory(yearMonthFormat.format(date)+"01");
-		 * Iterator<OrderHistoryBean> iteAnonPO= anonPo.iterator();
-		 * while(iteReport.hasNext())
-		 * System.out.println(iteAnonPO.next().getTitle()); //Forward to page
-		 */
-
+	
 		doGet(request, response);
 	}
 

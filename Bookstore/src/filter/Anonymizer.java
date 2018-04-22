@@ -45,22 +45,25 @@ public class Anonymizer implements Filter {
 			throws IOException, ServletException {
 		// TODO Auto-generated method stub
 		// place your code here
+		System.out.println("Did it reach?");
 		HttpServletRequest req = (HttpServletRequest) request;
 		HttpServletResponse res = (HttpServletResponse) response;
 		try {
 			@SuppressWarnings("unchecked")
 			List<POBean> list = (List<POBean>) req.getAttribute("anonymizedpo");
-
+System.out.println(list!=null);
 			if (list != null) {
 				Iterator<POBean> listErator = list.iterator();
 				while (listErator.hasNext()) {
 					System.out.println(listErator.next().getUsername());
-					listErator.next().setUsername("******");
-					listErator.next().setLname("Lname");
+				
 					listErator.next().setFname("Fname");
+					listErator.next().setLname("Lname");
+					listErator.next().setUsername("******");
+					
 					System.out.println(listErator.next().getUsername());
 				}
-				req.getSession().setAttribute("anonymizedpo", list);
+				req.getSession().setAttribute("anonymizedpo", listErator);
 
 			}
 
