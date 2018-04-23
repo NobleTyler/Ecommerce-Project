@@ -44,6 +44,8 @@ public class Book extends HttpServlet {
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * Hits the dao's for everything to do with the BID
+	 * then set it as an attribute so it can be displayed
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		

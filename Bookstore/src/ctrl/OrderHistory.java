@@ -35,6 +35,7 @@ public class OrderHistory extends HttpServlet {
     
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * Check the entire order history, requires the PODAO and then just sets attribute to the front end
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String username=request.getSession().getAttribute("username").toString();

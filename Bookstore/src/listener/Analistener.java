@@ -40,11 +40,13 @@ public class Analistener implements HttpSessionAttributeListener {
 
 	/**
      * @see HttpSessionAttributeListener#attributeReplaced(HttpSessionBindingEvent)
+     * Checks on http event if the cart changes size, and if it does it sets the most popular via a query
+     * To get the most popular you must have the product item DAO to find out how many of each item was sold
      */
     public void attributeReplaced(HttpSessionBindingEvent event)  { 
     	if (event.getName().equals("cartSize")) {
 	    	try {
-	    		System.out.println("map:"+pd.mostPopular().toString());
+	    
 				event.getSession().setAttribute("mostpopular", pd.mostPopular());
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block

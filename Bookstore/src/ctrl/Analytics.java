@@ -18,7 +18,9 @@ import model.PODAO;
 import model.POItemDAO;
 
 /**
- * Servlet implementation class Book
+ * The analytics class ties together all the analytics
+ * it requires multiple DAO's as seen below to display information
+ * in the analytics.jspx
  */
 @WebServlet("/Analytics")
 
@@ -41,7 +43,7 @@ public class Analytics extends HttpServlet {
 	        // TODO Auto-generated constructor stub
 	    }
 	/**
-	 * @see HttpServlet#HttpServlet()
+	 * This is used to bring us to the analytics jspx all it requires is the analytics jspx
 	 */
 	private void serveJSP(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -71,6 +73,7 @@ public class Analytics extends HttpServlet {
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
 	 *      response)
+	 *      Handles user submitted requests when the page is open.
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -82,12 +85,17 @@ public class Analytics extends HttpServlet {
 	
 		doGet(request, response);
 	}
-
+	/*
+	 * Querys for the most popular books, requires the product item dao
+	 */
 	private void populatePopular(HttpServletRequest request, HttpServletResponse response) throws SQLException {
 		List<BookBean> mostPop = pd.mostPopular();
 		request.setAttribute("popular", mostPop);
 	}
-
+	/*
+	 * Querys for the most popular books by month, requires the product item dao
+	 * works by basically setting the query result as an attribute
+	 */
 	private void populateByMonth(HttpServletRequest request, HttpServletResponse response) {
 
 		//StringBuilder monthTable = new StringBuilder();
@@ -108,6 +116,10 @@ public class Analytics extends HttpServlet {
 		}
 		
 	}
+	/*
+	 * Again calls a query then sets it as an attribute
+	 * requires the PODAO 
+	 */
 	private void anonPO(HttpServletRequest request, HttpServletResponse response){
 		try {
 			

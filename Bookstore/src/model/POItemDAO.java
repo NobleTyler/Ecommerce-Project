@@ -20,16 +20,20 @@ public class POItemDAO {
 		
 	}
 	
+	/*
+	 * 	adds each book in the book map to the database
+	 */
 	public void insertItemsToProductOrder(POBean poBean, Map<Integer, Integer> books) throws SQLException {
-		
-		//add each book in the book map to the database
+	
 		for (int bid : books.keySet()) {
 			POItemBean poItemBean = new POItemBean(poBean.getId(), bid, books.get(bid));
 			insertItemToProductOrder(poItemBean);
 		}
 		
 	}
-	
+	/*
+	 * Adds the item to the product order
+	 */
 	public void insertItemToProductOrder(POItemBean itemBean) throws SQLException {
 		try {
 			conn = DatabaseConnector.getDatabaseConnection();
@@ -50,7 +54,9 @@ public class POItemDAO {
 		p.close();
 		conn.close();
 	}
-	
+	/*
+	 * Retrieves item by its id and returns it as a list
+	 */
 	public List<POItemBean> retrieveItemsById(String id) throws SQLException {
 		try {
 			conn = DatabaseConnector.getDatabaseConnection();
@@ -110,6 +116,9 @@ public class POItemDAO {
 		return items;
 		
 	}
+	/*
+	 * Tells you the most popular books on a monthly basis
+	 */
 	public List<BookBean> mostPopularMonthly(int month )throws SQLException{
 		try {
 			conn = DatabaseConnector.getDatabaseConnection();

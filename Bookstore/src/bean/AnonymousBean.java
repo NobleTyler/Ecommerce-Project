@@ -4,7 +4,9 @@ public class AnonymousBean {
 	private String username;
 	private float total;
 	private String postalCode;
-
+/*
+ * Used to grab product orders but leaving out the parts that should be anonymous
+ */
 	public AnonymousBean(String username, float total, String postalCode) {
 		super();
 		this.setUsername(username);

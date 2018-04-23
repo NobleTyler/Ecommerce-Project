@@ -215,6 +215,10 @@ public class PODAO {
 		return ohb;
 	}
 
+	/*
+	 * Query is set to take specific parts out of the orders
+	 * Thereby eliminating the need for filters
+	 */
 	public List<AnonymousBean> anonymousOrders() throws SQLException {
 		try {
 			conn = DatabaseConnector.getDatabaseConnection();

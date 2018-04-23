@@ -46,6 +46,8 @@ public class BookReviewAdd extends HttpServlet {
     
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * This takes attributes that are set throughout the site
+	 * then  deals with the book id by taking it in and addint it to the book review bean
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
