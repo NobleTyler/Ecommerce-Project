@@ -16,6 +16,31 @@
 	href="${pageContext.request.contextPath}/res/css/styles.css"
 	type="text/css" title="cse4413" media="screen, print" />
  
+<STYLE>
+	
+	#fixed {
+    	  width:100%;
+     position:absolute;
+     top:1520px
+     bottom:0px;
+     text-align:center;
+}
+	.scrolledTable{
+		overflow-x:auto;
+	}
+	input[type=submit] {
+		    background-color: #4CAF50;
+		    color: white;
+		    padding: 12px 20px;
+		    border: none;
+		    border-radius: 4px;
+		    cursor: pointer;
+		}
+		
+		input[type=submit]:hover {
+		    background-color: #45a049;
+		}
+</STYLE>
 
 <title>Analytics</title>
 </head>
@@ -25,12 +50,13 @@
 	<jsp:include page="/login.jspx"></jsp:include>
 	<jsp:include page="/register.jspx"></jsp:include> 
 
-<div class="sales">
-<form action="" method="POST">
-<legend>Most Popular Books</legend>
-<table border="1" align="left">
+<H2>Most Popular Books</H2>
+<div class="scrolledTable" >
+<table border="1" width="100%">
+	<tbody class = "scrollable">
+		<tr>
 		<c:forEach items="${popular}" var="pops">
-			<tr>
+	
 				<td style="width:330px; height:500px">
 					<a href="/Bookstore/Book?bid=${pops.bid}">
 					<img width="400px" height="600px" src="${pageContext.request.contextPath}/res/images/books/${pops.bid}.jpg" alt="${pops.title}" />
@@ -42,36 +68,21 @@
    						Price: $${pops.price}
    					</H5>
 				</td>
-			</tr>
+			
 			</c:forEach>
-		</table>
-</form>
-	</div>
-<form action="" method="POST">
-<legend>Most Popular Books this month</legend>
-<table border="1" align="center">
-		<c:forEach items="${monthly}" var="mont">
-			<tr>
-				<td style="width:330px; height:500px">
-					<a href="/Bookstore/Book?bid=${mont.bid}">
-					<img width="400px" height="600px" src="${pageContext.request.contextPath}/res/images/books/${mont.bid}.jpg" alt="${mont.title}" />
-					</a>
-					<H3>
-						<!-- ${mont.title} -->
-   					</H3>
-   					<H5>
-   						Price: $${mont.title}
-   					</H5>
-				</td>
 			</tr>
-			</c:forEach>
+			</tbody>
 		</table>
-</form>	 
-<form action="" method="POST">
-<legend>Anonymized Orders</legend>
-<table border="1" align="right">
+</div>
+ 
+ <H2>Anonymized Orders</H2>
+ <div class="scrolledTable" >
+
+<table border="1">
+<tbody class = "scrollable">
+	<tr>
 		<c:forEach items="${anonymizedpo}" var="apo">
-			<tr>
+		
 				<td style="width:330px; height:500px">
 					
 					<H3>
@@ -81,17 +92,45 @@
    						Price: ${apo.fname}
    					</H5>
 				</td>
-			</tr>
+			
 			</c:forEach>
+			</tr>
+			</tbody>
 		</table>
-</form>	 
+</div>
 
+
+<h2>Books Bought By Month</h2>
+ <div class="scrolledTable" >
+<table border="1" >
+<tbody class = "scrollable">
+<tr>
+		<c:forEach items="${monthly}" var="mont">
+			
+				<td style="width:330px; height:500px">
+					<a href="/Bookstore/Book?bid=${mont.bid}">
+					<img width="400px" height="600px" src="${pageContext.request.contextPath}/res/images/books/${mont.bid}.jpg" alt="${mont.title}" />
+					</a>
+					<H3>
+						 ${mont.title}
+   					</H3>
+   					<H5>
+   						Price: $${mont.price}
+   					</H5>
+				</td>
+			
+			</c:forEach>
+			</tr>
+			</tbody>
+		</table>
+</div>
+	<div id="fixed">
 	 <form action="Analytics" method="post">
-	 <input name="month" id="month" type="number" min="1"  max ="12" value="5"/>
-	
-	<input type="submit" name="submitted" value="submitted" />
+	 <h4>Enter a month number to get the books bought for that month</h4>
+	 <div><input name="month" id="month" type="number" min="1"  max ="12" value="4"/></div>
+	<div><input type="submit" name="submitted" value="Fetch me the books" /></div>
 	</form>
-
+	</div>
 </body>
 	</html>
 </jsp:root>

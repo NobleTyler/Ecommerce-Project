@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import bean.BookBean;
+import filter.Anonymizer;
 import model.BookDAO;
 import model.BookReviewDAO;
 import model.PODAO;
@@ -35,7 +36,10 @@ public class Analytics extends HttpServlet {
 		po = new PODAO();
 		pd = new POItemDAO();
 	}
-
+	   public Analytics() {
+	        super();
+	        // TODO Auto-generated constructor stub
+	    }
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
@@ -52,14 +56,15 @@ public class Analytics extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		try {
-			populatePopular(request, response);
 			anonPO(request, response);
+			populatePopular(request, response);	
+			serveJSP(request, response);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		//populateByMonth(request, response);
-		serveJSP(request, response);
+		
 
 	}
 
@@ -74,16 +79,7 @@ public class Analytics extends HttpServlet {
 		if (request.getParameter("submitted") != null) {
 		populateByMonth(request, response);
 		}
-		// UC A3: Set all PO records as attribute.
-		/*
-		 * request.setAttribute("anonymizedpo", po.retrieveAllPO());
-		 * List<OrderHistoryBean> anonPO =
-		 * po.retrieveOrderHistory(yearMonthFormat.format(date)+"01");
-		 * Iterator<OrderHistoryBean> iteAnonPO= anonPo.iterator();
-		 * while(iteReport.hasNext())
-		 * System.out.println(iteAnonPO.next().getTitle()); //Forward to page
-		 */
-
+	
 		doGet(request, response);
 	}
 
@@ -98,17 +94,14 @@ public class Analytics extends HttpServlet {
 		int month = 0;
 		if(request.getParameter("submitted")!=null) {
 			month=Integer.parseInt(request.getParameter("month"));
-			System.out.println(month);
+		
 		}
 
 		try {
 			List<BookBean> report = pd.mostPopularMonthly(month);
-		/*	monthTable.append("<legend> Most PopularBooks this month</legend>"+
-			"<table border='1' align='center'>"+
-			"</table>");*/
-			Iterator<BookBean> iteReport = report.iterator();
+	/*		Iterator<BookBean> iteReport = report.iterator();
 				while (iteReport.hasNext())
-					System.out.println(iteReport.next().getTitle());
+					System.out.println(iteReport.next().getTitle());*/
 				request.setAttribute("monthly", report);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -117,6 +110,7 @@ public class Analytics extends HttpServlet {
 	}
 	private void anonPO(HttpServletRequest request, HttpServletResponse response){
 		try {
+			
 			request.setAttribute("anonymizedpo", po.retrieveAllPO());
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

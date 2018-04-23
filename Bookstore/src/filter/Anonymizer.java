@@ -5,6 +5,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.DispatcherType;
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
 import javax.servlet.FilterConfig;
@@ -20,15 +21,15 @@ import bean.POBean;
 /**
  * Servlet Filter implementation class Anonymizer
  */
-@WebFilter(description = "This filter is used to anonymize reports that we query", urlPatterns = { "/Anonymizer" })
+@WebFilter(dispatcherTypes = { DispatcherType.REQUEST }, urlPatterns = { "/Analytics" }, servletNames = { "Analytics" })
 public class Anonymizer implements Filter {
 
-    /**
-     * Default constructor. 
-     */
-    public Anonymizer() {
-        // TODO Auto-generated constructor stub
-    }
+	/**
+	 * Default constructor.
+	 */
+	public Anonymizer() {
+		// TODO Auto-generated constructor stub
+	}
 
 	/**
 	 * @see Filter#destroy()
@@ -40,23 +41,32 @@ public class Anonymizer implements Filter {
 	/**
 	 * @see Filter#doFilter(ServletRequest, ServletResponse, FilterChain)
 	 */
-	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
+	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
+			throws IOException, ServletException {
 		// TODO Auto-generated method stub
 		// place your code here
+		System.out.println("Did it reach?");
 		HttpServletRequest req = (HttpServletRequest) request;
 		HttpServletResponse res = (HttpServletResponse) response;
 		try {
 			@SuppressWarnings("unchecked")
 			List<POBean> list = (List<POBean>) req.getAttribute("anonymizedpo");
-			Iterator<POBean> listErator = list.iterator();
+System.out.println(list!=null);
 			if (list != null) {
-				while(listErator.hasNext()) {
-					listErator.next().setUsername("******");
-					listErator.next().setLname("Lname");
+				Iterator<POBean> listErator = list.iterator();
+				while (listErator.hasNext()) {
+					System.out.println(listErator.next().getUsername());
+				
 					listErator.next().setFname("Fname");
-									}
-				req.getSession().setAttribute("anonymizedpo", list);
+					listErator.next().setLname("Lname");
+					listErator.next().setUsername("******");
+					
+					System.out.println(listErator.next().getUsername());
+				}
+				req.getSession().setAttribute("anonymizedpo", listErator);
+
 			}
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
