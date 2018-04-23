@@ -16,6 +16,11 @@
 	href="${pageContext.request.contextPath}/res/css/styles.css"
 	type="text/css" title="cse4413" media="screen, print" />
  
+<STYLE>
+	.scrolledTable{
+		overflow-x:auto;
+	}
+</STYLE>
 
 <title>Analytics</title>
 </head>
@@ -25,9 +30,9 @@
 	<jsp:include page="/login.jspx"></jsp:include>
 	<jsp:include page="/register.jspx"></jsp:include> 
 
-
+<H2>Most Popular Books</H2>
+<div class="scrolledTable" >
 <form action="" method="POST">
-<legend>Most Popular Books</legend>
 <table border="1" width="100%">
 	<tbody class = "scrollable">
 		<tr>
@@ -50,7 +55,7 @@
 			</tbody>
 		</table>
 </form>
-	
+</div>
  
 <form action="" method="POST">
 <legend>Anonymized Orders</legend>
