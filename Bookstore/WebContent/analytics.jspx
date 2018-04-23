@@ -57,8 +57,9 @@
 </form>
 </div>
  
+ <H2>Anonymized Orders</H2>
+ <div class="scrolledTable" >
 <form action="" method="POST">
-<legend>Anonymized Orders</legend>
 <table border="1">
 <tbody class = "scrollable">
 	<tr>
@@ -79,8 +80,11 @@
 			</tbody>
 		</table>
 </form>	 
+</div>
+
+<h2>Most Popular Books this month</h2>
+ <div class="scrolledTable" >
 <form action="" method="POST">
-<legend>Most Popular Books this month</legend>
 <table border="1" >
 <tbody class = "scrollable">
 <tr>
@@ -103,6 +107,7 @@
 			</tbody>
 		</table>
 </form>	
+</div>
 
 	 <form action="Analytics" method="post">
 	 <input name="month" id="month" type="number" min="1"  max ="12" value="5"/>
