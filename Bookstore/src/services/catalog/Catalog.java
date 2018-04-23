@@ -8,6 +8,9 @@ import java.sql.SQLException;
 
 public class Catalog {
 
+	/*
+	given a product id (book id), this function returns the book's information including the title, price, and categories
+	*/
 	public String getProductInfo(int productId) throws SQLException {
 		StringBuffer result = new StringBuffer();
 		result.append("<?xml version=\"1.0\" encoding=\"UTF-8\"?>");
