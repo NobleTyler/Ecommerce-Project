@@ -17,9 +17,29 @@
 	type="text/css" title="cse4413" media="screen, print" />
  
 <STYLE>
+	
+	#fixed {
+    	  width:100%;
+     position:absolute;
+     top:1520px
+     bottom:0px;
+     text-align:center;
+}
 	.scrolledTable{
 		overflow-x:auto;
 	}
+	input[type=submit] {
+		    background-color: #4CAF50;
+		    color: white;
+		    padding: 12px 20px;
+		    border: none;
+		    border-radius: 4px;
+		    cursor: pointer;
+		}
+		
+		input[type=submit]:hover {
+		    background-color: #45a049;
+		}
 </STYLE>
 
 <title>Analytics</title>
@@ -32,7 +52,6 @@
 
 <H2>Most Popular Books</H2>
 <div class="scrolledTable" >
-<form action="" method="POST">
 <table border="1" width="100%">
 	<tbody class = "scrollable">
 		<tr>
@@ -54,12 +73,11 @@
 			</tr>
 			</tbody>
 		</table>
-</form>
 </div>
  
  <H2>Anonymized Orders</H2>
  <div class="scrolledTable" >
-<form action="" method="POST">
+
 <table border="1">
 <tbody class = "scrollable">
 	<tr>
@@ -79,12 +97,11 @@
 			</tr>
 			</tbody>
 		</table>
-</form>	 
 </div>
 
-<h2>Most Popular Books this month</h2>
+
+<h2>Books Bought By Month</h2>
  <div class="scrolledTable" >
-<form action="" method="POST">
 <table border="1" >
 <tbody class = "scrollable">
 <tr>
@@ -106,15 +123,14 @@
 			</tr>
 			</tbody>
 		</table>
-</form>	
 </div>
-
+	<div id="fixed">
 	 <form action="Analytics" method="post">
-	 <input name="month" id="month" type="number" min="1"  max ="12" value="5"/>
-	
-	<input type="submit" name="submitted" value="submitted" />
+	 <h4>Enter a month number to get the books bought for that month</h4>
+	 <div><input name="month" id="month" type="number" min="1"  max ="12" value="4"/></div>
+	<div><input type="submit" name="submitted" value="Fetch me the books" /></div>
 	</form>
-	
+	</div>
 </body>
 	</html>
 </jsp:root>
