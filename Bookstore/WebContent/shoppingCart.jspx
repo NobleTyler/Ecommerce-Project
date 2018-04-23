@@ -101,9 +101,6 @@
           </div>
           
         </div>
-        <label>
-          <input type="checkbox" checked="checked" name="sameadr" /> Shipping address same as billing
-        </label>
         <input type="submit" value="Confirm order" class="btn" name="submit" onclick="return validateInfo();"/>
       </form>
     </div>
