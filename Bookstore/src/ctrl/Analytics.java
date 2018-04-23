@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import bean.BookBean;
-import filter.Anonymizer;
+
 import model.BookDAO;
 import model.BookReviewDAO;
 import model.PODAO;
@@ -111,7 +111,7 @@ public class Analytics extends HttpServlet {
 	private void anonPO(HttpServletRequest request, HttpServletResponse response){
 		try {
 			
-			request.setAttribute("anonymizedpo", po.retrieveAllPO());
+			request.setAttribute("anonymizedpo", po.anonymousOrders());
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

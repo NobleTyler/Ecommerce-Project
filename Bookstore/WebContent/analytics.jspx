@@ -86,10 +86,13 @@
 				<td style="width:330px; height:500px">
 					
 					<H3>
-						 ${apo.lname}
+						 ${apo.username}
    					</H3>
+   					<H4>
+   						${apo.postalCode}
+   					</H4>
    					<H5>
-   						Price: ${apo.fname}
+   						Price: $${apo.total}
    					</H5>
 				</td>
 			
