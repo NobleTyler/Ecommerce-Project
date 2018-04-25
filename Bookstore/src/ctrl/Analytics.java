@@ -80,7 +80,7 @@ public class Analytics extends HttpServlet {
 
 	
 		if (request.getParameter("submitted") != null) {
-		populateByMonth(request, response);
+			populateByMonth(request, response);
 		}
 	
 		doGet(request, response);
@@ -116,14 +116,15 @@ public class Analytics extends HttpServlet {
 		}
 		
 	}
+	
 	/*
 	 * Again calls a query then sets it as an attribute
 	 * requires the PODAO 
 	 */
 	private void anonPO(HttpServletRequest request, HttpServletResponse response){
 		try {
-			
-			request.setAttribute("anonymizedpo", po.anonymousOrders());
+			if(po.anonymousOrders().size()>0)
+				request.setAttribute("anonymizedpo", po.anonymousOrders());
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
