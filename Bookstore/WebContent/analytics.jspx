@@ -79,21 +79,24 @@
  <H2>Anonymized Orders</H2>
  <div class="scrolledTable" >
 
-<table border="1">
+<table width="100%">
 <tbody class = "scrollable">
 	<tr>
 		<c:forEach items="${anonymizedpo}" var="apo">
 		
-				<td style="width:330px; height:500px">
+				<td>
 					
 					<H3>
-						 ${apo.username}
+						User Name: ${apo.username}
    					</H3>
+   					<H3>First Name: ****</H3>
+   					<H3>Last Name: ****</H3>
+   					
    					<H4>
-   						${apo.postalCode}
+   						Postal Code: ${apo.postalCode}
    					</H4>
    					<H5>
-   						Price: $${apo.total}
+   						Total Spent: $${apo.total}
    					</H5>
 				</td>
 			
