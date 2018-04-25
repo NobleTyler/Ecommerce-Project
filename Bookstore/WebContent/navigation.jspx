@@ -15,7 +15,7 @@
 			<a class="${activenav == 'home' ? 'active' : ''}" href="/Bookstore/Start">Home</a> 
 			<a class="${activenav == 'category' ? 'active' : ''}" href="/Bookstore/Categories">Categories</a>
 			<a class="${activenav == 'contact' ? 'active' : ''}" href="mailto:tynoble@my.yorku.ca,mcmaceac@my.yorku.ca,saeeds28@my.yorku.ca">Contact</a> 
-			<a class="${activenav == 'about' ? 'active' : ''}" href="#about">About</a>
+			<a class="${activenav == 'about' ? 'active' : ''}" href="about.pdf">About</a>
 	
 			<div class="login-bar">
 				<c:if test="${username eq null}">
