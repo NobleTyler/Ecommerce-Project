@@ -75,24 +75,28 @@
 		</table>
 </div>
  
+
  <H2>Anonymized Orders</H2>
  <div class="scrolledTable" >
 
-<table border="1">
+<table width="100%">
 <tbody class = "scrollable">
 	<tr>
 		<c:forEach items="${anonymizedpo}" var="apo">
 		
-				<td style="width:330px; height:500px">
+				<td>
 					
 					<H3>
-						 ${apo.username}
+						User Name: ${apo.username}
    					</H3>
+   					<H3>First Name: ****</H3>
+   					<H3>Last Name: ****</H3>
+   					
    					<H4>
-   						${apo.postalCode}
+   						Postal Code: ${apo.postalCode}
    					</H4>
    					<H5>
-   						Price: $${apo.total}
+   						Total Spent: $${apo.total}
    					</H5>
 				</td>
 			
@@ -104,6 +108,7 @@
 
 
 <h2>Books Bought By Month</h2>
+ <c:if test="${monthly ne null}">
  <div class="scrolledTable" >
 <table border="1" >
 <tbody class = "scrollable">
@@ -127,6 +132,7 @@
 			</tbody>
 		</table>
 </div>
+</c:if>
 	<div id="fixed">
 	 <form action="Analytics" method="post">
 	 <h4>Enter a month number to get the books bought for that month</h4>
