@@ -51,8 +51,8 @@ Add them to your cart and even order online.
 ## Built With
 
 * [Apache Tomcat](http://tomcat.apache.org/) - The web framework as well as server
-* [MYSQL](https://maven.apache.org/) - DBMS
-* [XAMMP](https://rometools.github.io/rome/) - Used to administrate the database
+* [MYSQL](https://www.mysql.com/) - DBMS
+* [XAMMP](https://www.apachefriends.org/index.html) - Used to administrate the database
 
 
 
