@@ -1,6 +1,6 @@
 # FreshBooks
 
-This is the final project for EECS 4413. It is a bookstore implemented using Apache Tomcat. It relies on a MYSQL database in order to pull information about anything from users to books and display it in the webpage. 
+It is a bookstore implemented using Apache Tomcat. It relies on a MYSQL database in order to pull information about anything from users to books and display it in the webpage. 
 The project took us a good long while and a lot of work so we hope you enjoy the experience of FreshBooks.
 
 
